@@ -1,0 +1,204 @@
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Modern Business - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/modern-business.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<script type="text/javascript" src="login.js"></script>
+<link rel="stylesheet" type="text/css" href="login.css">
+</head>
+<body>
+ <!-- Navigation -->
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">會議資訊小管家</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+				
+                    <li>
+                        <a href="contact.html">聯絡我們</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多資訊<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+						<ul align="left">
+                            <li>
+                                <a href="portfolio-1-col.html">會議</a>
+                            </li>
+                            <li>
+                                <a href="portfolio-2-col.html">講座</a>
+                            </li>
+                            <li>
+                                <a href="portfolio-3-col.html">演講</a>
+                            </li>
+						</ul>	
+                        </ul>
+                    </li>
+					<li>
+                        <a href="contact.html">管理專區</a>
+                    </li>
+					<li>
+                        <a href="login.html">登入</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="login.html" class="dropdown-toggle" data-toggle="dropdown">會員名字<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+							<ul align="left">
+                            <li>
+                                <a href="full-width.html">修改資料</a>
+                            </li>
+							<li>
+                                <a href="">登出</a>
+                            </li>
+							</ul>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+<div class='login-sign--form'>
+  <!-- form-container to shrink nav menu -->
+  <div class='form-container'>
+    <input checked='true' class='nav-item login' name='nav-item' title='login' type='radio'>
+    <label>會員登入</label>
+    <input class='nav-item sign-up' name='nav-item' title='sign up' type='radio'>
+    <label>註冊</label>
+    <div class='sb'></div>
+    <!-- form-expand to expand form width -->
+    <div class='form-expand'>
+      <div class='form-outer'>
+        <!-- start sign up form-->
+        <form class='login-form'>
+          <button class='facebook-btn facebook-login'>
+            <i aria-hidden='true' class='fa fa-facebook'></i>
+            <span>login with facebook</span>
+          </button>
+
+          <div class='social-btn-divider'>
+            <span>or</span>
+          </div>
+          <div class='user-name input-box'>
+            <input class='input' id='login-userName' type='text'>
+            <label class='placeholder' for='login-userName'>
+              <span>會</span>
+              <span>員</span>
+              <span>帳</span>
+              <span>號</span>
+
+            </label>
+          </div>
+          <div class='password input-box'>
+            <input class='input' id='login-password' type='password'>
+            <label class='placeholder' for='login-password'>
+              <span>密</span>
+              <span>碼</span>
+
+            </label>
+          </div>
+          <div class='login-options'>
+            <p class='remember-me'>
+              <label>
+                <input type='checkbox'>
+                <i aria-hidden='true' class='fa fa-check-circle'></i>
+              </label>
+              <span class='remember-me-txt'>記住我</span>
+            </p>
+            <p class='forgot-password'>
+              <a href='#'>忘記密碼?</a>
+            </p>
+          </div>
+          <button class='login-submit'>
+            <span>
+              登入
+            </span>
+            <div class='btn-hover-overlay'>
+              <span><a href="index.html">登入</a></span>
+            </div>
+          </button>
+        </form>
+        <!--start sign up form-->
+        <form class='sign-up-form'>
+          <button class='facebook-btn facebook-login'>
+            <i aria-hidden='true' class='fa fa-facebook'></i>
+            <span>sign up with facebook</span>
+          </button>
+          
+          <div class='user-name input-box'>
+            <input class='input' id='signUp-userName' type='text'>
+            <label class='placeholder' for='signUp-userName'>
+              <span>會</span>
+              <span>員</span>
+              <span>帳</span>
+              <span>號</span>
+            </label>
+          </div>
+          <div class='email input-box'>
+            <input class='input' id='signUp-email' type='text'>
+            <label class='placeholder' for='signUp-email'>
+              <span>信</span>
+              <span>箱</span>
+
+            </label>
+          </div>
+          <div class='password input-box'>
+            <input class='input' id='signUp-password' type='password'>
+            <label class='placeholder' for='signUp-password'>
+              <span>密</span>
+              <span>碼</span>
+            </label>
+          </div>
+          <button class='sign-submit'>
+            <span>
+              註冊
+            </span>
+            <div class='btn-hover-overlay'>
+              <span>註冊</span>
+            </div>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
