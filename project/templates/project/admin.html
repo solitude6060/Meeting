@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,16 +13,16 @@
     <title>Admin</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="admin css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/admin_css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="admin css/sb-admin.css" rel="stylesheet">
+    <link href="{% static 'css/admin_css/sb-admin.css' %}" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="admin css/plugins/morris.css" rel="stylesheet">
+    <link href="{% static 'css/admin_css/plugins/morris.css' %}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,7 +30,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<link href="admin css/sign.css" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/admin_css/sign.css' %}" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -46,7 +47,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">歡迎來的XXX會議工作室</a>
+                <a class="navbar-brand" href="index">歡迎來的XXX會議工作室</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -163,7 +164,7 @@
     <h1>登入</h1>
     <input type="text" placeholder="使用者">
     <input type="password" placeholder="密碼">
-	<input type="button" value="登入" onclick="self.location.href='choose.html'"/>
+	<input type="button" value="登入" onclick="self.location.href='choose'"/>
   </form>
 </div>
 
@@ -179,15 +180,15 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="admin js/jquery.js"></script>
+    <script src="{% static 'js/admin_js/jquery.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="admin js/bootstrap.min.js"></script>
+    <script src="{% static 'js/admin_js/bootstrap.min.js' %}"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="admin js/plugins/morris/raphael.min.js"></script>
-    <script src="admin js/plugins/morris/morris.min.js"></script>
-    <script src="admin js/plugins/morris/morris-data.js"></script>
+    <script src="{% static 'js/admin_js/plugins/morris/raphael.min.js' %}"></script>
+    <script src="{% static 'js/admin_js/plugins/morris/morris.min.js' %}"></script>
+    <script src="{% static 'js/admin_js/plugins/morris/morris-data.js' %}"></script>
 
 </body>
 

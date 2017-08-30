@@ -10,18 +10,18 @@
     <meta name="author" content="">
 
     <title>Admin</title>
-	<link href="admin css/choose.css" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/admin_css/choose.css' %}" rel="stylesheet" type="text/css">
     <!-- Bootstrap Core CSS -->
-    <link href="admin css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/admin_css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="admin css/sb-admin.css" rel="stylesheet">
+    <link href="{% static 'css/admin_css/sb-admin.css' %}" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="admin css/plugins/morris.css" rel="stylesheet">
+    <link href="{% static 'css/admin_css/plugins/morris.css' %}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">歡迎來的XXX會議管理室</a>
+                <a class="navbar-brand" href="index">歡迎來的XXX會議管理室</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -162,7 +162,7 @@
 						<a href="index.html">會議管理</a>
 						</button>
   
-						<button class="button type3" href="room.html">
+						<button class="button type3" href="room">
 						會議室管理
 						</button>
 		
@@ -180,15 +180,15 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="admin js/jquery.js"></script>
+    <script src="{% static 'js/admin_js/jquery.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="admin js/bootstrap.min.js"></script>
+    <script src="{% static 'js/admin_js/bootstrap.min.js' %}"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="admin js/plugins/morris/raphael.min.js"></script>
-    <script src="admin js/plugins/morris/morris.min.js"></script>
-    <script src="admin js/plugins/morris/morris-data.js"></script>
+    <script src="{% static 'js/admin_js/plugins/morris/raphael.min.js' %}"></script>
+    <script src="{% static 'js/admin_js/plugins/morris/morris.min.js' %}"></script>
+    <script src="{% static 'js/admin_js/plugins/morris/morris-data.js' %}"></script>
 
 </body>
 

@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <html lang="en">
 
 <head>
@@ -11,13 +12,13 @@
     <title>Modern Business - Start Bootstrap Template</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/modern-business.css" rel="stylesheet">
+    <link href="{% static 'css/modern-business.css' %}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,8 +26,8 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<script type="text/javascript" src="login.js"></script>
-<link rel="stylesheet" type="text/css" href="login.css">
+<script type="text/javascript" src="{%static 'js/login.js'%}"></script>
+<link rel="stylesheet" type="text/css" href="{%static 'css/login.css' %}">
 </head>
 <body>
  <!-- Navigation -->
@@ -41,7 +42,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">會議資訊小管家</a>
+                <a class="navbar-brand" href="index">會議資訊小管家</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -55,29 +56,29 @@
                         <ul class="dropdown-menu">
 						<ul align="left">
                             <li>
-                                <a href="portfolio-1-col.html">會議</a>
+                                <a href="portfolio_1_col">會議</a>
                             </li>
                             <li>
-                                <a href="portfolio-2-col.html">講座</a>
+                                <a href="portfolio_2_col">講座</a>
                             </li>
                             <li>
-                                <a href="portfolio-3-col.html">演講</a>
+                                <a href="portfolio_3_col">演講</a>
                             </li>
 						</ul>	
                         </ul>
                     </li>
 					<li>
-                        <a href="contact.html">管理專區</a>
+                        <a href="contact">管理專區</a>
                     </li>
 					<li>
-                        <a href="login.html">登入</a>
+                        <a href="login">登入</a>
                     </li>
                     <li class="dropdown">
-                        <a href="login.html" class="dropdown-toggle" data-toggle="dropdown">會員名字<b class="caret"></b></a>
+                        <a href="login" class="dropdown-toggle" data-toggle="dropdown">會員名字<b class="caret"></b></a>
                         <ul class="dropdown-menu">
 							<ul align="left">
                             <li>
-                                <a href="full-width.html">修改資料</a>
+                                <a href="full-width">修改資料</a>
                             </li>
 							<li>
                                 <a href="">登出</a>
@@ -147,7 +148,7 @@
               登入
             </span>
             <div class='btn-hover-overlay'>
-              <span><a href="index.html">登入</a></span>
+              <span><a href="index">登入</a></span>
             </div>
           </button>
         </form>
@@ -196,9 +197,9 @@
   </div>
 </div>
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="{% static 'js/js/jquery.js'}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{% static 'js/js/bootstrap.min.js'}"></script>
 </body>
 </html>

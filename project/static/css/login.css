@@ -1,0 +1,535 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+.login-sign--form {
+  width: 25%;
+  min-width: 370px;
+  height: 480px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 30px;
+  box-shadow: 0 0 1px 1px #999;
+  transition: box-shadow 1s ease;
+  background-color: #27282E;
+}
+
+.login-sign--form:hover {
+  box-shadow: 0 0 7px 1px #999;
+}
+
+.form-container {
+  width: 60%;
+  height: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+/* -----------------
+form navigation
+----------------- */
+.nav-item {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.nav-item,
+.nav-item + label {
+  z-index: 2;
+  display: block;
+  width: 50%;
+  height: 60px;
+  position: absolute;
+  top: 0;
+}
+
+.nav-item + label {
+  z-index: 1;
+  line-height: 60px;
+  text-align: center;
+  font-size: .85em;
+  text-transform: uppercase;
+  transition: all .4s ease-in-out;
+}
+
+.nav-item.login,
+.nav-item.login + label {
+  left: 0;
+}
+
+.nav-item.sign-up,
+.nav-item.sign-up + label {
+  right: 0;
+}
+
+.nav-item.login + label {
+  color: #00bf58;
+}
+
+.nav-item.sign-up + label {
+  color: #049ae7;
+}
+
+/* .navigation item label */
+/* navigation item sliding border */
+.nav-item ~ .sb {
+  width: 50%;
+  height: 4px;
+  position: absolute;
+  background-color: blue;
+  transition: all 1s ease;
+}
+
+/* ---------------------
+nav item checked state
+----------------------*/
+.nav-item.login:checked ~ .sb {
+  background-color: #00bf58;
+  transform: translate3d(0, 0, 1px);
+}
+
+.nav-item.sign-up:checked ~ .sb {
+  background-color: #049ae7;
+  transform: translate3d(100%, 0, 1px);
+}
+
+.nav-item.login:checked ~ .form-expand .login-form {
+  visibility: visible;
+  opacity: 1;
+}
+
+.nav-item.sign-up:checked ~ .form-expand .sign-up-form {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* .form navigation */
+/* -------------------
+ login/sign-up form 
+------------------- */
+.form-expand {
+  margin-left: -40px;
+  margin-right: -40px;
+  height: calc(100% - 60px);
+  position: relative;
+  top: 60px;
+}
+
+.form-outer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* login/sign-up form global style */
+.login-form,
+.sign-up-form {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: 15px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.facebook-btn,
+.gplus-btn {
+  display: block;
+  width: 100%;
+  height: 35px;
+  margin-top: 20px;
+  padding: 0 7px;
+  background-color: transparent;
+  border: 0 solid;
+  outline: none;
+  cursor: pointer;
+  font: 14px roboto;
+  text-align: left;
+  transition: background-color 1s ease, color 0.7s ease, box-shadow 1s ease;
+}
+
+.facebook-btn {
+  background-color: #39569b;
+  color: #fff;
+}
+
+.gplus-btn {
+  background-color: #da4835;
+  color: #fff;
+}
+
+.facebook-btn:hover,
+.gplus-btn:hover {
+  background-color: #fff;
+}
+
+.facebook-btn:hover {
+  color: #3B5998;
+}
+
+.gplus-btn:hover {
+  color: #d34836;
+}
+
+.facebook-btn i,
+.gplus-btn i {
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+  border-right: 1px solid #fff;
+  margin-right: 10px;
+  transition: border-right-color 0.7s ease;
+}
+
+.facebook-btn:hover i {
+  border-right: 1px solid #3B5998;
+}
+
+.gplus-btn:hover i {
+  border-right: 1px solid #d34836;
+}
+
+.facebook-btn span,
+.gplus-btn span {
+  text-transform: capitalize;
+}
+
+.social-btn-divider {
+  width: 100%;
+  text-align: center;
+}
+
+.social-btn-divider span {
+  position: relative;
+  top: 15px;
+  letter-spacing: 1px;
+  color: #f1f1f1;
+  font-weight: bold;
+}
+
+.social-btn-divider span:before,
+.social-btn-divider span:after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 30px;
+  border-bottom: 1px solid;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.social-btn-divider span:before {
+  left: 25px;
+}
+
+.social-btn-divider span:after {
+  right: 25px;
+}
+
+/* ----------------------------
+input/placeholder container
+---------------------------- */
+.input {
+  background-color: transparent;
+}
+
+.input-box {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  margin-top: 35px;
+}
+
+/* input/placeholder global style */
+.input-box .input,
+.input-box .placeholder {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 40px;
+  padding-left: 10px;
+  background-color: transparent;
+}
+
+.input-box .input {
+  z-index: 2;
+  border: none;
+  outline: none;
+  color: #fdfdfd;
+  font-weight: 700;
+}
+
+/* -----------------
+input focus state
+----------------- */
+.input-box .placeholder {
+  z-index: 1;
+  padding-left: 15px;
+  border-bottom: 1px solid #999;
+}
+
+.login-form .input-box .placeholder:after,
+.sign-up-form .input-box .placeholder:after {
+  content: '';
+  display: block;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  transform: scaleX(0) translateZ(1px);
+  border-bottom: 1px solid;
+  transition: all 1s cubic-bezier(1, -0.75, 0, 1.83);
+}
+
+.login-form .input-box .placeholder:after {
+  border-bottom-color: #00bf58;
+}
+
+.sign-up-form .input-box .placeholder:after {
+  border-bottom-color: #049ae7;
+}
+
+/* place holder letters */
+.input-box .placeholder span {
+  display: inline-block;
+  margin-left: -3px;
+  font-weight: 700;
+  color: #888;
+  transform: translate3d(0, 0, 1px);
+  transition: transform 1s cubic-bezier(1, -0.75, 0, 1.83);
+}
+
+.input-box .placeholder span:nth-of-type(0) {
+  transition-delay: 0ms;
+}
+
+.input-box .placeholder span:nth-of-type(1) {
+  transition-delay: 60ms;
+}
+
+.input-box .placeholder span:nth-of-type(2) {
+  transition-delay: 120ms;
+}
+
+.input-box .placeholder span:nth-of-type(3) {
+  transition-delay: 180ms;
+}
+
+.input-box .placeholder span:nth-of-type(4) {
+  transition-delay: 240ms;
+}
+
+.input-box .placeholder span:nth-of-type(5) {
+  transition-delay: 300ms;
+}
+
+.input-box .placeholder span:nth-of-type(6) {
+  transition-delay: 360ms;
+}
+
+.input-box .placeholder span:nth-of-type(7) {
+  transition-delay: 420ms;
+}
+
+.input-box .placeholder span:nth-of-type(8) {
+  transition-delay: 480ms;
+}
+
+.input-box .placeholder span:nth-of-type(9) {
+  transition-delay: 540ms;
+}
+
+.input-box .placeholder span:nth-of-type(10) {
+  transition-delay: 600ms;
+}
+
+.input-box .placeholder span:nth-of-type(11) {
+  transition-delay: 660ms;
+}
+
+/* spread border when focus on input */
+.input-box input:focus ~ .placeholder:after,
+.input-box .have-content ~ .placeholder:after {
+  transform: scaleX(1) translateZ(1px);
+}
+
+/* placeholder letters animation */
+.input-box input:focus ~ .placeholder > span,
+.input-box .have-content ~ .placeholder > span {
+  transform: translate3d(-7px, -27px, 1px);
+}
+
+.login-options {
+  width: 100%;
+  padding: 0 10px;
+  margin-top: 40px;
+}
+
+.login-options:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.login-options .remember-me {
+  display: block;
+  width: 60%;
+  float: left;
+  text-transform: capitalize;
+  font-size: .8em;
+  -webkit-user-select: none;
+  user-select: none;
+  color: #777;
+}
+
+/* rememeber text */
+.login-options .remember-me span {
+  display: inline-block;
+  position: relative;
+  padding-left: 27px;
+  top: 3px;
+}
+
+/* rememeber checkbox/check-icon container */
+.login-options .remember-me label {
+  position: relative;
+}
+
+.login-options .remember-me input[type="checkbox"],
+.login-options .remember-me i {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.login-options .remember-me input[type="checkbox"] {
+  z-index: 10;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.login-options .remember-me i {
+  display: block;
+  z-index: 9;
+  width: 20px;
+  height: 20px;
+  background-color: #f1f1f1;
+  color: #fff;
+  box-shadow: 0 0 1px #777;
+  border-radius: 50%;
+}
+
+.login-options .remember-me i:before {
+  display: block;
+  font-size: 24px;
+  position: absolute;
+  top: -2px;
+  left: 0;
+  color: #2ecc71;
+  transform: translateZ(1px) scale(0);
+  transition: all .4s ease;
+}
+
+/* scale in check icon on checked state */
+.remember-me input[type="checkbox"]:checked ~ i:before {
+  transform: translateZ(1px) scale(1);
+}
+
+.login-options .forgot-password {
+  display: block;
+  width: 40%;
+  float: right;
+  text-align: right;
+}
+
+.login-options .forgot-password a {
+  color: #777;
+  font-size: 13px;
+  letter-spacing: 0px;
+}
+
+/* --------------------------
+  login/sign submit button
+-------------------------- */
+.login-submit,
+.sign-submit {
+  display: block;
+  width: 300px;
+  height: 50px;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 35px;
+  background-color: transparent;
+  overflow: hidden;
+  line-height: 50px;
+  color: #454545;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  box-shadow: 0 0 1px 1px #999;
+  cursor: pointer;
+}
+
+/* button text and cloned text */
+.login-submit span,
+.sign-submit span {
+  display: block;
+  width: 300px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.login-submit .btn-hover-overlay span {
+  background-color: #00bf58;
+}
+
+.sign-submit .btn-hover-overlay span {
+  background-color: #049ae7;
+}
+
+.login-submit .btn-hover-overlay,
+.sign-submit .btn-hover-overlay {
+  color: #fff;
+  width: 0%;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  transition: all 1s ease;
+  -webkit-clip-path: polygon(0 0, 80% 0, 100% 100%, 0 100%);
+  background-color: #00f;
+}
+
+.login-submit:hover .btn-hover-overlay,
+.sign-submit:hover .btn-hover-overlay {
+  width: 101%;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
