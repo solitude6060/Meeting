@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,14 +13,13 @@
     <title>Modern Business - Start Bootstrap Template</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/modern-business.css" rel="stylesheet">
+    <link href="{% static 'css/modern-business.css' %}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    <link href="{% static 'css/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -42,7 +42,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">會議資訊小管家</a>
+                <a class="navbar-brand" href="index">會議資訊小管家</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -56,25 +56,25 @@
                         <ul class="dropdown-menu">
 						<ul align="left">
                             <li>
-                                <a href="portfolio-1-col.html">會議</a>
+                                <a href="portfolio_1_col">會議</a>
                             </li>
                             <li>
-                                <a href="portfolio-2-col.html">講座</a>
+                                <a href="portfolio_2_col">講座</a>
                             </li>
                             <li>
-                                <a href="portfolio-3-col.html">演講</a>
+                                <a href="portfolio_3_col">演講</a>
                             </li>
 						</ul>	
                         </ul>
                     </li>
 					<li>
-                        <a href="admin.html">管理專區</a>
+                        <a href="admin">管理專區</a>
                     </li>
 					<li>
-                        <a href="login.html">登入</a>
+                        <a href="login">登入</a>
                     </li>
                     <li class="dropdown">
-                        <a href="login.html" class="dropdown-toggle" data-toggle="dropdown">會員名字<b class="caret"></b></a>
+                        <a href="login" class="dropdown-toggle" data-toggle="dropdown">會員名字<b class="caret"></b></a>
                         <ul class="dropdown-menu">
 							<ul align="left">
                             <li>
@@ -111,19 +111,19 @@
         <div class="row">
 
             <div class="col-md-5">
-                <a href="blog-post.html">
+                <a href="blog_post">
                     <img class="img-responsive img-hover" src="1.gif" alt="">
                 </a>
             </div>
             <div class="col-md-6">
                 <h2>
-                    <a href="blog-post.html">如何讓你成為一個好的幹部</a>
+                    <a href="blog_post">如何讓你成為一個好的幹部</a>
                 </h2>
 				<br>
 				<p><i class="fa fa-home" aria-hidden="true"></i>主辦單位 ： 羅達企業學會</p>
                 <p><i class="fa fa-dollar" aria-hidden="true"></i>報名費用   ：無</p>
 				<p><i class="fa fa-users" aria-hidden="true"></i>人數限制 ：50</p><br>
-                <a class="btn btn-primary" href="blog-post.html">馬上報名<i class="fa fa-angle-right"></i></a>
+                <a class="btn btn-primary" href="blog_post">馬上報名<i class="fa fa-angle-right"></i></a>
             </div>
 			<br>
 			<br>
@@ -205,10 +205,10 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="{% static 'js/js/jquery.js'}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{% static 'js/js/bootstrap.min.js'}"></script>
 
 </body>
 
