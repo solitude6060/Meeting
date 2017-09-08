@@ -14,20 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-    from django.contrib import admin
+from django.contrib import admin
 admin.autodiscover()
-    from project import views
-    from django.views.generic import TemplateView
-    from rest_framework import routers
-    #from Meeting.project import views
+from project import views
+from django.views.generic import TemplateView
+from rest_framework import routers
+#from Meeting.project import views
 
-    #apis
+#apis
 router = routers.DefaultRouter()
-    router.register(r'meeting', views.MeetingViewSet)
-    router.register(r'member', views.MemberViewSet)
+router.register(r'meeting', views.MeetingViewSet)
+router.register(r'member', views.MemberViewSet)
 
-    #apps
-    urlpatterns = [
+#apps
+urlpatterns = [
     url(r'^$', views.index),
     url(r'^', include(router.urls)),
     url(r'^index', views.index),
