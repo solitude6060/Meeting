@@ -43,12 +43,14 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
         'rest_framework.permissions.IsAdminUser',
+        #'rest_framework.authentication.TokenAuthentication',
     ],
     'PAGE_SIZE': 10
 }
 
-MIDDLEWARE = [
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -56,7 +58,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
+
 
 ROOT_URLCONF = 'Meeting.urls'
 
@@ -131,3 +135,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Production need  to collect staicies to path
+# STATIC_ROOT = "/usr/share/nginx/html/static/"
+MEDIA_URL = '/'
+
+# Develop
+MEDIA_ROOT=os.path.join(BASE_DIR, "")
+
+# Prod
+# MEDIA_ROOT="/usr/share/nginx/html/media/"

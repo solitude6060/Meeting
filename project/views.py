@@ -5,10 +5,17 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+
+from rest_framework import viewsets
+from .serializers import CheckInSerializer, FeedbackSheetSerializer, MeetingSerializer, MeetingroomSerializer, MemberSerializer, OrganizerSerializer, PositioningSerializer, SeatingSerializer
+from .models import CheckIn, FeedbackSheet, Meeting, Meetingroom, Member, Organizer, Positioning, Seating
+
+
 # Create your views here.
 #
 #
 
+#Web page's view
 def index(request):
      return render_to_response('project/index.html', locals())
 
@@ -57,8 +64,25 @@ def blog_home_2(request):
 def blog_post(request):
     return render_to_response('project/blog_post.html', locals())
 
+#################################################################
+#restful api's view
+#################################################################
+class MeetingViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Meeting.objects.all()
+    serializer_class = MeetingSerializer
+    pagination_class = None
 
 
+class MemberViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Member.objects.all()
+    serializer_class = MemberSerializer
+    pagination_class = None
 
 
 
