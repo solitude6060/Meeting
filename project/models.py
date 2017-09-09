@@ -72,7 +72,7 @@ class Member(models.Model):
     member_password = models.CharField(db_column='Member_password', max_length=50, blank=True, null=True)  # Field name made lowercase.
     member_name = models.CharField(db_column='Member_name', max_length=24, blank=True, null=True)  # Field name made lowercase.
     member_department = models.CharField(db_column='Member_department', max_length=24, blank=True, null=True)  # Field name made lowercase.
-    member_phone = models.IntegerField(db_column='Member_phone', blank=True, null=True)  # Field name made lowercase.
+    member_phone = models.CharField(db_column='Member_phone', max_length=20, blank=True, null=True)  # Field name made lowercase.
     gender = models.IntegerField(db_column='Gender', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
@@ -84,7 +84,7 @@ class Organizer(models.Model):
     organizer_email = models.CharField(db_column='Organizer_email', max_length=50, blank=True, null=True)  # Field name made lowercase.
     organizer_password = models.IntegerField(db_column='Organizer_password', blank=True, null=True)  # Field name made lowercase.
     organizer_department = models.CharField(db_column='Organizer_department', max_length=24, blank=True, null=True)  # Field name made lowercase.
-    organizer_phone = models.IntegerField(db_column='Organizer_phone', blank=True, null=True)  # Field name made lowercase.
+    organizer_phone = models.CharField(db_column='Organizer_phone', max_length=20, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
