@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^$', views.index),
     url(r'^', include(router.urls)),
     url(r'^index', views.index),
-    url(r'^admin_backend', admin.site.urls),
+    url(r'^admin_backend/', admin.site.urls),
     url(r'^contact', views.contact),
     url(r'^portfolio_1_col', views.portfolio_1_col),
     url(r'^portfolio_2_col', views.portfolio_2_col),

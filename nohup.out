@@ -125,3 +125,268 @@ September 09, 2017 - 19:39:04
 Django version 1.11.2, using settings 'Meeting.settings'
 Starting development server at http://0.0.0.0:443/
 Quit the server with CONTROL-C.
+[09/Sep/2017 22:33:45] "GET /member/ HTTP/1.1" 200 5320
+[09/Sep/2017 22:33:45] "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+[09/Sep/2017 22:33:45] "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+[09/Sep/2017 22:33:45] "GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+[09/Sep/2017 22:33:45] "GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+[09/Sep/2017 22:33:45] "GET /static/rest_framework/js/jquery-1.12.4.min.js HTTP/1.1" 304 0
+[09/Sep/2017 22:33:45] "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+[09/Sep/2017 22:33:45] "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+[09/Sep/2017 22:33:45] "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+[09/Sep/2017 22:33:46] "GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+[09/Sep/2017 22:33:46] "GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+[09/Sep/2017 22:33:46] "GET /static/rest_framework/img/grid.png HTTP/1.1" 304 0
+[09/Sep/2017 22:48:38] code 400, message Bad request syntax ("\x16\x03\x01\x00_\x01\x00\x00[\x03\x01Y\xb3\xffF\xb17]\xe9-\xb2\xed'd\xb39\xdf.\x11\x82\x99\xcd!\xe2N\x8f\x7f\xea\xbfW\xa6\x8c\x85\x00\x00.\x00:\x009\x008\x005\x004\x003\x002\x00/\x00\x1b\x00\x19\x00\x18\x00\x17\x00\x16\x00\x14\x00\x13\x00\x11\x00")
+[09/Sep/2017 22:48:38] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[10/Sep/2017 01:15:05] code 400, message Bad HTTP/0.9 request type ("\x16\x03\x01\x00\x8c\x01\x00\x00\x88\x03\x03\xbe\xe0\x8c`\x11\x8b\x8f@'k\xf8LT\x98\x7f\xf2-\x04&=fn\x1c\xc5\xc9]p+\\T\xe8\xb3\x00\x00\x1a\xc0/\xc0+\xc0\x11\xc0\x07\xc0\x13\xc0")
+[10/Sep/2017 01:15:05] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[10/Sep/2017 01:33:12] "GET /member/ HTTP/1.1" 200 5320
+[10/Sep/2017 01:33:12] "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+[10/Sep/2017 01:33:12] "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+[10/Sep/2017 01:33:12] "GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+[10/Sep/2017 01:33:12] "GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+[10/Sep/2017 01:33:12] "GET /static/rest_framework/js/jquery-1.12.4.min.js HTTP/1.1" 304 0
+[10/Sep/2017 01:33:12] "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+[10/Sep/2017 01:33:12] "GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+[10/Sep/2017 01:33:12] "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+[10/Sep/2017 01:33:12] "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+[10/Sep/2017 01:33:12] "GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+[10/Sep/2017 01:33:12] "GET /static/rest_framework/img/grid.png HTTP/1.1" 304 0
+[10/Sep/2017 01:33:33] "GET /meeting/ HTTP/1.1" 200 4936
+[10/Sep/2017 01:33:33] "GET /meeting/ HTTP/1.1" 200 4936
+[10/Sep/2017 02:48:42] code 400, message Bad request version ("\x84\xb4,\x85\xafn\xe3Y\xbbbhl\xff(=':\xa9\x82\xd9o\xc8\xa2\xd7\x93\x98\xb4\xef\x80\xe5\xb9\x90\x00(\xc0")
+[10/Sep/2017 02:48:42] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[10/Sep/2017 04:30:13] code 400, message Bad request syntax ('\x16\x03\x01\x00\xcf\x01\x00\x00\xcb\x03\x03Y\xb4OS\x14\xb8E\x12\x17W\xc8\x93\xce\xc4M\xa9\x04\xcaG]\x90\xa4\xe6cjm4\xfcK\x14\xdf\xe0\x00\x00\x1c\x8a\x8a\xc0+\xc0/\xc0,\xc00\xcc\xa9\xcc\xa8\xc0\x13\xc0\x14\x00\x9c\x00\x9d\x00/\x005\x00')
+[10/Sep/2017 04:30:13] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[10/Sep/2017 04:55:53] code 400, message Bad request syntax ("\x16\x03\x01\x00\x90\x01\x00\x00\x8c\x03\x03D\xeb\xb3\xb1\x99+\xffL\x16\xf0ut\xc201\xf5\xd2f'\x02\xc7ee@\xfe({M\xb7\xbc\x1b\xbc\x00\x00.\xc0+\xc0/\x00\x9e\x00\x9c\xc0")
+[10/Sep/2017 04:55:53] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[10/Sep/2017 06:50:29] code 400, message Bad request syntax ('\x16\x03\x01\x00\x8c\x01\x00\x00\x88\x03\x03')
+[10/Sep/2017 06:50:29] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[10/Sep/2017 12:42:13] code 400, message Bad request syntax ('\x16\x03\x01\x00\xcf\x01\x00\x00\xcb\x03\x03Y\xb4\xc2\xa3\x14\xb8E\x12\x17W\xc8\x93\xce\xc4M\xa9\x04\xcaG]\x90\xa4\xe6cjm4\xfcK\x14\xdf\xe0\x00\x00\x1c\x8a\x8a\xc0+\xc0/\xc0,\xc00\xcc\xa9\xcc\xa8\xc0\x13\xc0\x14\x00\x9c\x00\x9d\x00/\x005\x00')
+[10/Sep/2017 12:42:13] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[10/Sep/2017 13:23:05] code 400, message Bad request version ('\xc0#\xc0$\xc0,\xc0H\xc0\\\xc0I\xc0]\xc0r\xc0\x86\xc0s\xc0\x87\xc0+\xcc\x14\xc0')
+[10/Sep/2017 13:23:05] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[10/Sep/2017 16:48:09] code 400, message Bad request syntax ('\x16\x03\x01\x00\xcf\x01\x00\x00\xcb\x03\x03Y\xb4\xfcG\x14\xb8E\x12\x17W\xc8\x93\xce\xc4M\xa9\x04\xcaG]\x90\xa4\xe6cjm4\xfcK\x14\xdf\xe0\x00\x00\x1c\x8a\x8a\xc0+\xc0/\xc0,\xc00\xcc\xa9\xcc\xa8\xc0\x13\xc0\x14\x00\x9c\x00\x9d\x00/\x005\x00')
+[10/Sep/2017 16:48:09] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[10/Sep/2017 18:39:49] code 400, message Bad request version ('\xc0\x14\xc0')
+[10/Sep/2017 18:39:49] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[10/Sep/2017 20:54:11] code 400, message Bad request syntax ('\x16\x03\x01\x00\xcf\x01\x00\x00\xcb\x03\x03Y\xb55\xf1\x14\xb8E\x12\x17W\xc8\x93\xce\xc4M\xa9\x04\xcaG]\x90\xa4\xe6cjm4\xfcK\x14\xdf\xe0\x00\x00\x1c\x8a\x8a\xc0+\xc0/\xc0,\xc00\xcc\xa9\xcc\xa8\xc0\x13\xc0\x14\x00\x9c\x00\x9d\x00/\x005\x00')
+[10/Sep/2017 20:54:11] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[11/Sep/2017 02:47:38] code 400, message Bad request version ("\x00\xc0'\x00\xc0(\x00\xc0\x07\x00\xc0\x11\x00\x00g\x00\x00@\x00\x009\x00\x00\x9c\x00\x00/\x00\x005\x00\x00")
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/logging/__init__.py", line 851, in emit
+    msg = self.format(record)
+  File "/usr/lib64/python2.7/logging/__init__.py", line 724, in format
+    return fmt.format(record)
+  File "/usr/lib64/python2.7/site-packages/django/utils/log.py", line 192, in format
+    return super(ServerFormatter, self).format(record)
+  File "/usr/lib64/python2.7/logging/__init__.py", line 467, in format
+    s = self._fmt % record.__dict__
+UnicodeDecodeError: 'ascii' codec can't decode byte 0x80 in position 1: ordinal not in range(128)
+Logged from file basehttp.py, line 124
+[11/Sep/2017 04:26:14] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00\xa4\x01\x00\x00\xa0\x03\x03')
+[11/Sep/2017 04:26:14] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+Not Found: /recordings//theme/main.css
+[11/Sep/2017 11:02:58] "GET /recordings//theme/main.css HTTP/1.1" 404 5997
+[11/Sep/2017 11:02:59] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00\x90\x01\x00\x00\x8c\x03\x03\xee\xc8\x14\xce\x07\x89-b\xec\x13\xd7|\x11\x9c\xf8\x02\x8d\xa7\xe5\x11|\x7f\xf3*o@\xd1\xe5\xea\x95R')
+[11/Sep/2017 11:02:59] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+Performing system checks...
+
+System check identified no issues (0 silenced).
+September 09, 2017 - 22:33:41
+Django version 1.11.2, using settings 'Meeting.settings'
+Starting development server at http://0.0.0.0:443/
+Quit the server with CONTROL-C.
+[11/Sep/2017 15:36:30] "GET /admin_backend HTTP/1.1" 302 0
+[11/Sep/2017 15:36:30] "GET /admin_backendlogin/?next=/admin_backend HTTP/1.1" 200 1687
+[11/Sep/2017 15:36:30] "GET /static/admin/css/login.css HTTP/1.1" 200 1203
+[11/Sep/2017 15:36:30] "GET /static/admin/css/base.css HTTP/1.1" 200 16066
+[11/Sep/2017 15:36:30] "GET /static/admin/css/fonts.css HTTP/1.1" 200 423
+[11/Sep/2017 15:36:30] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 200 81348
+[11/Sep/2017 15:36:30] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 200 80304
+[11/Sep/2017 15:36:30] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 200 82564
+[11/Sep/2017 15:36:36] "POST /admin_backendlogin/?next=/admin_backend HTTP/1.1" 302 0
+[11/Sep/2017 15:36:36] "GET /admin_backend HTTP/1.1" 200 6587
+[11/Sep/2017 15:36:36] "GET /static/admin/css/dashboard.css HTTP/1.1" 200 412
+[11/Sep/2017 15:36:36] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+[11/Sep/2017 15:36:36] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+Forbidden (CSRF token missing or incorrect.): /admin_backendlogin/
+[11/Sep/2017 15:37:13] "POST /admin_backendlogin/?next=/admin_backend HTTP/1.1" 403 2495
+Forbidden (CSRF token missing or incorrect.): /admin_backendlogin/
+[11/Sep/2017 15:37:24] "POST /admin_backendlogin/?next=/admin_backend HTTP/1.1" 403 2495
+[11/Sep/2017 15:39:53] "GET /admin_backend HTTP/1.1" 200 6585
+[11/Sep/2017 15:39:53] "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+[11/Sep/2017 15:39:53] "GET /static/admin/css/base.css HTTP/1.1" 304 0
+[11/Sep/2017 15:39:53] "GET /static/admin/css/fonts.css HTTP/1.1" 304 0
+[11/Sep/2017 15:39:54] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 304 0
+[11/Sep/2017 15:39:54] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 304 0
+[11/Sep/2017 15:39:54] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 304 0
+[11/Sep/2017 15:39:58] "GET /admin_backendlogout/ HTTP/1.1" 200 1020
+[11/Sep/2017 15:40:00] "GET /admin_backend HTTP/1.1" 302 0
+[11/Sep/2017 15:40:00] "GET /admin_backendlogin/?next=/admin_backend HTTP/1.1" 200 1687
+[11/Sep/2017 15:40:02] "POST /admin_backendlogin/?next=/admin_backend HTTP/1.1" 302 0
+[11/Sep/2017 15:40:02] "GET /admin_backend HTTP/1.1" 200 6585
+[11/Sep/2017 15:40:08] "GET /admin_backendproject/member/ HTTP/1.1" 200 4255
+[11/Sep/2017 15:40:08] "GET /admin_backendjsi18n/ HTTP/1.1" 200 7761
+[11/Sep/2017 15:41:41] "GET /admin_backendauth/user/ HTTP/1.1" 200 7041
+[11/Sep/2017 15:41:41] "GET /admin_backendjsi18n/ HTTP/1.1" 200 7761
+[11/Sep/2017 15:41:41] "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+[11/Sep/2017 15:41:41] "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+[11/Sep/2017 15:41:41] "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+[11/Sep/2017 15:42:13] "GET /admin_backendauth/user/ HTTP/1.1" 200 7041
+[11/Sep/2017 15:42:15] "GET /admin_backendjsi18n/ HTTP/1.1" 200 7761
+Performing system checks...
+
+System check identified no issues (0 silenced).
+September 11, 2017 - 15:39:45
+Django version 1.11.2, using settings 'Meeting.settings'
+Starting development server at http://0.0.0.0:443/
+Quit the server with CONTROL-C.
+[11/Sep/2017 15:43:20] "GET /admin_backendauth/user/ HTTP/1.1" 200 8691
+[11/Sep/2017 15:43:20] "GET /static/css/admin_css/bootstrap.min.css HTTP/1.1" 200 121200
+[11/Sep/2017 15:43:20] "GET /static/css/admin_css/sb-admin.css HTTP/1.1" 200 2597
+[11/Sep/2017 15:43:20] "GET /static/css/admin_css/plugins/morris.css HTTP/1.1" 200 433
+[11/Sep/2017 15:43:20] "GET /static/css/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[11/Sep/2017 15:43:20] "GET /static/css/admin_css/sign.css HTTP/1.1" 200 161596
+[11/Sep/2017 15:43:20] "GET /static/js/admin_js/bootstrap.min.js HTTP/1.1" 200 37045
+[11/Sep/2017 15:43:20] "GET /static/js/admin_js/plugins/morris/morris.min.js HTTP/1.1" 200 35652
+[11/Sep/2017 15:43:20] "GET /static/js/admin_js/plugins/morris/raphael.min.js HTTP/1.1" 200 92872
+[11/Sep/2017 15:43:20] "GET /static/js/admin_js/plugins/morris/morris-data.js HTTP/1.1" 200 5337
+[11/Sep/2017 15:43:20] "GET /static/js/admin_js/jquery.js HTTP/1.1" 200 95785
+[11/Sep/2017 15:43:21] "GET /static/css/font-awesome/fonts/fontawesome-webfont.woff?v=4.2.0 HTTP/1.1" 304 0
+[11/Sep/2017 15:43:27] "GET /admin_backend/auth/user/ HTTP/1.1" 200 7050
+[11/Sep/2017 15:43:27] "GET /admin_backend/jsi18n/ HTTP/1.1" 200 7761
+[11/Sep/2017 15:43:30] "GET /admin_backend/ HTTP/1.1" 200 6620
+[11/Sep/2017 15:43:49] "GET /admin_backend/project/member/ HTTP/1.1" 200 4263
+[11/Sep/2017 15:43:50] "GET /admin_backend/jsi18n/ HTTP/1.1" 200 7761
+[11/Sep/2017 15:44:10] "GET /static/js/js/bootstrap.min.js HTTP/1.1" 304 0
+[11/Sep/2017 15:44:10] "GET /static/images/2.jpg HTTP/1.1" 304 0
+[11/Sep/2017 15:44:10] "GET /static/css/modern-business.css HTTP/1.1" 304 0
+[11/Sep/2017 15:44:10] "GET /static/images/1.gif HTTP/1.1" 304 0
+[11/Sep/2017 15:44:10] "GET /static/js/js/jquery.js HTTP/1.1" 304 0
+[11/Sep/2017 15:44:10] "GET /static/css/bootstrap.min.css HTTP/1.1" 304 0
+[11/Sep/2017 15:44:10] "GET / HTTP/1.1" 200 9372
+[11/Sep/2017 15:44:10] "GET /static/images/3.jpg HTTP/1.1" 304 0
+[11/Sep/2017 15:44:13] "GET / HTTP/1.1" 200 9372
+[11/Sep/2017 15:44:14] "GET /meeting/ HTTP/1.1" 200 5158
+[11/Sep/2017 15:44:15] "GET /meeting/ HTTP/1.1" 200 5158
+[11/Sep/2017 15:44:30] "GET /meeting/ HTTP/1.1" 200 5158
+[11/Sep/2017 15:44:31] "GET /member/ HTTP/1.1" 200 5553
+[11/Sep/2017 15:44:32] "GET /member/ HTTP/1.1" 200 5553
+[11/Sep/2017 15:45:21] "GET /api-auth/logout/?next=/member/ HTTP/1.1" 302 0
+[11/Sep/2017 15:45:21] "GET /member/ HTTP/1.1" 200 5320
+[11/Sep/2017 15:45:22] "GET /api-auth/login/?next=/member/ HTTP/1.1" 200 2706
+[11/Sep/2017 15:45:25] "POST /api-auth/login/ HTTP/1.1" 302 0
+[11/Sep/2017 15:45:25] "GET /member/ HTTP/1.1" 200 5555
+Forbidden (CSRF token missing or incorrect.): /api-auth/login/
+[11/Sep/2017 16:13:54] "POST /api-auth/login/ HTTP/1.1" 403 2495
+[11/Sep/2017 16:14:19] "GET /admin_backend HTTP/1.1" 200 8691
+[11/Sep/2017 16:14:19] "GET /static/css/admin_css/plugins/morris.css HTTP/1.1" 200 433
+[11/Sep/2017 16:14:19] "GET /static/css/admin_css/sb-admin.css HTTP/1.1" 200 2597
+[11/Sep/2017 16:14:19] "GET /static/js/admin_js/jquery.js HTTP/1.1" 200 95785
+[11/Sep/2017 16:14:19] "GET /static/css/admin_css/sign.css HTTP/1.1" 200 161596
+[11/Sep/2017 16:14:24] "GET /admin_backend/ HTTP/1.1" 200 6622
+[11/Sep/2017 16:14:24] "GET /static/admin/css/base.css HTTP/1.1" 200 16066
+[11/Sep/2017 16:14:24] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+[11/Sep/2017 16:14:24] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 200 80304
+[11/Sep/2017 16:14:24] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 200 82564
+[11/Sep/2017 16:14:32] "GET /api-auth/login/?next=/member/ HTTP/1.1" 200 2706
+[11/Sep/2017 16:14:35] "GET /api-auth/login/?next=/member/ HTTP/1.1" 200 2706
+[11/Sep/2017 16:14:35] "GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+[11/Sep/2017 16:14:35] "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+[11/Sep/2017 16:14:35] "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+[11/Sep/2017 16:14:35] "GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+[11/Sep/2017 16:14:42] "GET /member/ HTTP/1.1" 200 5555
+[11/Sep/2017 16:14:43] "GET /member/ HTTP/1.1" 200 5555
+[11/Sep/2017 16:14:49] "GET /admin_backend/project/member/ HTTP/1.1" 200 4265
+[11/Sep/2017 16:14:49] "GET /static/admin/css/changelists.css HTTP/1.1" 200 6170
+[11/Sep/2017 16:14:49] "GET /static/admin/js/urlify.js HTTP/1.1" 200 8186
+[11/Sep/2017 16:14:49] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 363
+[11/Sep/2017 16:14:49] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 6591
+[11/Sep/2017 16:14:49] "GET /admin_backend/jsi18n/ HTTP/1.1" 200 7761
+[11/Sep/2017 16:14:49] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1538
+[11/Sep/2017 16:14:49] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 258648
+[11/Sep/2017 16:14:49] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+[11/Sep/2017 16:14:53] "GET /admin_backend/project/member/add/ HTTP/1.1" 200 6354
+[11/Sep/2017 16:14:53] "GET /admin_backend/jsi18n/ HTTP/1.1" 200 7761
+[11/Sep/2017 16:14:53] "GET /static/admin/css/forms.css HTTP/1.1" 200 8173
+[11/Sep/2017 16:14:53] "GET /static/admin/js/change_form.js HTTP/1.1" 200 712
+[11/Sep/2017 16:14:53] "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 495
+[11/Sep/2017 16:14:53] "GET /static/admin/css/widgets.css HTTP/1.1" 200 10340
+Internal Server Error: /admin_backend/project/member/add/
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/usr/lib64/python2.7/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/usr/lib64/python2.7/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/lib64/python2.7/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/lib64/python2.7/site-packages/django/contrib/admin/options.py", line 551, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/usr/lib64/python2.7/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/lib64/python2.7/site-packages/django/views/decorators/cache.py", line 57, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/usr/lib64/python2.7/site-packages/django/contrib/admin/sites.py", line 224, in inner
+    return view(request, *args, **kwargs)
+  File "/usr/lib64/python2.7/site-packages/django/contrib/admin/options.py", line 1508, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+  File "/usr/lib64/python2.7/site-packages/django/utils/decorators.py", line 67, in _wrapper
+    return bound_func(*args, **kwargs)
+  File "/usr/lib64/python2.7/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/usr/lib64/python2.7/site-packages/django/utils/decorators.py", line 63, in bound_func
+    return func.__get__(self, type(self))(*args2, **kwargs2)
+  File "/usr/lib64/python2.7/site-packages/django/contrib/admin/options.py", line 1408, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+  File "/usr/lib64/python2.7/site-packages/django/contrib/admin/options.py", line 1452, in _changeform_view
+    self.log_addition(request, new_object, change_message)
+  File "/usr/lib64/python2.7/site-packages/django/contrib/admin/options.py", line 724, in log_addition
+    object_repr=force_text(object),
+  File "/usr/lib64/python2.7/site-packages/django/utils/encoding.py", line 78, in force_text
+    s = six.text_type(s)
+  File "/home/solitude6060/gradute_project/Meeting/project/models.py", line 93, in __unicode__
+    return 'Member : ' + self.member_name
+TypeError: coercing to Unicode: need string or buffer, NoneType found
+[11/Sep/2017 16:15:00] "POST /admin_backend/project/member/add/ HTTP/1.1" 500 127121
+[11/Sep/2017 16:15:33] "POST /admin_backend/project/member/add/ HTTP/1.1" 302 0
+[11/Sep/2017 16:15:33] "GET /admin_backend/project/member/ HTTP/1.1" 200 4692
+[11/Sep/2017 16:15:33] "GET /admin_backend/jsi18n/ HTTP/1.1" 200 7761
+[11/Sep/2017 16:15:59] "GET /admin_backend/project/ HTTP/1.1" 200 5392
+[11/Sep/2017 16:16:05] "GET /admin_backend/ HTTP/1.1" 200 6959
+[11/Sep/2017 16:16:17] "GET /admin_backend/project/member/ HTTP/1.1" 200 4504
+[11/Sep/2017 16:16:17] "GET /admin_backend/jsi18n/ HTTP/1.1" 200 7761
+[11/Sep/2017 16:16:23] "GET /member/ HTTP/1.1" 200 5938
+[11/Sep/2017 16:16:23] "GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+[11/Sep/2017 16:16:23] "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+[11/Sep/2017 16:16:23] "GET /static/rest_framework/js/jquery-1.12.4.min.js HTTP/1.1" 304 0
+[11/Sep/2017 16:16:23] "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+[11/Sep/2017 16:16:23] "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+[11/Sep/2017 16:16:23] "GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+[11/Sep/2017 16:16:23] "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+[11/Sep/2017 16:16:23] "GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+[11/Sep/2017 16:16:23] "GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+[11/Sep/2017 16:16:23] "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+[11/Sep/2017 16:16:23] "GET /static/rest_framework/img/grid.png HTTP/1.1" 304 0
+[11/Sep/2017 16:16:36] "GET /member/ HTTP/1.1" 200 5938
+[11/Sep/2017 16:16:37] "OPTIONS /member/ HTTP/1.1" 200 5573
+[11/Sep/2017 16:16:39] "OPTIONS /member/ HTTP/1.1" 200 5573
+[11/Sep/2017 16:16:43] "OPTIONS /member/ HTTP/1.1" 200 5573
+[11/Sep/2017 16:16:44] "GET /member/ HTTP/1.1" 200 5938
+[11/Sep/2017 16:16:46] "GET /member/?format=json HTTP/1.1" 200 329
