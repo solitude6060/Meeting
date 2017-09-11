@@ -17,9 +17,13 @@ class CheckIn(models.Model):
     logout_time = models.TimeField(db_column='Logout_time', blank=True, null=True)  # Field name made lowercase.
     seat_id = models.IntegerField(db_column='Seat_id', blank=True, null=True)  # Field name made lowercase.
 
+    def __unicode__(self):
+       return 'Meeting : ' + self.meeting_id + "'s checkin"
+    
     class Meta:
         managed = False
         db_table = 'Check_in'
+
 
 
 class FeedbackSheet(models.Model):
@@ -29,6 +33,9 @@ class FeedbackSheet(models.Model):
     location_feedback = models.IntegerField(db_column='Location_feedback', blank=True, null=True)  # Field name made lowercase.
     itinerary_feedback = models.IntegerField(db_column='Itinerary_feedback', blank=True, null=True)  # Field name made lowercase.
     suggestions = models.TextField(db_column='Suggestions', blank=True, null=True)  # Field name made lowercase.
+
+    def __unicode__(self):
+       return 'Meeting : ' + self.meeting_id + "'s feedback"
 
     class Meta:
         managed = False
@@ -53,14 +60,21 @@ class Meeting(models.Model):
     attendance = models.IntegerField(db_column='Attendance', blank=True, null=True)  # Field name made lowercase.
     savefilm = models.IntegerField(db_column='saveFilm', blank=True, null=True)  # Field name made lowercase.
 
+    def __unicode__(self):
+       return 'Meeting : ' + self.meeting_id
+
     class Meta:
         managed = False
         db_table = 'Meeting'
 
 
+
 class Meetingroom(models.Model):
     room_id = models.CharField(db_column='Room_id', max_length=11, blank=True, null=True)  # Field name made lowercase.
     meetingroom_ssid = models.CharField(db_column='MeetingRoom_ssid', max_length=24, blank=True, null=True)  # Field name made lowercase.
+
+    def __unicode__(self):
+       return 'Room : ' + self.room_id
 
     class Meta:
         managed = False
@@ -75,6 +89,9 @@ class Member(models.Model):
     member_phone = models.CharField(db_column='Member_phone', max_length=20, blank=True, null=True)  # Field name made lowercase.
     gender = models.IntegerField(db_column='Gender', blank=True, null=True)  # Field name made lowercase.
 
+    def __unicode__(self):
+       return 'Member : ' + self.member_name
+
     class Meta:
         managed = False
         db_table = 'Member'
@@ -86,6 +103,9 @@ class Organizer(models.Model):
     organizer_department = models.CharField(db_column='Organizer_department', max_length=24, blank=True, null=True)  # Field name made lowercase.
     organizer_phone = models.CharField(db_column='Organizer_phone', max_length=20, blank=True, null=True)  # Field name made lowercase.
 
+    def __unicode__(self):
+       return 'Organizer : ' + self.organizer_email + ". department : " + self.organizer_department
+    
     class Meta:
         managed = False
         db_table = 'Organizer'
@@ -96,6 +116,9 @@ class Positioning(models.Model):
     member_email = models.CharField(db_column='Member_email', max_length=50, blank=True, null=True)  # Field name made lowercase.
     current_ssid = models.CharField(db_column='Current_ssid', max_length=24, blank=True, null=True)  # Field name made lowercase.
     wifi_level = models.IntegerField(db_column='Wifi_level', blank=True, null=True)  # Field name made lowercase.
+
+    def __unicode__(self):
+       return 'Room : ' + self.meetingroom_id + "'s position"
 
     class Meta:
         managed = False
@@ -108,6 +131,9 @@ class Seating(models.Model):
     seat_ssid = models.IntegerField(db_column='Seat_ssid', blank=True, null=True)  # Field name made lowercase.
     wifi_level = models.IntegerField(db_column='Wifi_level', blank=True, null=True)  # Field name made lowercase.
 
+    def __unicode__(self):
+       return 'Room : ' + self.meetingroom_id + ". Seat : " + self.seat_id
+    
     class Meta:
         managed = False
         db_table = 'Seating'
