@@ -48,5 +48,10 @@ urlpatterns = [
     url(r'^blog_home_2', views.blog_home_2),
     url(r'^blog_post', views.blog_post),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+
+    #   restful-api     #
+    #url(r'^member/$', views.Member_list),
+    
+
 ]
 

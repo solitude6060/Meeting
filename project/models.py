@@ -61,7 +61,7 @@ class Meeting(models.Model):
     savefilm = models.IntegerField(db_column='saveFilm', blank=True, null=True)  # Field name made lowercase.
 
     def __unicode__(self):
-       return 'Meeting : ' + self.meeting_id
+       return 'Meeting : ' + str(self.meeting_id)
 
     class Meta:
         managed = False

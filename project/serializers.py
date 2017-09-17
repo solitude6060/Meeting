@@ -76,6 +76,12 @@ class MemberSerializer(serializers.ModelSerializer):
     Member_positioning = PositioningSerializer(many=True, read_only=True)
     Member_checkin = CheckInSerializer(many=True, read_only=True)
 
+    def create(self, validated_data):
+        """
+        Create and return a new `Snippet` instance, given the validated data.
+        """
+        return Member.objects.create(**validated_data)
+
     class Meta:
         model = Member
         fields = ('member_password', 'member_email','member_name', 'member_department', 'member_phone', 'gender', 'Member_positioning', 'Member_checkin')

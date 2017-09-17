@@ -7,6 +7,8 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
 from rest_framework import viewsets
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
 from .serializers import CheckInSerializer, FeedbackSheetSerializer, MeetingSerializer, MeetingroomSerializer, MemberSerializer, OrganizerSerializer, PositioningSerializer, SeatingSerializer
 from .models import CheckIn, FeedbackSheet, Meeting, Meetingroom, Member, Organizer, Positioning, Seating
 
@@ -29,7 +31,25 @@ class MemberViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Member.objects.all()
     serializer_class = MemberSerializer
     pagination_class = None
-
+    
+    """
+    @csrf_exempt
+    def Member_list(request):
+        List all code snippets, or create a new snippet.
+        if request.method == 'GET':
+            queryset = Member.objects.all()
+            serializer = MemberSerializer(Member, many=True)
+            return JsonResponse(serializer.data, safe=False)
+    
+        elif request.method == 'POST':
+            data = JSONParser().parse(request)
+            serializer = MemberSerializer(data=data)
+            if serializer.is_valid():
+                serializer.save()
+                return JsonResponse(serializer.data, status=201)
+            return JsonResponse(serializer.errors, status=400)
+    """
+        
 
 
 #################################################################
