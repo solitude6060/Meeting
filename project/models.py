@@ -10,22 +10,6 @@ from __future__ import unicode_literals
 from django.db import models
 
 
-class CheckIn(models.Model):
-    meeting_id = models.IntegerField(db_column='Meeting_id', blank=True, null=True)  # Field name made lowercase.
-    member_email = models.CharField(db_column='Member_email', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    login_time = models.TimeField(db_column='Login_time', blank=True, null=True)  # Field name made lowercase.
-    logout_time = models.TimeField(db_column='Logout_time', blank=True, null=True)  # Field name made lowercase.
-    seat_id = models.IntegerField(db_column='Seat_id', blank=True, null=True)  # Field name made lowercase.
-
-    def __unicode__(self):
-       return 'Meeting : ' + self.meeting_id + "'s checkin"
-    
-    class Meta:
-        managed = False
-        db_table = 'Check_in'
-
-
-
 class FeedbackSheet(models.Model):
     meeting_id = models.IntegerField(db_column='Meeting_id', blank=True, null=True)  # Field name made lowercase.
     member_email = models.CharField(db_column='Member_email', max_length=50, blank=True, null=True)  # Field name made lowercase.
@@ -82,7 +66,7 @@ class Meetingroom(models.Model):
 
 
 class Member(models.Model):
-    member_email = models.CharField(db_column='Member_email', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    member_email = models.CharField(db_column='Member_email', max_length=50, blank=True, null=False, unique=True)  # Field name made lowercase.
     member_password = models.CharField(db_column='Member_password', max_length=50, blank=True, null=True)  # Field name made lowercase.
     member_name = models.CharField(db_column='Member_name', max_length=24, blank=True, null=True)  # Field name made lowercase.
     member_department = models.CharField(db_column='Member_department', max_length=24, blank=True, null=True)  # Field name made lowercase.
@@ -110,15 +94,31 @@ class Organizer(models.Model):
         managed = False
         db_table = 'Organizer'
 
+class CheckIn(models.Model):
+    meeting_id = models.IntegerField(db_column='Meeting_id', blank=True, null=True)  # Field name made lowercase.
+    #member_email = models.CharField(db_column='Member_email', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    member_email = models.ForeignKey(Member, related_name = "checkin", to_field='member_email', db_column = 'Member_email')
+    login_time = models.TimeField(db_column='Login_time', blank=True, null=True)  # Field name made lowercase.
+    logout_time = models.TimeField(db_column='Logout_time', blank=True, null=True)  # Field name made lowercase.
+    seat_id = models.IntegerField(db_column='Seat_id', blank=True, null=True)  # Field name made lowercase.
+
+    def __unicode__(self):
+       return 'Meeting : ' + self.meeting_id + "'s checkin"
+    
+    class Meta:
+        managed = False
+        db_table = 'Check_in'
+
 
 class Positioning(models.Model):
     meetingroom_id = models.IntegerField(db_column='MeetingRoom_id', blank=True, null=True)  # Field name made lowercase.
-    member_email = models.CharField(db_column='Member_email', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    #member_email = models.CharField(db_column='Member_email', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    member_email = models.ForeignKey(Member, related_name = "position", to_field='member_email', db_column = 'Member_email')
     current_ssid = models.CharField(db_column='Current_ssid', max_length=24, blank=True, null=True)  # Field name made lowercase.
     wifi_level = models.IntegerField(db_column='Wifi_level', blank=True, null=True)  # Field name made lowercase.
 
     def __unicode__(self):
-       return 'Room : ' + self.meetingroom_id + "'s position"
+       return 'Room : ' + str(self.meetingroom_id) + "'s position"
 
     class Meta:
         managed = False

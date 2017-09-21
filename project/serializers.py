@@ -56,6 +56,34 @@ class MeetingSerializer(serializers.ModelSerializer):
         model = Meeting
         fields = ('meeting_id', 'meeting_name','meetingroom_id', 'meeting_date', 'meeting_starttime', 'meeting_endtime', 'administrator', 'organizer', 'speaker', 'participants', 'content', 'fare', 'pictures', 'address', 'attendance', 'savefilm', 'Meeting_meetingroom', 'Meeting_feedbackSheet', 'Meeting_organizer')
 
+    def create(self, validated_data):
+        """
+        Create and return a new `Snippet` instance, given the validated data.
+        """
+        meeting = Meeting.objects.create(**validated_data)
+        return Meeting.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        """
+        Update and return an existing `Snippet` instance, given the validated data.
+        """
+        instance.meeting_id = validated_data.get('meeting_id', instance.meeting_id)
+        instance.meeting_name = validated_data.get('meeting_name', instance.meeting_name)
+        instance.meetingroom_id = validated_data.get('meetingroom_id', instance.meetingroom_id)
+        instance.meeting_date = validated_data.get('meeting_date', instance.meeting_date)
+        instance.meeting_starttime = validated_data.get('meeting_starttime', instance.meeting_starttime)
+        instance.meeting_endtime = validated_data.get('meeting_endtime', instance.meeting_endtime)
+        instance.administrator = validated_data.get('administrator', instance.administrator)
+        instance.address = validated_data.get('address', instance.address)
+        instance.organizer = validated_data.get('organizer', instance.organizer)
+        instance.speaker = validated_data.get('speaker', instance.speaker)
+        instance.participants = validated_data.get('participants', instance.participants)
+        instance.content = validated_data.get('content', instance.content)
+        instance.fare = validated_data.get('fare', instance.fare)
+        instance.attendance = validated_data.get('attendance', instance.attendance)
+        instance.savefilm = validated_data.get('savefilm', instance.savefilm)
+        instance.save()
+        return instance
 
 #########################################################
 #	Checkin and position in member's serializer
@@ -64,28 +92,48 @@ class MeetingSerializer(serializers.ModelSerializer):
 class CheckInSerializer(serializers.ModelSerializer):
     class Meta:
         model = CheckIn
-        fields = ('meeting_id', 'member_email','login_time', 'logout_time', 'seat_id')
+        fields = ('meeting_id', 'login_time', 'logout_time', 'seat_id')
 
 
 class PositioningSerializer(serializers.ModelSerializer):
     class Meta:
         model = Positioning
-        fields = ('meetingroom_id', 'member_email', 'current_ssid', 'wifi_level')
+        fields = ('meetingroom_id', 'current_ssid', 'wifi_level')
 		
 class MemberSerializer(serializers.ModelSerializer):
-    Member_positioning = PositioningSerializer(many=True, read_only=True)
-    Member_checkin = CheckInSerializer(many=True, read_only=True)
-
-    def create(self, validated_data):
-        """
-        Create and return a new `Snippet` instance, given the validated data.
-        """
-        return Member.objects.create(**validated_data)
+    position = PositioningSerializer(many = True)
+    #checkin = CheckInSerializer(read_only = True, many = True)
 
     class Meta:
         model = Member
-        fields = ('member_password', 'member_email','member_name', 'member_department', 'member_phone', 'gender', 'Member_positioning', 'Member_checkin')
+    	fields = ('member_email','member_password','member_name','position', 'member_department', 'member_phone', 'gender')
 
+    def create(self, validated_data):
+        position_data = validated_data.pop('position')
+        #checkin_data = validated_data.pop("checkin")
+        member = Member.objects.create(**validated_data)
+
+        for position_data in position_data:
+            Positioning.objects.create(member=member, **position_data)
+        #for checkin_data in checkin_data:
+            #CheckIn.objects.create(member=member, **checkin_data)
+        return member
+        #return Member.objects.create(**validated_data)
+	
+	#def update(self, instance, validated_data):
+	        
+	        #Update and return an existing `Snippet` instance, given the validated data.
+	        
+	        #instance.member_email = validated_data.get('member_email', instance.member_email)
+	        #instance.member_password = validated_data.get('member_password', instance.member_password)
+	        #instance.member_name = validated_data.get('member_name', instance.member_name)
+	        #instance.member_department = validated_data.get('member_department', instance.member_department)
+	        #instance.member_phone = validated_data.get('member_phone', instance.member_phone)
+	        #instance.gender = validated_data.get('gender', instance.gender)
+	        #instance.save()
+	        #return instance
+
+    
 
 
 

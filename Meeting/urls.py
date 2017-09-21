@@ -13,18 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.conf.urls import url, include, patterns
 from django.contrib import admin
 admin.autodiscover()
 from project import views
 from django.views.generic import TemplateView
 from rest_framework import routers
-#from Meeting.project import views
+from rest_framework.urlpatterns import format_suffix_patterns
+
 
 #apis
 router = routers.DefaultRouter()
-router.register(r'meeting', views.MeetingViewSet)
-router.register(r'member', views.MemberViewSet)
+router.register(r'meeting', views.MeetingViewSet, 'meeting-view')
+router.register(r'member', views.MemberViewSet, 'member-view')
 
 #apps
 urlpatterns = [
@@ -47,11 +48,15 @@ urlpatterns = [
     url(r'^blog_home_1', views.blog_home_1),
     url(r'^blog_home_2', views.blog_home_2),
     url(r'^blog_post', views.blog_post),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     #   restful-api     #
-    #url(r'^member/$', views.Member_list),
+    url(r'^memberApi', views.MemberList),
+    url(r'^meetingApi', views.MeetingList),
+    url(r'^positionApi', views.PositionList),
+    #url(r'^member_api/(?P<member_name>[0-9]+)$', views.MemberDetail.as_view()),
     
-
 ]
+
+#urlpatterns = format_suffix_patterns(urlpatterns)
 

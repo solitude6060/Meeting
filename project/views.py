@@ -5,17 +5,19 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from django.http import JsonResponse
 
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
+from rest_framework.decorators import api_view
 from .serializers import CheckInSerializer, FeedbackSheetSerializer, MeetingSerializer, MeetingroomSerializer, MemberSerializer, OrganizerSerializer, PositioningSerializer, SeatingSerializer
 from .models import CheckIn, FeedbackSheet, Meeting, Meetingroom, Member, Organizer, Positioning, Seating
 
 #################################################################
 #restful api's view
 #################################################################
-class MeetingViewSet(viewsets.ReadOnlyModelViewSet):
+class MeetingViewSet(viewsets.ModelViewSet):
     """
     List all snippets, or create a new snippet.
     """
@@ -24,32 +26,60 @@ class MeetingViewSet(viewsets.ReadOnlyModelViewSet):
     pagination_class = None
 
 
-class MemberViewSet(viewsets.ReadOnlyModelViewSet):
+class MemberViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
     queryset = Member.objects.all()
     serializer_class = MemberSerializer
     pagination_class = None
+
+@api_view(['GET', 'POST'])
+def MemberList(request):
+    #List all code snippets, or create a new snippet.
+    if request.method == 'GET':
+        queryset = Member.objects.all()
+        serializer = MemberSerializer(Member, many=True)
+        #return JsonResponse(serializer.data, safe=False)
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = MemberSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
     
-    """
-    @csrf_exempt
-    def Member_list(request):
-        List all code snippets, or create a new snippet.
-        if request.method == 'GET':
-            queryset = Member.objects.all()
-            serializer = MemberSerializer(Member, many=True)
-            return JsonResponse(serializer.data, safe=False)
-    
-        elif request.method == 'POST':
-            data = JSONParser().parse(request)
-            serializer = MemberSerializer(data=data)
-            if serializer.is_valid():
-                serializer.save()
-                return JsonResponse(serializer.data, status=201)
-            return JsonResponse(serializer.errors, status=400)
-    """
-        
+
+@api_view(['GET', 'POST'])
+def MeetingList(request):
+    #List all code snippets, or create a new snippet.
+    if request.method == 'GET':
+        queryset = Meeting.objects.all()
+        serializer_class = MemberSerializer
+        #serializer = MeetingSerializer(Member, many=True)
+        return JsonResponse(serializer.data, safe=False)
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = MeetingSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+
+@api_view(['GET', 'POST'])
+def PositionList(request):
+    #List all code snippets, or create a new snippet.
+    if request.method == 'GET':
+        queryset = Meeting.objects.all()
+        serializer = PositioningSerializer(Member, many=True)
+        return JsonResponse(serializer.data, safe=False)
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = PositioningSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
 
 
 #################################################################
