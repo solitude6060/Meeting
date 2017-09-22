@@ -102,36 +102,36 @@ class PositioningSerializer(serializers.ModelSerializer):
 		
 class MemberSerializer(serializers.ModelSerializer):
     position = PositioningSerializer(many = True)
-    #checkin = CheckInSerializer(read_only = True, many = True)
+    checkin = CheckInSerializer(many = True)
 
     class Meta:
         model = Member
-    	fields = ('member_email','member_password','member_name','position', 'member_department', 'member_phone', 'gender')
+    	fields = ('member_email','member_password','member_name','position','checkin','member_department', 'member_phone', 'gender')
 
     def create(self, validated_data):
         position_data = validated_data.pop('position')
-        #checkin_data = validated_data.pop("checkin")
+        checkin_data = validated_data.pop("checkin")
         member = Member.objects.create(**validated_data)
 
         for position_data in position_data:
             Positioning.objects.create(member=member, **position_data)
-        #for checkin_data in checkin_data:
-            #CheckIn.objects.create(member=member, **checkin_data)
+        for checkin_data in checkin_data:
+            CheckIn.objects.create(member=member, **checkin_data)
         return member
         #return Member.objects.create(**validated_data)
 	
-	#def update(self, instance, validated_data):
+	def update(self, instance, validated_data):
 	        
 	        #Update and return an existing `Snippet` instance, given the validated data.
 	        
-	        #instance.member_email = validated_data.get('member_email', instance.member_email)
-	        #instance.member_password = validated_data.get('member_password', instance.member_password)
-	        #instance.member_name = validated_data.get('member_name', instance.member_name)
-	        #instance.member_department = validated_data.get('member_department', instance.member_department)
-	        #instance.member_phone = validated_data.get('member_phone', instance.member_phone)
-	        #instance.gender = validated_data.get('gender', instance.gender)
-	        #instance.save()
-	        #return instance
+	        instance.member_email = validated_data.get('member_email', instance.member_email)
+	        instance.member_password = validated_data.get('member_password', instance.member_password)
+	        instance.member_name = validated_data.get('member_name', instance.member_name)
+	        instance.member_department = validated_data.get('member_department', instance.member_department)
+	        instance.member_phone = validated_data.get('member_phone', instance.member_phone)
+	        instance.gender = validated_data.get('gender', instance.gender)
+	        instance.save()
+	        return instance
 
     
 
