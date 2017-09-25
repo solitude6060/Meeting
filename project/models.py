@@ -56,7 +56,8 @@ class Meeting(models.Model):
 class Meetingroom(models.Model):
     room_id = models.CharField(db_column='Room_id', max_length=11, blank=True, null=True)  # Field name made lowercase.
     meetingroom_ssid = models.CharField(db_column='MeetingRoom_ssid', max_length=24, blank=True, null=True)  # Field name made lowercase.
-
+    mac_address = models.CharField(db_column='Mac_address', max_length=50, blank=True, null=True)
+    
     def __unicode__(self):
        return 'Room : ' + self.room_id
 
@@ -114,11 +115,12 @@ class CheckIn(models.Model):
 
 
 class Positioning(models.Model):
-    meetingroom_id = models.IntegerField(db_column='MeetingRoom_id', blank=True, null=True)  # Field name made lowercase.
+    meetingroom_id = models.CharField(db_column='MeetingRoom_id', max_length=11, blank=True, null=True)  # Field name made lowercase.
     #member_email = models.CharField(db_column='Member_email', max_length=50, blank=True, null=True)  # Field name made lowercase.
     member_email = models.ForeignKey(Member, related_name = "position", to_field='member_email', db_column = 'Member_email')
     current_ssid = models.CharField(db_column='Current_ssid', max_length=24, blank=True, null=True)  # Field name made lowercase.
     wifi_level = models.IntegerField(db_column='Wifi_level', blank=True, null=True)  # Field name made lowercase.
+    mac_address = models.CharField(db_column='Mac_address', max_length=50, blank=True, null=True)
 
     def __unicode__(self):
        return 'Room : ' + str(self.meetingroom_id) + "'s position"
@@ -133,6 +135,7 @@ class Seating(models.Model):
     seat_id = models.IntegerField(db_column='Seat_id', blank=True, null=True)  # Field name made lowercase.
     seat_ssid = models.IntegerField(db_column='Seat_ssid', blank=True, null=True)  # Field name made lowercase.
     wifi_level = models.IntegerField(db_column='Wifi_level', blank=True, null=True)  # Field name made lowercase.
+    mac_address = models.CharField(db_column='Mac_address', max_length=50, blank=True, null=True)
 
     def __unicode__(self):
        return 'Room : ' + self.meetingroom_id + ". Seat : " + self.seat_id
