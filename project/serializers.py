@@ -98,8 +98,12 @@ class CheckInSerializer(serializers.ModelSerializer):
 class PositioningSerializer(serializers.ModelSerializer):
     class Meta:
         model = Positioning
-        fields = ('meetingroom_id', 'current_ssid', 'wifi_level')
-		
+        fields = ('member_email','meetingroom_id', 'current_ssid', 'wifi_level')
+	
+	def create(self, validated_data):
+		position_object = Positioning.objects.create(**validated_data)
+		return position_object
+
 class MemberSerializer(serializers.ModelSerializer):
     position = PositioningSerializer(many = True)
     checkin = CheckInSerializer(many = True)
@@ -112,11 +116,12 @@ class MemberSerializer(serializers.ModelSerializer):
         position_data = validated_data.pop('position')
         checkin_data = validated_data.pop("checkin")
         member = Member.objects.create(**validated_data)
+        #member = Member.objects.create(position=position_data,checkin=checkin_data,**validated_data)
 
-        for position_data in position_data:
-            Positioning.objects.create(**position_data)
-        for checkin_data in checkin_data:
-            CheckIn.objects.create(**checkin_data)
+        # for position_data in position_data:
+        #     Positioning.objects.create(**position_data)
+        # for checkin_data in checkin_data:
+        #     CheckIn.objects.create(**checkin_data)
         return member
         #return Member.objects.create(**validated_data)
 	
