@@ -114,9 +114,9 @@ class MemberSerializer(serializers.ModelSerializer):
         member = Member.objects.create(**validated_data)
 
         for position_data in position_data:
-            Positioning.objects.create(member=member, **position_data)
+            Positioning.objects.create(**position_data)
         for checkin_data in checkin_data:
-            CheckIn.objects.create(member=member, **checkin_data)
+            CheckIn.objects.create(**checkin_data)
         return member
         #return Member.objects.create(**validated_data)
 	
