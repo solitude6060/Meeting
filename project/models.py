@@ -29,7 +29,7 @@ class FeedbackSheet(models.Model):
 class Meeting(models.Model):
     meeting_id = models.IntegerField(db_column='Meeting_id', blank=True, null=True)  # Field name made lowercase.
     meeting_name = models.CharField(db_column='Meeting_name', max_length=24, blank=True, null=True)  # Field name made lowercase.
-    meetingroom_id = models.IntegerField(db_column='MeetingRoom_id', blank=True, null=True)  # Field name made lowercase.
+    meetingroom_id = models.CharField(db_column='MeetingRoom_id', max_length=50, blank=True, null=True)  # Field name made lowercase.
     meeting_date = models.DateField(db_column='Meeting_date', blank=True, null=True)  # Field name made lowercase.
     meeting_starttime = models.TimeField(db_column='Meeting_startTime', blank=True, null=True)  # Field name made lowercase.
     meeting_endtime = models.TimeField(db_column='Meeting_endTime', blank=True, null=True)  # Field name made lowercase.
