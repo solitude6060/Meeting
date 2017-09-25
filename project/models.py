@@ -74,7 +74,10 @@ class Member(models.Model):
     gender = models.IntegerField(db_column='Gender', blank=True, null=True)  # Field name made lowercase.
 
     def __unicode__(self):
-       return 'Member : ' + self.member_name
+       if self.member_name is None:
+        return 'Position with null member_name.'
+       else:
+        return 'Member : ' + self.member_name
 
     class Meta:
         managed = False
