@@ -54,6 +54,7 @@ urlpatterns = [
     url(r'^memberApi', views.MemberList),
     url(r'^meetingApi', views.MeetingList),
     url(r'^positionApi', views.PositionList),
+    url(r'^checkinApi', views.CheckinList),
     #url(r'^positionApi/(?P<who>[\w\-]+)', views.PositionList),
     #url(r'^member_api/(?P<member_name>[0-9]+)$', views.MemberDetail.as_view()),
     

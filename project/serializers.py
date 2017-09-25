@@ -92,8 +92,11 @@ class MeetingSerializer(serializers.ModelSerializer):
 class CheckInSerializer(serializers.ModelSerializer):
     class Meta:
         model = CheckIn
-        fields = ('meeting_id', 'login_time', 'logout_time', 'seat_id')
-
+        fields = ('member_email','meeting_id', 'login_time', 'logout_time', 'seat_id')
+	
+	def create(self, validated_data):
+		checkin_object = CheckIn.objects.create(**validated_data)
+		return checkin_object
 
 class PositioningSerializer(serializers.ModelSerializer):
     class Meta:
