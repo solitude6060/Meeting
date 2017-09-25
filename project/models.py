@@ -57,7 +57,7 @@ class Meetingroom(models.Model):
     room_id = models.CharField(db_column='Room_id', max_length=11, blank=True, null=True)  # Field name made lowercase.
     meetingroom_ssid = models.CharField(db_column='MeetingRoom_ssid', max_length=24, blank=True, null=True)  # Field name made lowercase.
     mac_address = models.CharField(db_column='Mac_address', max_length=50, blank=True, null=True)
-    
+
     def __unicode__(self):
        return 'Room : ' + self.room_id
 
@@ -107,7 +107,7 @@ class CheckIn(models.Model):
     seat_id = models.IntegerField(db_column='Seat_id', blank=True, null=True)  # Field name made lowercase.
 
     def __unicode__(self):
-       return 'Meeting : ' + self.meeting_id + "'s checkin"
+       return 'Meeting : ' + str(self.meeting_id) + "'s checkin"
     
     class Meta:
         managed = False
