@@ -17,6 +17,14 @@ from .models import CheckIn, FeedbackSheet, Meeting, Meetingroom, Member, Organi
 #################################################################
 #restful api's view
 #################################################################
+class MeetingRoomViewSet(viewsets.ModelViewSet):
+    """
+    List all snippets, or create a new snippet.
+    """
+    queryset = Meetingroom.objects.all()
+    serializer_class = MeetingroomSerializer
+    pagination_class = None
+
 class MeetingViewSet(viewsets.ModelViewSet):
     """
     List all snippets, or create a new snippet.
