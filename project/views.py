@@ -63,8 +63,8 @@ def MeetingList(request):
     #List all code snippets, or create a new snippet.
     if request.method == 'GET':
         queryset = Meeting.objects.all()
-        serializer_class = MemberSerializer
-        #serializer = MeetingSerializer(Member, many=True)
+        #serializer_class = MemberSerializer
+        serializer = MeetingSerializer()
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
         data = JSONParser().parse(request)
@@ -79,7 +79,7 @@ def PositionList(request):
     #List all code snippets, or create a new snippet.
     if request.method == 'GET':
         queryset = Meeting.objects.all()
-        serializer = PositioningSerializer
+        serializer = PositioningSerializer(Positioning, many=True)
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
         data = JSONParser().parse(request)
@@ -95,11 +95,26 @@ def CheckinList(request):
     #List all code snippets, or create a new snippet.
     if request.method == 'GET':
         queryset = Meeting.objects.all()
-        serializer = CheckInSerializer
+        serializer = CheckInSerializer(CheckIn, many=True)
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = CheckInSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+
+@api_view(['GET', 'POST'])
+def FeedbackList(request):
+    #List all code snippets, or create a new snippet.
+    if request.method == 'GET':
+        queryset = FeedbackSheet.objects.all()
+        serializer = FeedbackSheetSerializer(FeedbackSheet, many=True)
+        #return JsonResponse(serializer.data, safe=False)
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = FeedbackSheetSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=201)

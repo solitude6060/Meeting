@@ -50,11 +50,11 @@ class FeedbackSheetSerializer(serializers.ModelSerializer):
 class MeetingSerializer(serializers.ModelSerializer):
     Meeting_meetingroom = MeetingroomSerializer(many=True, read_only=True)
     Meeting_organizer = OrganizerSerializer(many=True, read_only=True)
-    Meeting_feedbackSheet = FeedbackSheetSerializer(many=True, read_only=True)
+    feedback = FeedbackSheetSerializer(many=True)
 
     class Meta:
         model = Meeting
-        fields = ('meeting_id', 'meeting_name','meetingroom_id', 'meeting_date', 'meeting_starttime', 'meeting_endtime', 'administrator', 'organizer', 'speaker', 'participants', 'content', 'fare', 'pictures', 'address', 'attendance', 'savefilm', 'Meeting_meetingroom', 'Meeting_feedbackSheet', 'Meeting_organizer')
+        fields = ('meeting_id', 'meeting_name','meetingroom_id', 'meeting_date', 'meeting_starttime', 'meeting_endtime', 'administrator', 'organizer', 'speaker', 'participants', 'content', 'fare', 'pictures', 'address', 'attendance', 'savefilm', 'Meeting_meetingroom', 'feedback', 'Meeting_organizer')
 
     def create(self, validated_data):
         """
