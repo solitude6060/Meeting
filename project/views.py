@@ -34,6 +34,13 @@ class MemberViewSet(viewsets.ModelViewSet):
     serializer_class = MemberSerializer
     pagination_class = None
 
+class MeetingRoomViewSet(viewsets.ModelViewSet):
+
+    queryset = Meetingroom.objects.all()
+    serializer_class = MeetingroomSerializer()
+    pagination_class = None
+ 
+
 @api_view(['GET', 'POST'])
 def MemberList(request):
     #List all code snippets, or create a new snippet.
@@ -48,6 +55,7 @@ def MemberList(request):
             serializer.save()
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
+
     
 
 @api_view(['GET', 'POST'])

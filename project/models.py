@@ -59,7 +59,7 @@ class FeedbackSheet(models.Model):
 
 
 class Meetingroom(models.Model):
-    room_id = models.CharField(db_column='Room_id', max_length=11, blank=True, null=True)  # Field name made lowercase.
+    room_id = models.CharField(db_column='Room_id', max_length=11, blank=True, null=False, unique=True)  # Field name made lowercase.
     meetingroom_ssid = models.CharField(db_column='MeetingRoom_ssid', max_length=24, blank=True, null=True)  # Field name made lowercase.
     mac_address = models.CharField(db_column='Mac_address', max_length=50, blank=True, null=True)
 
@@ -122,7 +122,7 @@ class CheckIn(models.Model):
 class Positioning(models.Model):
     meetingroom_id = models.CharField(db_column='MeetingRoom_id', max_length=11, blank=True, null=True)  # Field name made lowercase.
     #member_email = models.CharField(db_column='Member_email', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    member_email = models.ForeignKey(Member, related_name = "position", to_field='member_email', db_column = 'Member_email')
+    member_email = models.ForeignKey(Member, related_name="position", to_field='member_email', db_column = 'Member_email')
     current_ssid = models.CharField(db_column='Current_ssid', max_length=24, blank=True, null=True)  # Field name made lowercase.
     wifi_level = models.IntegerField(db_column='Wifi_level', blank=True, null=True)  # Field name made lowercase.
     mac_address = models.CharField(db_column='Mac_address', max_length=50, blank=True, null=True)
@@ -136,14 +136,15 @@ class Positioning(models.Model):
 
 
 class Seating(models.Model):
-    meeingroom_id = models.CharField(db_column='MeeingRoom_id', max_length=11, blank=True, null=True)  # Field name made lowercase.
+    #meeingroom_id = models.CharField(db_column='MeeingRoom_id', max_length=11, blank=True, null=True)  # Field name made lowercase.
+    room_id = models.ForeignKey(Meetingroom, related_name="seat", to_field='room_id', db_column = 'room_id')
     seat_id = models.IntegerField(db_column='Seat_id', blank=True, null=True)  # Field name made lowercase.
-    seat_ssid = models.IntegerField(db_column='Seat_ssid', blank=True, null=True)  # Field name made lowercase.
+    seat_ssid = models.CharFieldField(db_column='Seat_ssid', max_length=24, blank=True, null=True)  # Field name made lowercase.
     wifi_level = models.IntegerField(db_column='Wifi_level', blank=True, null=True)  # Field name made lowercase.
     mac_address = models.CharField(db_column='Mac_address', max_length=50, blank=True, null=True)
 
     def __unicode__(self):
-       return 'Room : ' + self.meetingroom_id + ". Seat : " + self.seat_id
+       return 'Room : ' + str(self.meetingroom_id) + ". Seat : " + str(self.seat_id)
     
     class Meta:
         managed = False
