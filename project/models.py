@@ -32,7 +32,7 @@ class Meeting(models.Model):
     def __unicode__(self):
        return 'Meeting : ' + str(self.meeting_id)
 
-    class Meta:
+    class Meta: 
         managed = False
         db_table = 'Meeting'
 
@@ -46,7 +46,11 @@ class FeedbackSheet(models.Model):
     suggestions = models.TextField(db_column='Suggestions', blank=True, null=True)  # Field name made lowercase.
 
     def __unicode__(self):
-       return 'Meeting : ' + self.meeting_id + "'s feedback"
+        if self.meeting_id is None:
+            return 'FeedbackSheet with no meeting_id.'
+        else:
+            return 'Meeting : ' + str(self.meeting_id) + "'s feedback"
+       #return 'Meeting : ' + self.meeting_id + "'s feedback"
 
     class Meta:
         managed = False
