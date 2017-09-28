@@ -139,7 +139,7 @@ class Seating(models.Model):
     #meeingroom_id = models.CharField(db_column='MeeingRoom_id', max_length=11, blank=True, null=True)  # Field name made lowercase.
     room_id = models.ForeignKey(Meetingroom, related_name="seat", to_field='room_id', db_column = 'room_id')
     seat_id = models.IntegerField(db_column='Seat_id', blank=True, null=True)  # Field name made lowercase.
-    seat_ssid = models.CharFieldField(db_column='Seat_ssid', max_length=24, blank=True, null=True)  # Field name made lowercase.
+    seat_ssid = models.CharField(db_column='Seat_ssid', max_length=24, blank=True, null=True)  # Field name made lowercase.
     wifi_level = models.IntegerField(db_column='Wifi_level', blank=True, null=True)  # Field name made lowercase.
     mac_address = models.CharField(db_column='Mac_address', max_length=50, blank=True, null=True)
 

@@ -37,7 +37,7 @@ class MemberViewSet(viewsets.ModelViewSet):
 class MeetingRoomViewSet(viewsets.ModelViewSet):
 
     queryset = Meetingroom.objects.all()
-    serializer_class = MeetingroomSerializer()
+    serializer_class = MeetingroomSerializer
     pagination_class = None
  
 
@@ -46,8 +46,8 @@ def MemberList(request):
     #List all code snippets, or create a new snippet.
     if request.method == 'GET':
         queryset = Member.objects.all()
-        serializer = MemberSerializer(Member, many=True)
-        #return JsonResponse(serializer.data, safe=False)
+        serializer = MemberSerializer()
+        return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = MemberSerializer(data=data)
@@ -79,7 +79,7 @@ def PositionList(request):
     #List all code snippets, or create a new snippet.
     if request.method == 'GET':
         queryset = Meeting.objects.all()
-        serializer = PositioningSerializer(Positioning, many=True)
+        serializer = PositioningSerializer()
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
         data = JSONParser().parse(request)
@@ -95,7 +95,7 @@ def CheckinList(request):
     #List all code snippets, or create a new snippet.
     if request.method == 'GET':
         queryset = Meeting.objects.all()
-        serializer = CheckInSerializer(CheckIn, many=True)
+        serializer = CheckInSerializer()
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
         data = JSONParser().parse(request)
@@ -110,7 +110,7 @@ def FeedbackList(request):
     #List all code snippets, or create a new snippet.
     if request.method == 'GET':
         queryset = FeedbackSheet.objects.all()
-        serializer = FeedbackSheetSerializer(FeedbackSheet, many=True)
+        serializer = FeedbackSheetSerializer()
         #return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
         data = JSONParser().parse(request)
