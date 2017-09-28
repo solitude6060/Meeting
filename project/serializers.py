@@ -24,8 +24,8 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class SeatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Seating
+
         fields = ('seat_id', 'seat_ssid', 'mac_address', 'wifi_level', 'room_id')
-        #fields = ('seat_id', 'seat_ssid', 'mac_address', 'wifi_level')
 
 class MeetingroomSerializer(serializers.ModelSerializer):
     seat = SeatingSerializer(many=True)
@@ -105,7 +105,6 @@ class PositioningSerializer(serializers.ModelSerializer):
     class Meta:
         model = Positioning
         fields = ('member_email','meetingroom_id', 'current_ssid', 'mac_address', 'wifi_level')
-        #fields = ('meetingroom_id', 'current_ssid', 'mac_address', 'wifi_level')
 	
 	def create(self, validated_data):
 		position_object = Positioning.objects.create(**validated_data)

@@ -26,7 +26,6 @@ from rest_framework.urlpatterns import format_suffix_patterns
 router = routers.DefaultRouter()
 router.register(r'meeting', views.MeetingViewSet, 'meeting-view')
 router.register(r'member', views.MemberViewSet, 'member-view')
-router.register(r'meetingroom', views.MeetingRoomViewSet, 'meetingroom-view')
 
 #apps
 urlpatterns = [
