@@ -24,7 +24,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class SeatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Seating
-        fields = ('seat_id', 'seat_ssid', 'mac_address', 'wifi_level', 'seat_id')
+        fields = ('seat_id', 'seat_ssid', 'mac_address', 'wifi_level', 'room_id')
         #fields = ('seat_id', 'seat_ssid', 'mac_address', 'wifi_level')
 
 class MeetingroomSerializer(serializers.ModelSerializer):
