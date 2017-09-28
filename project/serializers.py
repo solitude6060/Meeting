@@ -24,7 +24,8 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class SeatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Seating
-        fields = ('seat_id', 'seat_ssid', 'mac_address', 'wifi_level','room_id')
+        #fields = ('seat_id', 'seat_ssid', 'mac_address', 'wifi_level', 'seat_id')
+        fields = ('seat_id', 'seat_ssid', 'mac_address', 'wifi_level')
 
 class MeetingroomSerializer(serializers.ModelSerializer):
     seat = SeatingSerializer(many=True)
@@ -45,7 +46,8 @@ class OrganizerSerializer(serializers.ModelSerializer):
 class FeedbackSheetSerializer(serializers.ModelSerializer):
     class Meta:
         model = FeedbackSheet
-        fields = ('meeting_id', 'member_email','time_feedback', 'location_feedback', 'itinerary_feedback', 'suggestions')
+        #fields = ('meeting_id', 'member_email','time_feedback', 'location_feedback', 'itinerary_feedback', 'suggestions')
+        fields = ( 'member_email','time_feedback', 'location_feedback', 'itinerary_feedback', 'suggestions')
 
 class MeetingSerializer(serializers.ModelSerializer):
     Meeting_meetingroom = MeetingroomSerializer(many=True, read_only=True)
@@ -92,7 +94,8 @@ class MeetingSerializer(serializers.ModelSerializer):
 class CheckInSerializer(serializers.ModelSerializer):
     class Meta:
         model = CheckIn
-        fields = ('member_email','meeting_id', 'login_time', 'logout_time', 'seat_id')
+        #fields = ('member_email','meeting_id', 'login_time', 'logout_time', 'seat_id')
+        fields = ('meeting_id', 'login_time', 'logout_time', 'seat_id')
 	
 	def create(self, validated_data):
 		checkin_object = CheckIn.objects.create(**validated_data)
@@ -101,7 +104,8 @@ class CheckInSerializer(serializers.ModelSerializer):
 class PositioningSerializer(serializers.ModelSerializer):
     class Meta:
         model = Positioning
-        fields = ('member_email','meetingroom_id', 'current_ssid', 'mac_address', 'wifi_level')
+        #fields = ('member_email','meetingroom_id', 'current_ssid', 'mac_address', 'wifi_level')
+        fields = ('meetingroom_id', 'current_ssid', 'mac_address', 'wifi_level')
 	
 	def create(self, validated_data):
 		position_object = Positioning.objects.create(**validated_data)
