@@ -115,6 +115,9 @@ def index(request):
 def contact(request):
     return render_to_response('project/contact.html', locals())
 
+def admin_loging(request):
+    return render_to_response('project/admin_loging.html', locals())
+
 def portfolio_1_col(request):
     return render_to_response('project/portfolio_1_col.html', locals())
 
@@ -127,8 +130,8 @@ def portfolio_3_col(request):
 def portfolio_4_col(request):
     return render_to_response('project/portfolio_4_col.html', locals())
 
-def admin(request):
-    return render_to_response('project/admin.html', locals())
+#def admin(request):
+#    return render_to_response('project/admin.html', locals())
 
 def about(request):
     return render_to_response('project/about.html', locals())
