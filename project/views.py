@@ -125,7 +125,7 @@ def PositionDetail(request,pk):
         position_obj = Positioning.objects.filter(member_email=pk)
         member = Member.objects.only('member_email').get(member_email=pk)
         mem = Member.objects.get(member_email=pk)
-        position = Positioning.objects.get(current_ssid='ss22id')
+        #position = Positioning.objects.get(current_ssid='ss22id')
     except Positioning.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
         #m = Member.objects.filter(member_email=pk)
@@ -140,8 +140,8 @@ def PositionDetail(request,pk):
         #serializer = PositioningSerializer(pos, data=data)
         serializer = PositioningSerializer(data=data)
         if serializer.is_valid():
-            serializer.update(position, data)
-            #serializer.save()
+            serializer.update(mem, data)
+            #serializer.save(mem, data)
             return JsonResponse(serializer.data)
         return JsonResponse(serializer.errors, status=400)
 

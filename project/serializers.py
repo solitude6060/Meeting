@@ -109,15 +109,34 @@ class CheckInSerializer(serializers.ModelSerializer):
 		return checkin_object
 
 class PositioningSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
+    member_email = serializers.SlugRelatedField(slug_field='member_email', queryset=Member.objects.all(), required=False)
+    
     class Meta:
         model = Positioning
-        fields = ('member_email','meetingroom_id', 'current_ssid', 'mac_address', 'wifi_level')
+        fields = ('member_email','meetingroom_id', 'current_ssid', 'mac_address', 'wifi_level','id')
 	
 	def create(self, validated_data):
 		position_object = Positioning.objects.create(**validated_data)
 		return position_object
 
 	def update(self, instance, validated_data):
+		mails = validated_data.get('member_email')
+
+		if mails:
+			for mail in mails:
+				mail_id = mail.get('id', None)
+				if mail_id:
+					pos = Positioning.objects.get(member_email_id=mail_id, member_email=instance)
+					pos.meetingroom_id = validated_data.get('meetingroom_id', pos.meetingroom_id)
+					pos.current_ssid = validated_data.get('current_ssid', pos.current_ssid)
+					pos.mac_address = validated_data.get('mac_address', pos.mac_address)
+					pos.wifi_level = validated_data.get('wifi_level', pos.wifi_level)
+					pos.save()
+				else:
+					Positioning.objects.create(**mail)
+
+		return instance
 		#pos = instance.position.first()
 		#instance.member_email = validated_data.get('member_email', instance.member_email)
 		#pos.meetingroom_id = validated_data.get('meetingroom_id', pos.meetingroom_id)
@@ -127,7 +146,7 @@ class PositioningSerializer(serializers.ModelSerializer):
 		#pos.wifi_level = validated_data.get('wifi_level', pos.wifi_level)
 		#pos.save()
 		#instance.save()
-		return instance
+		#return instance
 
 
 	
