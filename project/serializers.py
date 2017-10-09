@@ -47,7 +47,14 @@ class FeedbackSheetSerializer(serializers.ModelSerializer):
     class Meta:
         model = FeedbackSheet
         fields = ('meeting_id', 'member_email','time_feedback', 'location_feedback', 'itinerary_feedback', 'suggestions')
-        #fields = ( 'member_email','time_feedback', 'location_feedback', 'itinerary_feedback', 'suggestions')
+   	    #fields = ( 'member_email','time_feedback', 'location_feedback', 'itinerary_feedback', 'suggestions')
+
+   	def create(self, validated_data):
+   		feedback = FeedbackSheet.objects.create(**validated_data)
+		return feedback
+        #return FeedbackSheet.objects.create(**validated_data)
+        
+
 
 class MeetingSerializer(serializers.ModelSerializer):
     Meeting_meetingroom = MeetingroomSerializer(many=True, read_only=True)
@@ -94,7 +101,7 @@ class MeetingSerializer(serializers.ModelSerializer):
 class CheckInSerializer(serializers.ModelSerializer):
     class Meta:
         model = CheckIn
-        fields = ('member_email','meeting_id', 'login_time', 'logout_time', 'seat_id')
+        fields = ('member_email','meetingroom_id', 'meeting_id', 'login_time', 'logout_time', 'seat_id')
         #fields = ('meeting_id', 'login_time', 'logout_time', 'seat_id')
 	
 	def create(self, validated_data):
@@ -109,6 +116,41 @@ class PositioningSerializer(serializers.ModelSerializer):
 	def create(self, validated_data):
 		position_object = Positioning.objects.create(**validated_data)
 		return position_object
+
+	def update(self, instance, validated_data):
+		#pos = instance.position.first()
+		#instance.member_email = validated_data.get('member_email', instance.member_email)
+		#pos.meetingroom_id = validated_data.get('meetingroom_id', pos.meetingroom_id)
+		#pos.current_ssid = validated_data.get('current_ssid', pos.current_ssid)
+		#instance.mac_address = validated_data.get('mac_address', instance.mac_address)
+		#pos.mac_address = validated_data.get('mac_address', pos.mac_address)
+		#pos.wifi_level = validated_data.get('wifi_level', pos.wifi_level)
+		#pos.save()
+		#instance.save()
+		return instance
+
+
+	
+	# def update(self, instance, validated_data):
+ #    instance.nr = validated_data.get('nr', instance.nr)
+ #    instance.title = validated_data.get('title', instance.title)
+ #    instance.save()
+
+ #    items = validated_data.get('items')
+
+ #    if items:
+ #        for item in items:
+ #            item_id = item.get('id', None)
+ #            if item_id:
+ #                inv_item = InvoiceItem.objects.get(id=item_id, invoice=instance)
+ #                inv_item.name = item.get('name', inv_item.name)
+ #                inv_item.price = item.get('price', inv_item.price)
+ #                inv_item.save()
+ #            else:
+ #                InvoiceItem.objects.create(account=instance, **item)
+
+ #    return instance
+    
 
 class MemberSerializer(serializers.ModelSerializer):
     position = PositioningSerializer(many = True)

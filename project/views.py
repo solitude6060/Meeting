@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from django.shortcuts import render_to_response
+from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
@@ -10,7 +11,9 @@ from django.http import JsonResponse
 from rest_framework import viewsets, generics
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
+from rest_framework import status
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from .serializers import CheckInSerializer, FeedbackSheetSerializer, MeetingSerializer, MeetingroomSerializer, MemberSerializer, OrganizerSerializer, PositioningSerializer, SeatingSerializer
 from .models import CheckIn, FeedbackSheet, Meeting, Meetingroom, Member, Organizer, Positioning, Seating
 
@@ -41,13 +44,41 @@ class MeetingRoomViewSet(viewsets.ModelViewSet):
     pagination_class = None
  
 
+@api_view(['GET', 'PUT'])
+def MemberDetail(request,pk):
+    #List all code snippets, or create a new snippet.
+    try:
+        member = Member.objects.filter(member_email=pk)
+        mem = Member.objects.get(member_email=pk)
+    except Member.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+        #m = Member.objects.filter(member_email=pk)
+
+    if request.method == 'GET':
+        #queryset = Member.objects.all()
+        serializer = MemberSerializer(member, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = MemberSerializer(mem, data=data)
+        if serializer.is_valid():
+            serializer.update(mem, data)
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors, status=400)
+            #return JsonResponse(serializer.data, status=201)
+        #return JsonResponse(serializer.errors, status=400)
+
+
 @api_view(['GET', 'POST'])
 def MemberList(request):
     #List all code snippets, or create a new snippet.
+    
     if request.method == 'GET':
         queryset = Member.objects.all()
         serializer = MemberSerializer()
         return JsonResponse(serializer.data, safe=False)
+
     elif request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = MemberSerializer(data=data)
@@ -55,8 +86,6 @@ def MemberList(request):
             serializer.save()
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
-
-    
 
 @api_view(['GET', 'POST'])
 def MeetingList(request):
@@ -78,7 +107,7 @@ def MeetingList(request):
 def PositionList(request):
     #List all code snippets, or create a new snippet.
     if request.method == 'GET':
-        queryset = Meeting.objects.all()
+        queryset = Positioning.objects.all()
         serializer = PositioningSerializer()
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
@@ -87,6 +116,33 @@ def PositionList(request):
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+
+@api_view(['GET', 'PUT'])
+def PositionDetail(request,pk):
+    #List all code snippets, or create a new snippet.
+    try:
+        position_obj = Positioning.objects.filter(member_email=pk)
+        member = Member.objects.only('member_email').get(member_email=pk)
+        mem = Member.objects.get(member_email=pk)
+        position = Positioning.objects.get(current_ssid='ss22id')
+    except Positioning.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+        #m = Member.objects.filter(member_email=pk)
+
+    if request.method == 'GET':
+        #queryset = Member.objects.all()
+        serializer = PositioningSerializer(position_obj, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        #serializer = PositioningSerializer(pos, data=data)
+        serializer = PositioningSerializer(data=data)
+        if serializer.is_valid():
+            serializer.update(position, data)
+            #serializer.save()
+            return JsonResponse(serializer.data)
         return JsonResponse(serializer.errors, status=400)
 
 

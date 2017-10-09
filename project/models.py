@@ -105,6 +105,7 @@ class Organizer(models.Model):
 
 class CheckIn(models.Model):
     meeting_id = models.IntegerField(db_column='Meeting_id', blank=True, null=True)  # Field name made lowercase.
+    meetingroom_id = models.CharField(db_column='MeetingRoom_id', max_length=11, blank=True, null=True)
     #member_email = models.CharField(db_column='Member_email', max_length=50, blank=True, null=True)  # Field name made lowercase.
     member_email = models.ForeignKey(Member, related_name = "checkin", to_field='member_email', db_column = 'Member_email')
     login_time = models.TimeField(db_column='Login_time', blank=True, null=True)  # Field name made lowercase.
