@@ -14,6 +14,11 @@ from rest_framework.parsers import JSONParser
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from rest_framework import mixins
+from rest_framework import generics
+
 from .serializers import CheckInSerializer, FeedbackSheetSerializer, MeetingSerializer, MeetingroomSerializer, MemberSerializer, OrganizerSerializer, PositioningSerializer, SeatingSerializer
 from .models import CheckIn, FeedbackSheet, Meeting, Meetingroom, Member, Organizer, Positioning, Seating
 
@@ -125,6 +130,8 @@ def PositionDetail(request,pk):
         position_obj = Positioning.objects.filter(member_email=pk)
         member = Member.objects.only('member_email').get(member_email=pk)
         mem = Member.objects.get(member_email=pk)
+        position = Positioning._meta.get_field('member_email').rel.to
+        #subcategory._meta.get_field('category').rel.to
         #position = Positioning.objects.get(current_ssid='ss22id')
     except Positioning.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
@@ -137,13 +144,61 @@ def PositionDetail(request,pk):
 
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
-        #serializer = PositioningSerializer(pos, data=data)
+        #serializer = PositioningSerializer(mem, data=data)
         serializer = PositioningSerializer(data=data)
         if serializer.is_valid():
-            serializer.update(mem, data)
+            #serializer.data.mac_address = data.pop('mac_address')
+            #serializer.update(mem, data)
             #serializer.save(mem, data)
+            #serializer.save(mem, data)
+
+
             return JsonResponse(serializer.data)
         return JsonResponse(serializer.errors, status=400)
+
+class SnippetDetail(APIView):
+    """
+    Retrieve, update or delete a snippet instance.
+    """
+    def get_object(self, pk):
+        try:
+            return Positioning.objects.get(member_email=pk)
+        except Positioning.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        position = self.get_object(pk)
+        serializer = PositioningSerializer(position)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        position = self.get_object(pk)
+        serializer = PositioningSerializer(position, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        position = self.get_object(pk)
+        position.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+# class SnippetDetail(mixins.RetrieveModelMixin,
+#                     mixins.UpdateModelMixin,
+#                     mixins.DestroyModelMixin,
+#                     generics.GenericAPIView):
+#     queryset = Positioning.objects.all()
+#     serializer_class = PositioningSerializer
+
+#     def get(self, request, *args, **kwargs):
+#         return self.retrieve(request, *args, **kwargs)
+
+#     def put(self, request, *args, **kwargs):
+#         return self.update(request, *args, **kwargs)
+
+#     def delete(self, request, *args, **kwargs):
+#         return self.destroy(request, *args, **kwargs)
 
 
 @api_view(['GET', 'POST'])

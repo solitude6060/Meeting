@@ -18,6 +18,7 @@ from django.contrib import admin
 admin.autodiscover()
 from project import views
 from django.views.generic import TemplateView
+from rest_framework.views import APIView
 from rest_framework import routers
 from rest_framework.urlpatterns import format_suffix_patterns
 
@@ -58,6 +59,7 @@ urlpatterns = [
     url(r'^meetingApi', views.MeetingList),
     url(r'^positionApi', views.PositionList),
     url(r'^positionUpdate/(?P<pk>.+)$', views.PositionDetail),
+    url(r'^posUpdate/(?P<pk>.+)$', views.SnippetDetail.as_view()),
     url(r'^checkinApi', views.CheckinList),
     url(r'^feedbackApi', views.FeedbackList),
     #url(r'^positionApi/(?P<who>[\w\-]+)', views.PositionList),
