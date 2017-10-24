@@ -40,7 +40,7 @@ urlpatterns = [
     url(r'^portfolio_3_col', views.portfolio_3_col),
     url(r'^portfolio_4_col', views.portfolio_3_col),
     #url(r'^admin', views.admin),
-    url(r'^admin_loging', views.admin_loging),
+    url(r'^admin_logging', views.admin_loging),
     url(r'^about', views.about),
     url(r'^login', views.login),
     url(r'^full_width', views.full_width),
