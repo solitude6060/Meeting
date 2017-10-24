@@ -160,5 +160,8 @@ def blog_home_2(request):
 def blog_post(request):
     return render_to_response('project/blog_post.html', locals())
 
+def upload(request):
+    return render_to_response('project/upload.html', locals())	
+
 
 

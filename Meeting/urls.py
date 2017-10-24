@@ -50,6 +50,7 @@ urlpatterns = [
     url(r'^blog_home_1', views.blog_home_1),
     url(r'^blog_home_2', views.blog_home_2),
     url(r'^blog_post', views.blog_post),
+	url(r'^upload', views.upload),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     #   restful-api     #
