@@ -127,20 +127,17 @@ def PositionList(request):
 def PositionDetail(request,pk,mac):
     #List all code snippets, or create a new snippet.
     try:
-        #position_obj = Positioning.objects.filter(member_email=pk)
+        position_obj = Positioning.objects.filter(member_email=pk)
         #member = Member.objects.only('member_email').get(member_email=pk)
         #mem = Member.objects.get(member_email=pk)
-        pos_id = Positioning.objects.filter(mac_address=mac) 
-        #position = Positioning._meta.get_field('member_email').rel.to
-        #subcategory._meta.get_field('category').rel.to
-        #position = Positioning.objects.get(current_ssid='ss22id')
+        mac_ad = Positioning.objects.filter(mac_address=mac,member_email=pk) 
     except Positioning.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
         #m = Member.objects.filter(member_email=pk)
 
     if request.method == 'GET':
         #queryset = Member.objects.all()
-        serializer = PositioningSerializer(pos_id, many=True)
+        serializer = PositioningSerializer(position_obj, many=True)
         return Response(serializer.data)
 
     elif request.method == 'PUT':
@@ -153,11 +150,11 @@ def PositionDetail(request,pk,mac):
             #     current_ssid=data["current_ssid"][0], wifi_level=data["wifi_level"],
             #     defaults={"mac_address": mac},
             # )
-            pos_id.delete()
+            mac_ad.delete()
             serializer.save()
             #serializer.update(pos_id, data)
 
-            ser_filter = PositioningSerializer(pos_id, many=True)
+            ser_filter = PositioningSerializer(mac_ad, many=True)
             return Response(ser_filter.data)
         
         return JsonResponse(serializer.errors, status=400)
