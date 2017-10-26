@@ -66,7 +66,7 @@ def MemberDetail(request,pk):
 
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
-        serializer = MemberSerializer(mem, data=data)
+        serializer = MemberSerializer(data=data)
         if serializer.is_valid():
             serializer.update(mem, data)
             return JsonResponse(serializer.data)
@@ -124,13 +124,14 @@ def PositionList(request):
         return JsonResponse(serializer.errors, status=400)
 
 @api_view(['GET', 'PUT'])
-def PositionDetail(request,pk):
+def PositionDetail(request,pk,mac):
     #List all code snippets, or create a new snippet.
     try:
-        position_obj = Positioning.objects.filter(member_email=pk)
-        member = Member.objects.only('member_email').get(member_email=pk)
-        mem = Member.objects.get(member_email=pk)
-        position = Positioning._meta.get_field('member_email').rel.to
+        #position_obj = Positioning.objects.filter(member_email=pk)
+        #member = Member.objects.only('member_email').get(member_email=pk)
+        #mem = Member.objects.get(member_email=pk)
+        pos_id = Positioning.objects.filter(mac_address=mac) 
+        #position = Positioning._meta.get_field('member_email').rel.to
         #subcategory._meta.get_field('category').rel.to
         #position = Positioning.objects.get(current_ssid='ss22id')
     except Positioning.DoesNotExist:
@@ -139,7 +140,7 @@ def PositionDetail(request,pk):
 
     if request.method == 'GET':
         #queryset = Member.objects.all()
-        serializer = PositioningSerializer(position_obj, many=True)
+        serializer = PositioningSerializer(pos_id, many=True)
         return Response(serializer.data)
 
     elif request.method == 'PUT':
@@ -147,13 +148,18 @@ def PositionDetail(request,pk):
         #serializer = PositioningSerializer(mem, data=data)
         serializer = PositioningSerializer(data=data)
         if serializer.is_valid():
-            #serializer.data.mac_address = data.pop('mac_address')
-            #serializer.update(mem, data)
-            #serializer.save(mem, data)
-            #serializer.save(mem, data)
 
+            # Positioning.objects.update_or_create(
+            #     current_ssid=data["current_ssid"][0], wifi_level=data["wifi_level"],
+            #     defaults={"mac_address": mac},
+            # )
+            pos_id.delete()
+            serializer.save()
+            #serializer.update(pos_id, data)
 
-            return JsonResponse(serializer.data)
+            ser_filter = PositioningSerializer(pos_id, many=True)
+            return Response(ser_filter.data)
+        
         return JsonResponse(serializer.errors, status=400)
 
 class SnippetDetail(APIView):
@@ -180,7 +186,7 @@ class SnippetDetail(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
-        position = self.get_object(pk)
+        position = self.get_object(id=pk)
         position.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 

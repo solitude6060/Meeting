@@ -121,6 +121,7 @@ class CheckIn(models.Model):
 
 
 class Positioning(models.Model):
+    #id = models.IntegerField(primary_key=True)
     meetingroom_id = models.CharField(db_column='MeetingRoom_id', max_length=11, blank=True, null=True)  # Field name made lowercase.
     #member_email = models.CharField(db_column='Member_email', max_length=50, blank=True, null=True)  # Field name made lowercase.
     member_email = models.ForeignKey(Member, related_name="position", to_field='member_email', db_column = 'Member_email')
