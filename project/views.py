@@ -131,18 +131,16 @@ def PositionDetail(request,pk,mac):
         #member = Member.objects.only('member_email').get(member_email=pk)
         #mem = Member.objects.get(member_email=pk)
         mac_ad = Positioning.objects.filter(mac_address=mac,member_email=pk) 
+    
     except Positioning.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
-        #m = Member.objects.filter(member_email=pk)
 
     if request.method == 'GET':
-        #queryset = Member.objects.all()
         serializer = PositioningSerializer(position_obj, many=True)
         return Response(serializer.data)
 
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
-        #serializer = PositioningSerializer(mem, data=data)
         serializer = PositioningSerializer(data=data)
         if serializer.is_valid():
 
@@ -159,33 +157,30 @@ def PositionDetail(request,pk,mac):
         
         return JsonResponse(serializer.errors, status=400)
 
-class SnippetDetail(APIView):
-    """
-    Retrieve, update or delete a snippet instance.
-    """
-    def get_object(self, pk):
-        try:
-            return Positioning.objects.get(member_email=pk)
-        except Positioning.DoesNotExist:
-            raise Http404
+# class SnippetDetail(APIView):
+#     def get_object(self, pk):
+#         try:
+#             return Positioning.objects.get(member_email=pk)
+#         except Positioning.DoesNotExist:
+#             raise Http404
 
-    def get(self, request, pk, format=None):
-        position = self.get_object(pk)
-        serializer = PositioningSerializer(position)
-        return Response(serializer.data)
+#     def get(self, request, pk, format=None):
+#         position = self.get_object(pk)
+#         serializer = PositioningSerializer(position)
+#         return Response(serializer.data)
 
-    def put(self, request, pk, format=None):
-        position = self.get_object(pk)
-        serializer = PositioningSerializer(position, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#     def put(self, request, pk, format=None):
+#         position = self.get_object(pk)
+#         serializer = PositioningSerializer(position, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk, format=None):
-        position = self.get_object(id=pk)
-        position.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+#     def delete(self, request, pk, format=None):
+#         position = self.get_object(id=pk)
+#         position.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
 
 # class SnippetDetail(mixins.RetrieveModelMixin,
 #                     mixins.UpdateModelMixin,
@@ -208,7 +203,7 @@ class SnippetDetail(APIView):
 def CheckinList(request):
     #List all code snippets, or create a new snippet.
     if request.method == 'GET':
-        queryset = Meeting.objects.all()
+        queryset = CheckIn.objects.all()
         serializer = CheckInSerializer()
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
@@ -217,6 +212,33 @@ def CheckinList(request):
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+
+@api_view(['GET', 'PUT'])
+def CheckinDetail(request,member,meeting):
+    #List all code snippets, or create a new snippet.
+    try:
+        checkin_obj = CheckIn.objects.filter(member_email=member)
+        check = CheckIn.objects.filter(meeting_id=meeting,member_email=member) 
+    
+    except CheckIn.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = CheckInSerializer(checkin_obj, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = CheckInSerializer(data=data)
+        if serializer.is_valid():
+
+            check.delete()
+            serializer.save()
+
+            ser_filter = CheckInSerializer(check, many=True)
+            return Response(ser_filter.data)
+        
         return JsonResponse(serializer.errors, status=400)
 
 @api_view(['GET', 'POST'])
@@ -232,6 +254,34 @@ def FeedbackList(request):
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+
+
+@api_view(['GET', 'PUT'])
+def FeedbackDetail(request,member,meeting):
+    #List all code snippets, or create a new snippet.
+    try:
+        feedback_obj = FeedbackSheet.objects.filter(member_email=member)
+        feedback = FeedbackSheet.objects.filter(meeting_id=meeting,member_email=member) 
+    
+    except FeedbackSheet.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = FeedbackSheetSerializer(feedback_obj, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = FeedbackSheetSerializer(data=data)
+        if serializer.is_valid():
+
+            feedback.delete()
+            serializer.save()
+
+            ser_filter = FeedbackSheetSerializer(feedback, many=True)
+            return Response(ser_filter.data)
+        
         return JsonResponse(serializer.errors, status=400)
 
 
