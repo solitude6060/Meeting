@@ -281,8 +281,9 @@ def FeedbackDetail(request,member,meeting):
             serializer.save()
 
             ser_filter = FeedbackSheetSerializer(feedback, many=True)
-            return Response(ser_filter.data)
-        
+            #return Response(ser_filter.data)
+            return JsonResponse(serializer.data, status=201)
+
         return JsonResponse(serializer.errors, status=400)
 
 

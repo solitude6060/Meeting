@@ -128,6 +128,7 @@ class Positioning(models.Model):
     current_ssid = models.CharField(db_column='Current_ssid', max_length=24, blank=True, null=True)  # Field name made lowercase.
     wifi_level = models.IntegerField(db_column='Wifi_level', blank=True, null=True)  # Field name made lowercase.
     mac_address = models.CharField(db_column='Mac_address', max_length=50, blank=True, null=True)
+    wifi_time = models.DateTimeField(db_column='wifi_time',blank=True, null=True)
 
     def __unicode__(self):
        return 'Room : ' + str(self.meetingroom_id) + "'s position"

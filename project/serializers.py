@@ -113,7 +113,7 @@ class PositioningSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Positioning
-        fields = ('member_email','meetingroom_id', 'current_ssid', 'mac_address', 'wifi_level')
+        fields = ('member_email','meetingroom_id', 'current_ssid', 'mac_address', 'wifi_level','wifi_time')
 	
 	def create(self, validated_data):
 		position_object = Positioning.objects.create(**validated_data)
