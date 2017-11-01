@@ -153,8 +153,9 @@ def PositionDetail(request,pk,mac):
             #serializer.update(pos_id, data)
 
             ser_filter = PositioningSerializer(mac_ad, many=True)
-            return Response(ser_filter.data, status=200)
-        
+            #return Response(ser_filter.data, status=200)
+            return JsonResponse(serializer.data, status=201)
+
         return JsonResponse(serializer.errors, status=400)
 
 # class SnippetDetail(APIView):
@@ -237,8 +238,8 @@ def CheckinDetail(request,member,meeting):
             serializer.save()
 
             ser_filter = CheckInSerializer(check, many=True)
-            return Response(ser_filter.data)
-        
+            #return Response(ser_filter.data, status=201)
+            return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
 
 @api_view(['GET', 'POST'])
