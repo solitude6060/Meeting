@@ -52,7 +52,7 @@ urlpatterns = [
     url(r'^blog_post', views.blog_post),
 	url(r'^upload', views.upload),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-	url(r'^admin_page', views.admin_page),
+	url(r'^admin_homepage', views.admin_page),
 	url(r'^personalpage', views.personalpage),
 	
     #   restful-api     #
