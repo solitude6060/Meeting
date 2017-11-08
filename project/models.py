@@ -87,7 +87,7 @@ class Member(models.Model):
 
 class Organizer(models.Model):
     organizer_email = models.CharField(db_column='Organizer_email', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    organizer_password = models.IntegerField(db_column='Organizer_password', blank=True, null=True)  # Field name made lowercase.
+    organizer_password = models.CharField(db_column='Organizer_password', max_length=50, blank=True, null=True)  # Field name made lowercase.
     organizer_department = models.CharField(db_column='Organizer_department', max_length=24, blank=True, null=True)  # Field name made lowercase.
     organizer_phone = models.CharField(db_column='Organizer_phone', max_length=20, blank=True, null=True)  # Field name made lowercase.
 

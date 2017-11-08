@@ -27,6 +27,7 @@ router = routers.DefaultRouter()
 router.register(r'meeting', views.MeetingViewSet, 'meeting-view')
 router.register(r'member', views.MemberViewSet, 'member-view')
 router.register(r'meetingroom', views.MeetingRoomViewSet, 'meetingroom-view')
+router.register(r'user', views.UserViewSet, 'user-view')
 
 #apps
 urlpatterns = [
@@ -34,23 +35,26 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^index', views.index),
     url(r'^admin_backend/', admin.site.urls),
-    url(r'^contact', views.contact),
-    url(r'^portfolio_1_col', views.portfolio_1_col),
-    url(r'^portfolio_2_col', views.portfolio_2_col),
-    url(r'^portfolio_3_col', views.portfolio_3_col),
-    url(r'^portfolio_4_col', views.portfolio_3_col),
-    #url(r'^admin', views.admin),
-    url(r'^admin_logging', views.admin_loging),
-    url(r'^about', views.about),
-    url(r'^login', views.login),
-    url(r'^full_width', views.full_width),
     url(r'^information', views.information),
-    url(r'^choose', views.choose),
-    url(r'^room', views.room),
-    url(r'^blog_home_1', views.blog_home_1),
-    url(r'^blog_home_2', views.blog_home_2),
-    url(r'^blog_post', views.blog_post),
-	url(r'^upload', views.upload),
+    url(r'^admin_logging', views.admin_loging),
+    url(r'^login', views.login),
+    url(r'^login/', TemplateView.as_view(template_name="login.html"),
+                   name='login'),
+    url(r'^upload', views.upload),
+    url(r'^about', views.about),
+    url(r'^logout', views.logout),
+    # url(r'^contact', views.contact),
+    # url(r'^portfolio_1_col', views.portfolio_1_col),
+    # url(r'^portfolio_2_col', views.portfolio_2_col),
+    # url(r'^portfolio_3_col', views.portfolio_3_col),
+    # url(r'^portfolio_4_col', views.portfolio_3_col),
+    # url(r'^admin', views.admin),
+    # url(r'^full_width', views.full_width),
+    # url(r'^choose', views.choose),
+    # url(r'^room', views.room),
+    # url(r'^blog_home_1', views.blog_home_1),
+    # url(r'^blog_home_2', views.blog_home_2),
+    # url(r'^blog_post', views.blog_post),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     #   restful-api     #
