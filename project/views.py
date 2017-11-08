@@ -163,5 +163,8 @@ def blog_post(request):
 def upload(request):
     return render_to_response('project/upload.html', locals())	
 
-
-
+def personalpage(request):
+    return render_to_response('project/personalpage.html', locals())		
+	
+def admin_page(request):
+    return render_to_response('project/admin_page.html', locals())	

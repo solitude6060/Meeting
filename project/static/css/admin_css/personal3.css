@@ -1,0 +1,49 @@
+body { 
+  padding-top: 70px; 
+  background: white;
+}
+.jumbotron{
+	background: #FFF8DC;
+	width:75%;
+	height:15%;
+	margin:0px auto;
+	border-radius: 50%;
+	font-family: Inconsolata;
+}
+.navbar-default {
+  background: red;
+  font-family: Inconsolota;
+  font-size: 20px;
+  color: white;
+}
+
+.navbar-brand {
+  font-family: Lobster;
+  font-size: 35px;
+}
+
+#me {
+  border-radius: 30%;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.space-top {
+  margin-top: 15px;
+}
+
+h2,h4,label,#foot {
+  font-family: Inconsolata;
+}
+
+p,.placeholder {
+  font-family: Lato;
+}
+
+#footer {
+  background-color: red;
+  padding: 20px 0px 15px 0px;
+  color: #fff;
+  font-size: 20px;
+}
