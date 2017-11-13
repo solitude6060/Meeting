@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Modern Business - Start Bootstrap Template</title>
+    <title>會議資訊小管家</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -48,7 +48,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
 				
-                    <li>
+                    <<!-- li>
                         <a href="contact.html">聯絡我們</a>
                     </li>
                     <li class="dropdown">
@@ -66,14 +66,14 @@
                             </li>
 						</ul>	
                         </ul>
-                    </li>
+                    </li> -->
 					<li>
-                        <a href="contact">管理專區</a>
+                        <a href="admin_logging">管理專區</a>
                     </li>
-					<li>
+					<!-- <li>
                         <a href="login">登入</a>
-                    </li>
-                    <li class="dropdown">
+                    </li> -->
+                    <!-- <li class="dropdown">
                         <a href="login" class="dropdown-toggle" data-toggle="dropdown">會員名字<b class="caret"></b></a>
                         <ul class="dropdown-menu">
 							<ul align="left">
@@ -86,7 +86,7 @@
 							</ul>
                         </ul>
                     </li>
-                </ul>
+                </ul> -->
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -97,14 +97,16 @@
   <div class='form-container'>
     <input checked='true' class='nav-item login' name='nav-item' title='login' type='radio'>
     <label>會員登入</label>
-    <input class='nav-item sign-up' name='nav-item' title='sign up' type='radio'>
+    <input {{register_checked}} class='nav-item sign-up' name='nav-item' title='sign up' type='radio'>
     <label>註冊</label>
     <div class='sb'></div>
     <!-- form-expand to expand form width -->
     <div class='form-expand'>
       <div class='form-outer'>
         <!-- start sign up form-->
-        <form class='login-form'>
+        <form class='login-form' method="POST">
+          {% csrf_token %}
+          {{ form }}
           <button class='facebook-btn facebook-login'>
             <i aria-hidden='true' class='fa fa-facebook'></i>
             <span>login with facebook</span>
@@ -114,17 +116,20 @@
             <span>or</span>
           </div>
           <div class='user-name input-box'>
-            <input class='input' id='login-userName' type='text'>
+            <input class='input' name="username" id='login-userName' type='text'>
             <label class='placeholder' for='login-userName'>
               <span>會</span>
               <span>員</span>
               <span>帳</span>
               <span>號</span>
+              <span>/</span>
+              <span>信</span>
+              <span>箱</span>
 
             </label>
           </div>
           <div class='password input-box'>
-            <input class='input' id='login-password' type='password'>
+            <input class='input' name="password" id='login-password' type='password'>
             <label class='placeholder' for='login-password'>
               <span>密</span>
               <span>碼</span>
@@ -143,7 +148,7 @@
               <a href='#'>忘記密碼?</a>
             </p>
           </div>
-          <button class='login-submit'>
+          <button class='login-submit' type="submit" name="login">
             <span>
               登入
             </span>
@@ -151,39 +156,55 @@
               <span><a href="index">登入</a></span>
             </div>
           </button>
+
         </form>
         <!--start sign up form-->
-        <form class='sign-up-form'>
+        <form class='sign-up-form' method="POST">
+          {% csrf_token %}
+          {{ form }}
           <button class='facebook-btn facebook-login'>
             <i aria-hidden='true' class='fa fa-facebook'></i>
             <span>sign up with facebook</span>
           </button>
+          <div class='social-btn-divider'>
+            <span>or</span>
+          </div>
           
           <div class='user-name input-box'>
-            <input class='input' id='signUp-userName' type='text'>
+            <input class='input' name="signUp-userName" id='signUp-userName' type='text'>
             <label class='placeholder' for='signUp-userName'>
               <span>會</span>
               <span>員</span>
               <span>帳</span>
               <span>號</span>
+              <span>/</span>
+              <span>信</span>
+              <span>箱</span>
             </label>
           </div>
-          <div class='email input-box'>
-            <input class='input' id='signUp-email' type='text'>
+          <!-- <div class='email input-box'>
+            <input class='input' name="signUp-password" id='signUp-email' type='text'>
             <label class='placeholder' for='signUp-email'>
               <span>信</span>
               <span>箱</span>
 
             </label>
-          </div>
+          </div> -->
           <div class='password input-box'>
-            <input class='input' id='signUp-password' type='password'>
+            <input class='input' name="signUp-password" id='signUp-password' type='password'>
             <label class='placeholder' for='signUp-password'>
               <span>密</span>
               <span>碼</span>
             </label>
           </div>
-          <button class='sign-submit'>
+          {% if error1 %}
+            <br>
+              <p style="color:white;">* 使用者名稱已存在</p>
+          {% endif %}
+          {% if error2  %}
+              <p style="color:white;">* 輸入不正確</p>
+          {% endif %}
+          <button class='sign-submit' type="submit" name="register">
             <span>
               註冊
             </span>
@@ -191,15 +212,16 @@
               <span>註冊</span>
             </div>
           </button>
+          
         </form>
       </div>
     </div>
   </div>
 </div>
     <!-- jQuery -->
-    <script src="{% static 'js/js/jquery.js'}"></script>
+    <script src="{% static 'js/js/jquery.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="{% static 'js/js/bootstrap.min.js'}"></script>
+    <script src="{% static 'js/js/bootstrap.min.js' %}"></script>
 </body>
 </html>
