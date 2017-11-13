@@ -135,7 +135,31 @@ def index(request):
     return render_to_response('project/index.html', locals())
 
 def admin_loging(request):
-    return render_to_response('project/admin_loging.html', locals())
+    #error = False
+    if request.user.is_authenticated(): 
+        meeting = Meeting.objects.all()
+        meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
+        me = meeting[0:4]
+        return render(request, 'project/index.html', locals())
+
+    #error = False
+    uname = request.POST.get('user')
+    pword = request.POST.get('pword')
+
+    user = authenticate(username=uname, password=pword)
+    
+    if user is not None:
+        auth.login(request, user)
+        meeting = Meeting.objects.all()
+        meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
+        me = meeting[0:4]
+        #return render_to_response('project/index.html', locals())
+        return render(request, 'project/index.html', locals())
+    else:
+        #error = True
+        return render(request, 'project/admin_loging.html', locals())
+    #error = False
+    return render(request, 'project/admin_loging.html', locals())
 
 def about(request):
     return render_to_response('project/about.html', locals())
@@ -208,7 +232,53 @@ def information(request):
     return render_to_response('project/information.html', locals())
 
 def upload(request):
-    return render_to_response('project/upload.html', locals())
+    if request.method == "GET":
+        return render(request, 'project/upload.html', {})
+    if request.method == "POST":
+        mform = MeetingForm(request.POST)
+        
+        meeting = Meeting.objects.all()
+        meeting = sorted(meeting, key=lambda x:x.meeting_id, reverse=True)
+        meeting_id = meeting[0].meeting_id
+        meeting_id += 1
+
+        administrator = request.user.username
+        meeting_name = mform.data.get('meetingName')
+        address = mform.data.get('meetingPlace')
+        meetingroom_id = mform.data.get('meetingroom')
+        organizer = mform.data.get('Organizer')
+        speaker = mform.data.get('Speaker')
+        participants = mform.data.get('participants')
+        attendance = mform.data.get('attendance')
+        fare = mform.data.get('fare')
+        content = mform.data.get('content')
+
+        meeting_Date = mform.data.get('Date')
+        # meeting_edDate = mform.data.get('EDate')
+        meeting_Stime = mform.data.get('STime')
+        meeting_Etime = mform.data.get('ETime')
+
+        meetingfiliter = Meeting.objects.filter(meeting_name=meeting_name, meetingroom_id=meetingroom_id, administrator=administrator, meeting_date=meeting_Date, meeting_id=meeting_id)
+
+        if meetingfiliter : 
+            meeting = Meeting.objects.all()
+            meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
+            me = meeting[0:4]
+            #return render(request, 'project/index.html', locals())
+            return render_to_response('project/index.html', locals())
+        else:
+            meCreate = Meeting.objects.create(meeting_name=meeting_name, meetingroom_id=meetingroom_id, administrator=administrator
+                , meeting_date=meeting_Date, address=address, meeting_starttime=meeting_Stime, meeting_endtime=meeting_Etime
+                , fare=fare, content=content, participants=participants, attendance=attendance
+                , meeting_id=meeting_id, speaker=speaker, organizer=organizer, pictures="", savefilm=0)
+            meCreate.save()
+            meeting = Meeting.objects.all()
+            meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
+            me = meeting[0:4]
+            #return render(request, 'project/index.html', {})
+            return render_to_response('project/index.html', locals())
+
+    return render(request, 'project/index.html', {})
 
 def logout(request):
     auth.logout(request)
@@ -217,43 +287,26 @@ def logout(request):
     me = meeting[0:4]
     return render(request, 'project/index.html', locals())
     #return render_to_response('project/login.html', locals())
+
+def join(request,meetingId):
+    if request.user.is_authenticated():
+        username = request.user.username
+        check = CheckIn.objects.filter(meeting_id=meetingId, member_email=username)
+        meetingObj = Meeting.objects.get(meeting_id=meetingId)
+        roomId = meetingObj.meetingroom_id
+        #memId = Member.objects.get(member_email=username).member_email
+        if check:
+            meeting = Meeting.objects.all()
+            meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
+            me = meeting[0:4]
+            return render(request, 'project/index.html', locals())
+        else:
+            checkObj = CheckIn.objects.create(meeting_id=meetingId, member_email_id=username, login_time=None, logout_time=None, meetingroom_id=roomId, seat_id=777)
+            checkObj.save()
     
+    return render_to_response('myapp/challenge.html',locals())
 
-# def contact(request):
-#     return render_to_response('project/contact.html', locals())
 
-# def portfolio_1_col(request):
-#     return render_to_response('project/portfolio_1_col.html', locals())
-
-# def portfolio_2_col(request):
-#     return render_to_response('project/portfolio_2_col.html', locals())
-
-# def portfolio_3_col(request):
-#     return render_to_response('project/portfolio_3_col.html', locals())
-
-# def portfolio_4_col(request):
-#     return render_to_response('project/portfolio_4_col.html', locals())
-
-#def admin(request):
-#    return render_to_response('project/admin.html', locals())
-
-# def full_width(request):
-#     return render_to_response('project/full_width.html', locals())
-
-# def choose(request):
-#     return render_to_response('project/choose.html', locals())
-
-# def room(request):
-#     return render_to_response('project/room.html', locals())
-
-# def blog_home_1(request):
-#     return render_to_response('project/blog_home_1.html', locals())
-
-# def blog_home_2(request):
-#     return render_to_response('project/blog_home_2.html', locals())
-
-# def blog_post(request):
-#     return render_to_response('project/blog_post.html', locals())
 
 	
 

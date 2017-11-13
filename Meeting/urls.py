@@ -43,6 +43,7 @@ urlpatterns = [
     url(r'^upload', views.upload),
     url(r'^about', views.about),
     url(r'^logout', views.logout),
+    url(r'^join&(?P<meetingId>[0-9]+)$', views.join),
     # url(r'^contact', views.contact),
     # url(r'^portfolio_1_col', views.portfolio_1_col),
     # url(r'^portfolio_2_col', views.portfolio_2_col),

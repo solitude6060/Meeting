@@ -105,6 +105,7 @@ class CheckIn(models.Model):
     login_time = models.TimeField(db_column='Login_time', blank=True, null=True)  # Field name made lowercase.
     logout_time = models.TimeField(db_column='Logout_time', blank=True, null=True)  # Field name made lowercase.
     seat_id = models.IntegerField(db_column='Seat_id', blank=True, null=True)  # Field name made lowercase.
+    meetingroom_id = models.CharField(db_column='MeetingRoom_id', max_length=11, blank=True, null=True)
 
     def __unicode__(self):
        return 'Meeting : ' + str(self.meeting_id) + "'s checkin"

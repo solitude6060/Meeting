@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Modern Business - Start Bootstrap Template</title>
+    <title>會議資訊小管家</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -49,9 +49,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="login">會員登入</a>
+                    </li>
 
-
-                    <li class="dropdown">
+                    <!-- <li class="dropdown">
                         <a href="login.html" class="dropdown-toggle" data-toggle="dropdown">會員名字<b class="caret"></b></a>
                         <ul class="dropdown-menu">
 							<ul align="left">
@@ -66,7 +68,7 @@
                             </li>
 							</ul>
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -79,15 +81,20 @@
     <!-- Page Content -->
     <div class="container"><br><br><br>
 		<div class="log">
-      <td><center> <h3><i class="glyphicon glyphicon-user">  </i>登入系統</h3></center></td>
-  <form action="/action_page.php">
+      <td><center> <h3><i class="glyphicon glyphicon-user">  </i>主辦單位登入系統</h3></center></td>
+  <form  method="POST">
+    {% csrf_token %}
+    {{ form }}
    <td><center> <label for="Uname">使用者帳號：</label>
-    <input type="text" id="Uname" name="Username" placeholder="會員帳號.."><br>
+    <input type="text" id="Uname" name="user" placeholder="會員帳號.."><br>
 
     <label for="Pword">使用者密碼：</label>
-    <input type="text" id="Pword" name="password" placeholder="密碼..">
+    <input type="text" id="Pword" name="pword" placeholder="密碼..">
  <input type="submit" value="登入">
    
+   <!-- {% if error %}
+         <p>* 輸入不正確...</p>
+    {% endif %} -->
   </form>
  
 </div>
