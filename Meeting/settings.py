@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'project',
     'rest_framework',
+    'oauth2_provider',
 ]
 
 REST_FRAMEWORK = {
@@ -90,8 +91,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'project',#os.path.join(BASE_DIR, 'db.sqlite3'),
-        'USER': 'jack',
-        'PASSWORD': 'jackjou0920',
+        'USER': 'solitude6060',
+        'PASSWORD': '1234567890',
         'HOST': '163.21.245.147',
         'PORT': '3306',
     }
@@ -120,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'zh-hant'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Taipei'
 

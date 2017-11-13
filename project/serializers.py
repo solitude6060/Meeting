@@ -3,7 +3,6 @@ from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from .models import CheckIn, FeedbackSheet, Meeting, Meetingroom, Member, Organizer, Positioning, Seating
 
-
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
@@ -24,7 +23,8 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class SeatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Seating
-        fields = ('seat_id', 'seat_ssid', 'mac_address', 'wifi_level','room_id')
+
+        fields = ('seat_id', 'seat_ssid', 'mac_address', 'wifi_level', 'room_id')
 
 class MeetingroomSerializer(serializers.ModelSerializer):
     seat = SeatingSerializer(many=True)
@@ -46,15 +46,23 @@ class FeedbackSheetSerializer(serializers.ModelSerializer):
     class Meta:
         model = FeedbackSheet
         fields = ('meeting_id', 'member_email','time_feedback', 'location_feedback', 'itinerary_feedback', 'suggestions')
+   	    #fields = ( 'member_email','time_feedback', 'location_feedback', 'itinerary_feedback', 'suggestions')
+
+   	def create(self, validated_data):
+   		feedback = FeedbackSheet.objects.create(**validated_data)
+		return feedback
+        #return FeedbackSheet.objects.create(**validated_data)
+        
+
 
 class MeetingSerializer(serializers.ModelSerializer):
     Meeting_meetingroom = MeetingroomSerializer(many=True, read_only=True)
     Meeting_organizer = OrganizerSerializer(many=True, read_only=True)
-    Meeting_feedbackSheet = FeedbackSheetSerializer(many=True, read_only=True)
+    feedback = FeedbackSheetSerializer(many=True)
 
     class Meta:
         model = Meeting
-        fields = ('meeting_id', 'meeting_name','meetingroom_id', 'meeting_date', 'meeting_starttime', 'meeting_endtime', 'administrator', 'organizer', 'speaker', 'participants', 'content', 'fare', 'pictures', 'address', 'attendance', 'savefilm', 'Meeting_meetingroom', 'Meeting_feedbackSheet', 'Meeting_organizer')
+        fields = ('meeting_id', 'meeting_name','meetingroom_id', 'meeting_date', 'meeting_starttime', 'meeting_endtime', 'administrator', 'organizer', 'speaker', 'participants', 'content', 'fare', 'pictures', 'address', 'attendance', 'savefilm', 'Meeting_meetingroom', 'feedback', 'Meeting_organizer')
 
     def create(self, validated_data):
         """
@@ -92,20 +100,78 @@ class MeetingSerializer(serializers.ModelSerializer):
 class CheckInSerializer(serializers.ModelSerializer):
     class Meta:
         model = CheckIn
-        fields = ('member_email','meeting_id', 'login_time', 'logout_time', 'seat_id')
+        fields = ('member_email','meetingroom_id', 'meeting_id', 'login_time', 'logout_time', 'seat_id')
+        #fields = ('meeting_id', 'login_time', 'logout_time', 'seat_id')
 	
 	def create(self, validated_data):
 		checkin_object = CheckIn.objects.create(**validated_data)
 		return checkin_object
 
 class PositioningSerializer(serializers.ModelSerializer):
+    #id = serializers.IntegerField(required=False)
+    #member_email = serializers.SlugRelatedField(slug_field='member_email', queryset=Member.objects.all(), required=False)
+    
     class Meta:
         model = Positioning
-        fields = ('member_email','meetingroom_id', 'current_ssid', 'mac_address', 'wifi_level')
+        fields = ('member_email','meetingroom_id', 'current_ssid', 'mac_address', 'wifi_level','wifi_time')
 	
 	def create(self, validated_data):
 		position_object = Positioning.objects.create(**validated_data)
 		return position_object
+
+	def update(self, instance, validated_data):
+		#mails = self.get(pk)
+
+		# if mails:
+		# 	for mail in mails:
+		# 		mail_id = mail.get('id')
+		# 		if mail_id:
+		# 			pos = Positioning.objects.get(id=mail_id)
+		# 			pos.meetingroom_id = mail.get('meetingroom_id', pos.meetingroom_id)
+		# 			pos.current_ssid = mail.get('current_ssid', pos.current_ssid)
+		# 			pos.mac_address = mail.get('mac_address', pos.mac_address)
+		# 			pos.wifi_level = mail.get('wifi_level', pos.wifi_level)
+		# 			pos.save()
+		# 		else:
+		# 			Positioning.objects.create(**mail)
+		#instance.mac_address = validated_data.get('mac_address', instance.mac_address)
+
+		# instance.save()
+		# return instance
+		#pos = instance.position.first()
+		#instance.member_email = validated_data.get('member_email', instance.member_email)
+		instance.meetingroom_id = validated_data.get('meetingroom_id', pos.meetingroom_id)
+		instance.current_ssid = validated_data.get('current_ssid', pos.current_ssid)
+		instance.mac_address = validated_data.get('mac_address', instance.mac_address)
+		
+		#instance.mac_address = validated_data.get('mac_address', pos.mac_address)
+		instance.wifi_level = validated_data.get('wifi_level', pos.wifi_level)
+		#pos.save()
+		instance.save()
+		return instance
+
+
+	
+	# def update(self, instance, validated_data):
+ #    instance.nr = validated_data.get('nr', instance.nr)
+ #    instance.title = validated_data.get('title', instance.title)
+ #    instance.save()
+
+ #    items = validated_data.get('items')
+
+ #    if items:
+ #        for item in items:
+ #            item_id = item.get('id', None)
+ #            if item_id:
+ #                inv_item = InvoiceItem.objects.get(id=item_id, invoice=instance)
+ #                inv_item.name = item.get('name', inv_item.name)
+ #                inv_item.price = item.get('price', inv_item.price)
+ #                inv_item.save()
+ #            else:
+ #                InvoiceItem.objects.create(account=instance, **item)
+
+ #    return instance
+    
 
 class MemberSerializer(serializers.ModelSerializer):
     position = PositioningSerializer(many = True)
@@ -129,17 +195,59 @@ class MemberSerializer(serializers.ModelSerializer):
         #return Member.objects.create(**validated_data)
 	
 	def update(self, instance, validated_data):
+		positions_data = validated_data.pop('position')
+    	pos = (instance.position).all()
+    	pos = list(pos)
+    	#instance.member_email = validated_data.get('member_email', instance.member_email)
+    	#instance.member_password = validated_data.get('member_password', instance.member_password)
+    	instance.member_name = validated_data.get('member_name', instance.member_name)
+    	instance.member_department = validated_data.get('member_department', instance.member_department)
+    	instance.member_phone = validated_data.get('member_phone', instance.member_phone)
+    	instance.gender = validated_data.get('gender', instance.gender)
+    	instance.save()
+
+    	for position_data in positions_data:
+    		po = pos.pop(0)
+    		po.mac_address = position_data.get('mac_address', po.mac_address)
+    		po.wifi_level = position_data.get('wifi_level', po.wifi_level)
+    		po.current_ssid = position_data.get('current_ssid', po.current_ssid)
+    		po.save()
+
+    	return instance
+
+
+
+	# def update(self, instance, validated_data):
 	        
-	        #Update and return an existing `Snippet` instance, given the validated data.
+	#         #Update and return an existing `Snippet` instance, given the validated data.
 	        
-	        instance.member_email = validated_data.get('member_email', instance.member_email)
-	        instance.member_password = validated_data.get('member_password', instance.member_password)
-	        instance.member_name = validated_data.get('member_name', instance.member_name)
-	        instance.member_department = validated_data.get('member_department', instance.member_department)
-	        instance.member_phone = validated_data.get('member_phone', instance.member_phone)
-	        instance.gender = validated_data.get('gender', instance.gender)
-	        instance.save()
-	        return instance
+	#         instance.member_email = validated_data.get('member_email', instance.member_email)
+	#         instance.member_password = validated_data.get('member_password', instance.member_password)
+	#         instance.member_name = validated_data.get('member_name', instance.member_name)
+	#         instance.member_department = validated_data.get('member_department', instance.member_department)
+	#         instance.member_phone = validated_data.get('member_phone', instance.member_phone)
+	#         instance.gender = validated_data.get('gender', instance.gender)
+	#         instance.save()
+	#         return instance
+	# def update(self, instance, validated_data):
+		# mails = validated_data.get('member_email')
+
+		# if mails:
+		# 	for mail in mails:
+				#mail_id = mail.get('id')
+				#if mail_id:
+				# pos = Positioning.objects.get(member_email=instance)
+				# pos.meetingroom_id = mail.get('meetingroom_id', pos.meetingroom_id)
+				# pos.current_ssid = mail.get('current_ssid', pos.current_ssid)
+				# pos.mac_address = mail.get('mac_address', pos.mac_address)
+				# pos.wifi_level = mail.get('wifi_level', pos.wifi_level)
+				# pos.save()
+				#else:
+				#	Member.objects.create(**mail)
+		#instance.mac_address = validated_data.get('mac_address', instance.mac_address)
+
+		# instance.save()
+		# return instance
 
     
 

@@ -10,24 +10,9 @@ from __future__ import unicode_literals
 from django.db import models
 
 
-class FeedbackSheet(models.Model):
-    meeting_id = models.IntegerField(db_column='Meeting_id', blank=True, null=True)  # Field name made lowercase.
-    member_email = models.CharField(db_column='Member_email', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    time_feedback = models.IntegerField(db_column='Time_feedback', blank=True, null=True)  # Field name made lowercase.
-    location_feedback = models.IntegerField(db_column='Location_feedback', blank=True, null=True)  # Field name made lowercase.
-    itinerary_feedback = models.IntegerField(db_column='Itinerary_feedback', blank=True, null=True)  # Field name made lowercase.
-    suggestions = models.TextField(db_column='Suggestions', blank=True, null=True)  # Field name made lowercase.
-
-    def __unicode__(self):
-       return 'Meeting : ' + self.meeting_id + "'s feedback"
-
-    class Meta:
-        managed = False
-        db_table = 'Feedback_sheet'
-
 
 class Meeting(models.Model):
-    meeting_id = models.IntegerField(db_column='Meeting_id', blank=True, null=True)  # Field name made lowercase.
+    meeting_id = models.IntegerField(db_column='Meeting_id', blank=True, null=True, unique=True)  # Field name made lowercase.
     meeting_name = models.CharField(db_column='Meeting_name', max_length=24, blank=True, null=True)  # Field name made lowercase.
     meetingroom_id = models.CharField(db_column='MeetingRoom_id', max_length=50, blank=True, null=True)  # Field name made lowercase.
     meeting_date = models.DateField(db_column='Meeting_date', blank=True, null=True)  # Field name made lowercase.
@@ -47,9 +32,29 @@ class Meeting(models.Model):
     def __unicode__(self):
        return 'Meeting : ' + str(self.meeting_id)
 
-    class Meta:
+    class Meta: 
         managed = False
         db_table = 'Meeting'
+
+class FeedbackSheet(models.Model):
+    #meeting_id = models.IntegerField(db_column='Meeting_id', blank=True, null=True)  # Field name made lowercase.
+    meeting_id = models.ForeignKey(Meeting, related_name='feedback', to_field='meeting_id',db_column='Meeting_id')
+    member_email = models.CharField(db_column='Member_email', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    time_feedback = models.IntegerField(db_column='Time_feedback', blank=True, null=True)  # Field name made lowercase.
+    location_feedback = models.IntegerField(db_column='Location_feedback', blank=True, null=True)  # Field name made lowercase.
+    itinerary_feedback = models.IntegerField(db_column='Itinerary_feedback', blank=True, null=True)  # Field name made lowercase.
+    suggestions = models.TextField(db_column='Suggestions', blank=True, null=True)  # Field name made lowercase.
+
+    def __unicode__(self):
+        if self.meeting_id is None:
+            return 'FeedbackSheet with no meeting_id.'
+        else:
+            return 'Meeting : ' + str(self.meeting_id) + "'s feedback"
+       #return 'Meeting : ' + self.meeting_id + "'s feedback"
+
+    class Meta:
+        managed = False
+        db_table = 'Feedback_sheet'
 
 
 
@@ -87,7 +92,7 @@ class Member(models.Model):
 
 class Organizer(models.Model):
     organizer_email = models.CharField(db_column='Organizer_email', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    organizer_password = models.IntegerField(db_column='Organizer_password', blank=True, null=True)  # Field name made lowercase.
+    organizer_password = models.CharField(db_column='Organizer_password', max_length=50, blank=True, null=True)  # Field name made lowercase.
     organizer_department = models.CharField(db_column='Organizer_department', max_length=24, blank=True, null=True)  # Field name made lowercase.
     organizer_phone = models.CharField(db_column='Organizer_phone', max_length=20, blank=True, null=True)  # Field name made lowercase.
 
@@ -100,6 +105,7 @@ class Organizer(models.Model):
 
 class CheckIn(models.Model):
     meeting_id = models.IntegerField(db_column='Meeting_id', blank=True, null=True)  # Field name made lowercase.
+    meetingroom_id = models.CharField(db_column='MeetingRoom_id', max_length=11, blank=True, null=True)
     #member_email = models.CharField(db_column='Member_email', max_length=50, blank=True, null=True)  # Field name made lowercase.
     member_email = models.ForeignKey(Member, related_name = "checkin", to_field='member_email', db_column = 'Member_email')
     login_time = models.TimeField(db_column='Login_time', blank=True, null=True)  # Field name made lowercase.
@@ -115,12 +121,14 @@ class CheckIn(models.Model):
 
 
 class Positioning(models.Model):
+    #id = models.IntegerField(primary_key=True)
     meetingroom_id = models.CharField(db_column='MeetingRoom_id', max_length=11, blank=True, null=True)  # Field name made lowercase.
     #member_email = models.CharField(db_column='Member_email', max_length=50, blank=True, null=True)  # Field name made lowercase.
     member_email = models.ForeignKey(Member, related_name="position", to_field='member_email', db_column = 'Member_email')
     current_ssid = models.CharField(db_column='Current_ssid', max_length=24, blank=True, null=True)  # Field name made lowercase.
     wifi_level = models.IntegerField(db_column='Wifi_level', blank=True, null=True)  # Field name made lowercase.
     mac_address = models.CharField(db_column='Mac_address', max_length=50, blank=True, null=True)
+    wifi_time = models.DateTimeField(db_column='wifi_time',blank=True, null=True)
 
     def __unicode__(self):
        return 'Room : ' + str(self.meetingroom_id) + "'s position"
@@ -139,7 +147,7 @@ class Seating(models.Model):
     mac_address = models.CharField(db_column='Mac_address', max_length=50, blank=True, null=True)
 
     def __unicode__(self):
-       return 'Room : ' + self.meetingroom_id + ". Seat : " + self.seat_id
+       return 'Room : ' + str(self.room_id) + ". Seat : " + str(self.seat_id)
     
     class Meta:
         managed = False

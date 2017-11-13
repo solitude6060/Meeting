@@ -52,12 +52,19 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     #   restful-api     #
+    url(r'^memberUpdate/(?P<pk>.+)$', views.MemberDetail),
     url(r'^memberApi', views.MemberList),
     url(r'^meetingApi', views.MeetingList),
     url(r'^positionApi', views.PositionList),
+    url(r'^positionUpdate/(?P<pk>.+)/(?P<mac>.+)$', views.PositionDetail),
     url(r'^checkinApi', views.CheckinList),
-    #url(r'^positionApi/(?P<who>[\w\-]+)', views.PositionList),
+    url(r'^checkinUpdate/(?P<member>.+)/(?P<meeting>.+)$', views.CheckinDetail),
+    url(r'^feedbackApi', views.FeedbackList),
+    url(r'^feedbackUpdate/(?P<member>.+)/(?P<meeting>.+)$', views.FeedbackDetail),
     #url(r'^member_api/(?P<member_name>[0-9]+)$', views.MemberDetail.as_view()),
+
+    #   OAuth-login     #
+    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     
 ]
 
