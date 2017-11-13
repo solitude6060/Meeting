@@ -57,7 +57,9 @@ urlpatterns = [
     # url(r'^blog_home_2', views.blog_home_2),
     # url(r'^blog_post', views.blog_post),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-
+	url(r'^admin_homepage', views.admin_page),
+	url(r'^personalpage', views.personalpage),
+	
     #   restful-api     #
     url(r'^memberUpdate/(?P<pk>.+)$', views.MemberDetail),
     url(r'^memberApi', views.MemberList),
