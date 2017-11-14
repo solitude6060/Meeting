@@ -168,3 +168,6 @@ def personalpage(request):
 	
 def admin_page(request):
     return render_to_response('project/admin_homepage.html', locals())	
+	
+def client(request):
+    return render_to_response('project/client.html', locals())	
