@@ -148,6 +148,9 @@
               <a href='#'>忘記密碼?</a>
             </p>
           </div>
+          {% if error3 %}
+              <p style="color:white;">*主辦單位請用管理專區*</p>
+            {% endif %}
           <button class='login-submit' type="submit" name="login">
             <span>
               登入

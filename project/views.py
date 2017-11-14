@@ -288,6 +288,9 @@ def admin_loging(request):
         meeting = Meeting.objects.all()
         meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
         me = meeting[0:4]
+        # username = request.user.username
+        # oger = Organizer.objects.get(organizer_email=username)
+        # name = oger.organizer_department
         #return render_to_response('project/index.html', locals())
         return render(request, 'project/index.html', locals())
     else:
@@ -300,19 +303,28 @@ def about(request):
     return render_to_response('project/about.html', locals())
 
 def login(request):
-    if request.user.is_authenticated(): 
+    if request.user.is_authenticated() and not request.user.is_staff:
+        # username = request.user.username
+        # member = Member.objects.get(member_email=username)
+        # name = member.member_name 
         meeting = Meeting.objects.all()
         meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
         me = meeting[0:4]
         return render_to_response('project/index.html', locals())
 
-    if 'login' in request.POST:
+    if 'login' in request.POST :
         uname = request.POST.get('username')
         pword = request.POST.get('password')    
 
         user = authenticate(username=uname, password=pword) 
 
-        if user is not None:
+        if user is not None and not user.is_staff:
+            # if not request.user.is_staff:
+            #     member = Member.objects.get(member_email=uname)
+            #     name = member.member_name
+            # else:
+            #     oger = Organizer.objects.get(organizer_email=uname)
+            #     name = oger.organizer_department
             auth.login(request, user)
             meeting = Meeting.objects.all()
             meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
@@ -322,8 +334,10 @@ def login(request):
         else:
             error = "user None"
             register_checked = ""
-            return render(request, 'project/login.html', locals())
+            if user.is_staff:
+                error3 = True
             #return render(request, 'project/login.html', locals())
+            return render_to_response('project/login.html', locals())
     if 'register' in request.POST:
         
         username = request.POST.get('signUp-userName')
@@ -349,6 +363,14 @@ def login(request):
             user = authenticate(username=username, password=password)
 
             if user is not None:
+                # if not request.user.is_staff:
+                #     username = request.user.username
+                #     member = Member.objects.get(member_email=username)
+                #     name = member.member_name
+                # else:
+                #     username = request.user.username
+                #     oger = Organizer.objects.get(organizer_email=username)
+                #     name = oger.organizer_department
                 auth.login(request, user)
                 meeting = Meeting.objects.all()
                 meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
@@ -368,7 +390,8 @@ def information(request):
 
 def upload(request):
     if request.method == "GET":
-        return render(request, 'project/upload.html', {})
+        return render_to_response('project/upload.html', locals())
+        #return render(request, 'project/upload.html', {})
     if request.method == "POST":
         mform = MeetingForm(request.POST)
         
@@ -399,8 +422,16 @@ def upload(request):
             meeting = Meeting.objects.all()
             meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
             me = meeting[0:4]
-            #return render(request, 'project/index.html', locals())
-            return render_to_response('project/index.html', locals())
+            # if not request.user.is_staff:
+            #     username = request.user.username
+            #     member = Member.objects.get(member_email=username)
+            #     name = member.member_name
+            # else:
+            #     username = request.user.username
+            #     oger = Organizer.objects.get(organizer_email=username)
+            #     name = oger.organizer_department
+            return render(request, 'project/index.html', locals())
+            #return render_to_response('project/index.html', locals())
         else:
             meCreate = Meeting.objects.create(meeting_name=meeting_name, meetingroom_id=meetingroom_id, administrator=administrator
                 , meeting_date=meeting_Date, address=address, meeting_starttime=meeting_Stime, meeting_endtime=meeting_Etime
@@ -410,8 +441,16 @@ def upload(request):
             meeting = Meeting.objects.all()
             meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
             me = meeting[0:4]
-            #return render(request, 'project/index.html', {})
-            return render_to_response('project/index.html', locals())
+            # if not request.user.is_staff:
+            #     username = request.user.username
+            #     member = Member.objects.get(member_email=username)
+            #     name = member.member_name
+            # else:
+            #     username = request.user.username
+            #     oger = Organizer.objects.get(organizer_email=username)
+            #     name = oger.organizer_department
+            return render(request, 'project/index.html', {})
+            #return render_to_response('project/index.html', locals())
 
     return render(request, 'project/index.html', {})
 
@@ -424,7 +463,7 @@ def logout(request):
     #return render_to_response('project/login.html', locals())
 
 def join(request,meetingId):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated() and not request.user.is_staff:
         username = request.user.username
         check = CheckIn.objects.filter(meeting_id=meetingId, member_email=username)
         meetingObj = Meeting.objects.get(meeting_id=meetingId)
@@ -434,18 +473,40 @@ def join(request,meetingId):
             meeting = Meeting.objects.all()
             meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
             me = meeting[0:4]
-            return render(request, 'project/index.html', locals())
+            return render_to_response('project/index.html',locals())
         else:
             checkObj = CheckIn.objects.create(meeting_id=meetingId, member_email_id=username, login_time=None, logout_time=None, meetingroom_id=roomId, seat_id=777)
             checkObj.save()
     
-    return render_to_response('myapp/challenge.html',locals())
+    meeting = Meeting.objects.all()
+    meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
+    me = meeting[0:4]
+    # if not request.user.is_staff:
+    #     username = request.user.username
+    #     member = Member.objects.get(member_email=username)
+    #     name = member.member_name
+    # else:
+    #     username = request.user.username
+    #     oger = Organizer.objects.get(organizer_email=username)
+    #     name = oger.organizer_department
+    return render_to_response('project/index.html',locals())
 
-
-
-	
 
 def personalpage(request):
+    if request.user.is_authenticated():
+        username = request.user.username
+        mem = Member.objects.filter(member_email=username)
+        member = Member.objects.get(member_email=username)
+
+        if mem:
+            name = member.member_name
+            email = member.member_email
+            department = member.member_department
+            phone = member.member_phone
+            return render_to_response('project/personalpage.html', locals())
+        else:
+            name = email = department = phone = "資料錯誤！"
+
     return render_to_response('project/personalpage.html', locals())		
 	
 def admin_page(request):
