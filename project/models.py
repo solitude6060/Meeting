@@ -110,7 +110,8 @@ class CheckIn(models.Model):
     member_email = models.ForeignKey(Member, related_name = "checkin", to_field='member_email', db_column = 'Member_email')
     login_time = models.TimeField(db_column='Login_time', blank=True, null=True)  # Field name made lowercase.
     logout_time = models.TimeField(db_column='Logout_time', blank=True, null=True)  # Field name made lowercase.
-    seat_id = models.IntegerField(db_column='Seat_id', blank=True, null=True)  # Field name made lowercase.
+    seat_xid = models.IntegerField(db_column='Seat_xid', blank=True, null=True)  # Field name made lowercase.
+    seat_yid = models.IntegerField(db_column='Seat_yid', blank=True, null=True)
     meetingroom_id = models.CharField(db_column='MeetingRoom_id', max_length=11, blank=True, null=True)
 
     def __unicode__(self):
@@ -142,7 +143,8 @@ class Positioning(models.Model):
 class Seating(models.Model):
     #meeingroom_id = models.CharField(db_column='MeeingRoom_id', max_length=11, blank=True, null=True)  # Field name made lowercase.
     room_id = models.ForeignKey(Meetingroom, related_name="seat", to_field='room_id', db_column = 'room_id')
-    seat_id = models.IntegerField(db_column='Seat_id', blank=True, null=True)  # Field name made lowercase.
+    seat_xid = models.IntegerField(db_column='Seat_xid', blank=True, null=True)  # Field name made lowercase.
+    seat_yid = models.IntegerField(db_column='Seat_yid', blank=True, null=True)
     seat_ssid = models.CharField(db_column='Seat_ssid', max_length=24, blank=True, null=True)  # Field name made lowercase.
     wifi_level = models.IntegerField(db_column='Wifi_level', blank=True, null=True)  # Field name made lowercase.
     mac_address = models.CharField(db_column='Mac_address', max_length=50, blank=True, null=True)

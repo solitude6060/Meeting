@@ -11,7 +11,7 @@ class userForm(forms.ModelForm):
 class CheckInForm(forms.ModelForm):
 	class Meta:
 		model = CheckIn
-		fields = ['member_email','meeting_id', 'login_time', 'logout_time', 'seat_id']
+		fields = ['member_email','meeting_id', 'login_time', 'logout_time', 'seat_xid', 'seat_yid']
 
 class FeedbackSheetForm(forms.ModelForm):
 	class Meta:
@@ -46,6 +46,6 @@ class PositioningForm(forms.ModelForm):
 class SeatingForm(forms.ModelForm):
 	class Meta:
 		model = Seating
-		fields = ['seat_id', 'seat_ssid', 'mac_address', 'wifi_level','room_id']
+		fields = ['seat_xid', 'seat_yid', 'seat_ssid', 'mac_address', 'wifi_level','room_id']
 
 

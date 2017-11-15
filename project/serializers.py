@@ -31,7 +31,7 @@ class SeatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Seating
 
-        fields = ('seat_id', 'seat_ssid', 'mac_address', 'wifi_level', 'room_id')
+        fields = ('seat_xid', 'seat_yid', 'seat_ssid', 'mac_address', 'wifi_level', 'room_id')
 
 class MeetingroomSerializer(serializers.ModelSerializer):
     seat = SeatingSerializer(many=True)
@@ -107,7 +107,7 @@ class MeetingSerializer(serializers.ModelSerializer):
 class CheckInSerializer(serializers.ModelSerializer):
     class Meta:
         model = CheckIn
-        fields = ('member_email','meetingroom_id', 'meeting_id', 'login_time', 'logout_time', 'seat_id')
+        fields = ('member_email','meetingroom_id', 'meeting_id', 'login_time', 'logout_time', 'seat_xid', 'seat_yid')
         #fields = ('meeting_id', 'login_time', 'logout_time', 'seat_id')
 	
 	def create(self, validated_data):
