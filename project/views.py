@@ -468,9 +468,9 @@ def join(request,meetingId):
             meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
             meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
             me = meeting[0:4]
-            return render_to_response('project/index.html',locals())
+            return render_to_response('project/personalpage.html',locals())
         else:
-            checkObj = CheckIn.objects.create(meeting_id=meetingId, member_email_id=username, login_time=None, logout_time=None, meetingroom_id=roomId, seat_id=777)
+            checkObj = CheckIn.objects.create(meeting_id=meetingId, member_email_id=username, login_time=None, logout_time=None, meetingroom_id=roomId, seat_xid=0, seat_yid=0)
             checkObj.save()
     
     curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
@@ -485,7 +485,25 @@ def join(request,meetingId):
     #     username = request.user.username
     #     oger = Organizer.objects.get(organizer_email=username)
     #     name = oger.organizer_department
-    return render_to_response('project/index.html',locals())
+    curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
+    meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
+    meeting_after = meetingObj.values('meeting_id')
+    checkObj = CheckIn.objects.filter(member_email=username, meeting_id__in=meeting_after)
+    chMeeting = checkObj.values('meeting_id')
+    meObjAF = Meeting.objects.filter(meeting_id__in=chMeeting)
+
+    ctime = datetime.datetime.strptime(datetime.datetime.now().isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
+    me = Meeting.objects.filter(meeting_date__lt = ctime)
+    meeting_before = me.values('meeting_id')
+    ch = CheckIn.objects.filter(member_email=username, meeting_id__in=meeting_before)
+    chMe = ch.values('meeting_id')
+    meObjBF = Meeting.objects.filter(meeting_id__in=chMe)
+
+    name = member.member_name
+    email = member.member_email
+    department = member.member_department
+    phone = member.member_phone
+    return render_to_response('project/personalpage.html',locals())
 
 
 def personalpage(request):

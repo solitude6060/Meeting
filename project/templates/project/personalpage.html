@@ -158,8 +158,8 @@
     <div role="tabpanel" class="tab-pane active" id="panel-2">
 
         <div class="row masonry-container" style="position: relative; height: 956px;">
-			{% for c in meObjAF %}
             <div class="row text-center">
+                {% for c in meObjAF %}
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
                         <img src="{% static 'images/1.gif' %}" alt="">
@@ -173,8 +173,9 @@
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
+            
         </div> <!--/.masonry-container  -->
 
     </div><!--/.tab-panel -->
