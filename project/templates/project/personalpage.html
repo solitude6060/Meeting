@@ -44,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">會議資訊小管家</a>
+                <a class="navbar-brand" href="index">會議資訊小管家</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -155,169 +155,50 @@
 
      
 
-      <div role="tabpanel" class="tab-pane active" id="panel-2">
+    <div role="tabpanel" class="tab-pane active" id="panel-2">
 
         <div class="row masonry-container" style="position: relative; height: 956px;">
-			<div class="row text-center">
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="{% static 'images/1.gif' %}" alt="">
-                    <div class="caption">
-                        <h4><strong>讓你如何成為一個好幹部</strong></h4>
-						<ul align="left">
-                    <li>日期: 2017/8/31</li>
-                    <li>活動形態: 講座</li>
-                    <li>主辦單位: 羅達企業學會</li>
-
-                </ul>
-          
-                        <p>
-                            <a href="login.html" class="btn btn-primary">已報名</a> <a href="information.html" class="btn btn-default">閱讀更多</a>
-                        </p>
+			{% for c in meObjAF %}
+            <div class="row text-center">
+                <div class="col-md-3 col-sm-6 hero-feature">
+                    <div class="thumbnail">
+                        <img src="{% static 'images/1.gif' %}" alt="">
+                        <div class="caption">
+                            <h4><strong>{{c.meeting_name}}</strong></h4>
+    						<ul align="left">
+                                <li>日期: {{c.meeting_date}}</li>
+                                <li>舉辦地點: {{ c.address }} </li>
+                                <li>主辦單位(人): {{ c.organizer }} </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-			
-			<div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="{% static 'images/1.gif' %}" alt="">
-                    <div class="caption">
-                        <h4><strong>讓你如何成為一個好幹部</strong></h4>
-						<ul align="left">
-                    <li>日期: 2017/8/31</li>
-                    <li>活動形態: 講座</li>
-                    <li>主辦單位: 羅達企業學會</li>
-
-                </ul>
-          
-                        <p>
-                            <a href="login.html" class="btn btn-primary">已報名</a> <a href="#" class="btn btn-default">閱讀更多</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-			<div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="{% static 'images/1.gif' %}" alt="">
-                    <div class="caption">
-                        <h4><strong>讓你如何成為一個好幹部</strong></h4>
-						<ul align="left">
-                    <li>日期: 2017/8/31</li>
-                    <li>活動形態: 講座</li>
-                    <li>主辦單位: 羅達企業學會</li>
-
-                </ul>
-          
-                        <p>
-                            <a href="login.html" class="btn btn-primary">已報名</a> <a href="#" class="btn btn-default">閱讀更多</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="{% static 'images/1.gif' %}" alt="">
-                    <div class="caption">
-                        <h4><strong>讓你如何成為一個好幹部</strong></h4>
-						<ul align="left">
-                    <li>日期: 2017/8/31</li>
-                    <li>活動形態: 講座</li>
-                    <li>主辦單位: 羅達企業學會</li>
-
-                </ul>
-          
-                        <p>
-                            <a href="login.html" class="btn btn-primary">已報名</a> <a href="#" class="btn btn-default">閱讀更多</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+            {% endfor %}
         </div> <!--/.masonry-container  -->
 
-      </div><!--/.tab-panel -->
+    </div><!--/.tab-panel -->
 
       <div role="tabpanel" class="tab-pane" id="panel-3">
         <div class="row masonry-container" style="position: relative; height: 0px;">
-			<div class="row text-center">
+            <div class="row text-center">
+                {% for b in meObjBF %}
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
                     <img src="{% static 'images/1.gif' %}" alt="">
                     <div class="caption">
-                        <h4><strong>讓你如何成為一個好幹部</strong></h4>
-						<ul align="left">
-                    <li>日期: 2017/8/31</li>
-                    <li>活動形態: 講座</li>
-                    <li>主辦單位: 羅達企業學會</li>
+                        <h4><strong>{{b.meeting_name}}</strong></h4>
+                        <ul align="left">
+                    <li>日期: {{b.meeting_date}}</li>
+                    <li>舉辦地點: {{ b.address }} </li>
+                    <li>主辦單位(人): {{ b.organizer }} </li>
 
-                </ul>
-          
-                        <p>
-                            <a href="login.html" class="btn btn-primary">已報名</a> <a href="information.html" class="btn btn-default">閱讀更多</a>
-                        </p>
+                        </ul>
                     </div>
                 </div>
             </div>
-			
-			<div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="{% static 'images/1.gif' %}" alt="">
-                    <div class="caption">
-                        <h4><strong>讓你如何成為一個好幹部</strong></h4>
-						<ul align="left">
-                    <li>日期: 2017/8/31</li>
-                    <li>活動形態: 講座</li>
-                    <li>主辦單位: 羅達企業學會</li>
-
-                </ul>
-          
-                        <p>
-                            <a href="login.html" class="btn btn-primary">已報名</a> <a href="#" class="btn btn-default">閱讀更多</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-			<div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="{% static 'images/1.gif' %}" alt="">
-                    <div class="caption">
-                        <h4><strong>讓你如何成為一個好幹部</strong></h4>
-						<ul align="left">
-                    <li>日期: 2017/8/31</li>
-                    <li>活動形態: 講座</li>
-                    <li>主辦單位: 羅達企業學會</li>
-
-                </ul>
-          
-                        <p>
-                            <a href="login.html" class="btn btn-primary">已報名</a> <a href="#" class="btn btn-default">閱讀更多</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="{% static 'images/1.gif' %}" alt="">
-                    <div class="caption">
-                        <h4><strong>讓你如何成為一個好幹部</strong></h4>
-						<ul align="left">
-                    <li>日期: 2017/8/31</li>
-                    <li>活動形態: 講座</li>
-                    <li>主辦單位: 羅達企業學會</li>
-
-                </ul>
-          
-                        <p>
-                            <a href="login.html" class="btn btn-primary">已報名</a> <a href="#" class="btn btn-default">閱讀更多</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+            <!---->
         </div>
  
 

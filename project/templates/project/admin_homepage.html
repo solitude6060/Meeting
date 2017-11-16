@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Modern Business - Start Bootstrap Template</title>
+    <title>會議資訊小管家</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -44,39 +44,48 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">會議資訊小管家</a>
+                <a class="navbar-brand" href="index">會議資訊小管家</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-				
-                  
-                  
-					<li>
-                        <a href="admin loging.html">管理專區</a>
-                    </li>
-					<li>
-                        <a href="login.html">登入</a>
+
+				{% if request.user.is_authenticated %}
                     </li>
                     <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">會員名字<b class="caret"></b></a>
+                        <a href="login" class="dropdown-toggle" data-toggle="dropdown">
+                            {{ request.user }}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-							<ul align="left">
+                            <ul align="left">
+                            <!-- <li>
+                                <a href="full_width">修改資料</a>
+                            </li> -->
+                            {% if request.user.is_staff %}
                             <li>
-                                <a href="full-width.html">修改資料</a>
+                                <a href="upload">上傳會議或講座</a>
                             </li>
-							 <li>
-                                <a href="admin_homepage">個人首頁</a>
+                            <li>
+                                <a href="admin_homepage">我的會議</a>
                             </li>
-							                            <li>
-                                <a href="upload.html">上傳會議或講座</a>
+                            {% else %}
+                            <li>
+                                <a href="personalpage">我的會議</a>
                             </li>
-							<li>
-                                <a href="">登出</a>
+                            {% endif %}
+                            <li>
+                                <a href="logout">登出</a>
                             </li>
-							</ul>
+                            </ul>
                         </ul>
                     </li>
+                {% else %}
+                    <li>
+                        <a href="admin_logging">管理專區</a>
+                    </li>
+                    <li>
+                        <a href="login">會員登入</a>
+                    </li>
+                {% endif %}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -92,12 +101,15 @@
     <div class="jumbotron">
       <div class="row">
         <div class="col-md-8">
-            <p><i class="fa fa-home" aria-hidden="true"></i>羅達企業學會</p>
-				<p><i class="fa fa-calendar" aria-hidden="true"></i>信箱：45445@gmail.com</p>
-				<p><i class="material-icons">&#xe0b0;</i>聯絡人 ：張小姐 0903256165</p> 
-		  </div>
+            <h2>{{name}}</h2>
+          <p>
+            會議主辦單位 : {{name}}<br>
+            連絡信箱 : {{email}}<br>
+            聯絡電話 : {{phone}}<br>
+          </p>
+      </div>
         <div class="col-md-4">
-          <img src="https://lh3.googleusercontent.com/-XYrgMcd8rVI/VP2baBty-9I/AAAAAAAAAK8/KoUhv6123KYbgguVjZyeke41XIAybPbggCEw/w140-h140-p/me.jpg" alt="My personal picture" id="me"/>
+          <img src="{% static 'images/head.png' %}" alt="My personal picture" id="me"/>
         </div>
       </div>
     </div>
@@ -127,166 +139,49 @@
       <div role="tabpanel" class="tab-pane active" id="panel-2">
 
         <div class="row masonry-container" style="position: relative; height: 956px;">
-			<div class="row text-center">
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="1.gif" alt="">
-                    <div class="caption">
-                        <h4><strong>讓你如何成為一個好幹部</strong></h4>
-						<ul align="left">
-                    <li>日期: 2017/8/31</li>
-                    <li>活動形態: 講座</li>
-                    <li>主辦單位: 羅達企業學會</li>
-
-                </ul>
-          
-                        <p>
-                 <a href="information.html" class="btn btn-default">閱讀更多</a>
-                        </p>
+            
+            <div class="row text-center">
+                {% for c in meAf %}
+                <div class="col-md-3 col-sm-6 hero-feature">
+                    <div class="thumbnail">
+                        <img src="{% static 'images/1.gif' %}" alt="">
+                        <div class="caption">
+                            <h4><strong>{{c.meeting_name}}</strong></h4>
+                            <ul align="left">
+                                <li>日期: {{c.meeting_date}}</li>
+                                <li>舉辦地點: {{ c.address }} </li>
+                                <li>主辦單位(人): {{ c.organizer }} </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-			
-			<div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="1.gif" alt="">
-                    <div class="caption">
-                        <h4><strong>讓你如何成為一個好幹部</strong></h4>
-						<ul align="left">
-                    <li>日期: 2017/8/31</li>
-                    <li>活動形態: 講座</li>
-                    <li>主辦單位: 羅達企業學會</li>
-
-                </ul>
-          
-                        <p>
-                            <a href="#" class="btn btn-default">閱讀更多</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-			<div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="1.gif" alt="">
-                    <div class="caption">
-                        <h4><strong>讓你如何成為一個好幹部</strong></h4>
-						<ul align="left">
-                    <li>日期: 2017/8/31</li>
-                    <li>活動形態: 講座</li>
-                    <li>主辦單位: 羅達企業學會</li>
-
-                </ul>
-          
-                        <p>
-                         <a href="#" class="btn btn-default">閱讀更多</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="1.gif" alt="">
-                    <div class="caption">
-                        <h4><strong>讓你如何成為一個好幹部</strong></h4>
-						<ul align="left">
-                    <li>日期: 2017/8/31</li>
-                    <li>活動形態: 講座</li>
-                    <li>主辦單位: 羅達企業學會</li>
-
-                </ul>
-          
-                        <p>
-                             <a href="#" class="btn btn-default">閱讀更多</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+            
         </div> <!--/.masonry-container  -->
 
-      </div><!--/.tab-panel -->
+    </div><!--/.tab-panel -->
 
       <div role="tabpanel" class="tab-pane" id="panel-3">
         <div class="row masonry-container" style="position: relative; height: 0px;">
-			<div class="row text-center">
+            <div class="row text-center">
+                {% for b in meBf %}
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <img src="1.gif" alt="">
+                    <img src="{% static 'images/1.gif' %}" alt="">
                     <div class="caption">
-                        <h4><strong>讓你如何成為一個好幹部</strong></h4>
-						<ul align="left">
-                    <li>日期: 2017/8/31</li>
-                    <li>活動形態: 講座</li>
-                    <li>主辦單位: 羅達企業學會</li>
+                        <h4><strong>{{b.meeting_name}}</strong></h4>
+                        <ul align="left">
+                    <li>日期: {{b.meeting_date}}</li>
+                    <li>舉辦地點: {{ b.address }} </li>
+                    <li>主辦單位(人): {{ b.organizer }} </li>
 
-                </ul>
-          
-                        <p>
-                 <a href="information.html" class="btn btn-default">閱讀更多</a>
-                        </p>
+                        </ul>
                     </div>
                 </div>
             </div>
-			
-			<div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="1.gif" alt="">
-                    <div class="caption">
-                        <h4><strong>讓你如何成為一個好幹部</strong></h4>
-						<ul align="left">
-                    <li>日期: 2017/8/31</li>
-                    <li>活動形態: 講座</li>
-                    <li>主辦單位: 羅達企業學會</li>
-
-                </ul>
-          
-                        <p>
-                         <a href="#" class="btn btn-default">閱讀更多</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-			<div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="1.gif" alt="">
-                    <div class="caption">
-                        <h4><strong>讓你如何成為一個好幹部</strong></h4>
-						<ul align="left">
-                    <li>日期: 2017/8/31</li>
-                    <li>活動形態: 講座</li>
-                    <li>主辦單位: 羅達企業學會</li>
-
-                </ul>
-          
-                        <p>
-                         <a href="#" class="btn btn-default">閱讀更多</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="1.gif" alt="">
-                    <div class="caption">
-                        <h4><strong>讓你如何成為一個好幹部</strong></h4>
-						<ul align="left">
-                    <li>日期: 2017/8/31</li>
-                    <li>活動形態: 講座</li>
-                    <li>主辦單位: 羅達企業學會</li>
-
-                </ul>
-          
-                        <p>
-                    <a href="#" class="btn btn-default">閱讀更多</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+            <!---->
         </div>
  
 

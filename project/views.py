@@ -31,7 +31,7 @@ from django.contrib.auth import login
 from django.contrib.auth.models import User
 
 
-from datetime import datetime
+#from datetime import datetime
 import datetime
 #################################################################
 #restful api's view
@@ -264,18 +264,22 @@ def FeedbackDetail(request,member,meeting):
 #   web app's view
 #################################################################
 def index(request):
-    meeting = Meeting.objects.all()
-    meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
+    curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
+    meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
+    meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
     me = meeting[0:4]
-    return render_to_response('project/index.html', locals())
+    #return render_to_response('project/index.html', locals())
+    return render(request, 'project/index.html', locals())
 
 def admin_loging(request):
     #error = False
     if request.user.is_authenticated(): 
-        meeting = Meeting.objects.all()
-        meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
+        curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
+        meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
+        meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
         me = meeting[0:4]
         return render(request, 'project/index.html', locals())
+        #return render_to_response('project/index.html', locals())
 
     #error = False
     uname = request.POST.get('user')
@@ -285,8 +289,9 @@ def admin_loging(request):
     
     if user is not None:
         auth.login(request, user)
-        meeting = Meeting.objects.all()
-        meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
+        curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
+        meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
+        meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
         me = meeting[0:4]
         # username = request.user.username
         # oger = Organizer.objects.get(organizer_email=username)
@@ -307,8 +312,9 @@ def login(request):
         # username = request.user.username
         # member = Member.objects.get(member_email=username)
         # name = member.member_name 
-        meeting = Meeting.objects.all()
-        meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
+        curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
+        meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
+        meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
         me = meeting[0:4]
         return render_to_response('project/index.html', locals())
 
@@ -326,8 +332,9 @@ def login(request):
             #     oger = Organizer.objects.get(organizer_email=uname)
             #     name = oger.organizer_department
             auth.login(request, user)
-            meeting = Meeting.objects.all()
-            meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
+            curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
+            meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
+            meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
             me = meeting[0:4]
             return render_to_response('project/index.html', locals())
             #return render(request, 'project/index.html', locals())
@@ -372,8 +379,9 @@ def login(request):
                 #     oger = Organizer.objects.get(organizer_email=username)
                 #     name = oger.organizer_department
                 auth.login(request, user)
-                meeting = Meeting.objects.all()
-                meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
+                curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
+                meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
+                meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
                 me = meeting[0:4]
                 return render_to_response('project/index.html', locals())
 
@@ -419,8 +427,9 @@ def upload(request):
         meetingfiliter = Meeting.objects.filter(meeting_name=meeting_name, meetingroom_id=meetingroom_id, administrator=administrator, meeting_date=meeting_Date, meeting_id=meeting_id)
 
         if meetingfiliter : 
-            meeting = Meeting.objects.all()
-            meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
+            curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
+            meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
+            meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
             me = meeting[0:4]
             # if not request.user.is_staff:
             #     username = request.user.username
@@ -430,7 +439,7 @@ def upload(request):
             #     username = request.user.username
             #     oger = Organizer.objects.get(organizer_email=username)
             #     name = oger.organizer_department
-            return render(request, 'project/index.html', locals())
+            return render(request, 'project/index.html')
             #return render_to_response('project/index.html', locals())
         else:
             meCreate = Meeting.objects.create(meeting_name=meeting_name, meetingroom_id=meetingroom_id, administrator=administrator
@@ -449,18 +458,20 @@ def upload(request):
             #     username = request.user.username
             #     oger = Organizer.objects.get(organizer_email=username)
             #     name = oger.organizer_department
-            return render(request, 'project/index.html', {})
+            return render(request, 'project/index.html')
             #return render_to_response('project/index.html', locals())
 
-    return render(request, 'project/index.html', {})
+    return render(request, 'project/index.html')
+    #return render_to_response('project/index.html', locals())
 
 def logout(request):
     auth.logout(request)
-    meeting = Meeting.objects.all()
-    meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
+    curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
+    meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
+    meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
     me = meeting[0:4]
-    return render(request, 'project/index.html', locals())
-    #return render_to_response('project/login.html', locals())
+    #return render(request, 'project/index.html', locals())
+    return render_to_response('project/login.html', locals())
 
 def join(request,meetingId):
     if request.user.is_authenticated() and not request.user.is_staff:
@@ -470,16 +481,18 @@ def join(request,meetingId):
         roomId = meetingObj.meetingroom_id
         #memId = Member.objects.get(member_email=username).member_email
         if check:
-            meeting = Meeting.objects.all()
-            meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
+            curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
+            meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
+            meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
             me = meeting[0:4]
             return render_to_response('project/index.html',locals())
         else:
             checkObj = CheckIn.objects.create(meeting_id=meetingId, member_email_id=username, login_time=None, logout_time=None, meetingroom_id=roomId, seat_id=777)
             checkObj.save()
     
-    meeting = Meeting.objects.all()
-    meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
+    curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
+    meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
+    meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
     me = meeting[0:4]
     # if not request.user.is_staff:
     #     username = request.user.username
@@ -495,10 +508,24 @@ def join(request,meetingId):
 def personalpage(request):
     if request.user.is_authenticated():
         username = request.user.username
-        mem = Member.objects.filter(member_email=username)
+        mem = Member.objects.get(member_email=username)
         member = Member.objects.get(member_email=username)
 
         if mem:
+            curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
+            meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
+            meeting_after = meetingObj.values('meeting_id')
+            checkObj = CheckIn.objects.filter(member_email=username, meeting_id__in=meeting_after)
+            chMeeting = checkObj.values('meeting_id')
+            meObjAF = Meeting.objects.filter(meeting_id__in=chMeeting)
+
+            ctime = datetime.datetime.strptime(datetime.datetime.now().isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
+            me = Meeting.objects.filter(meeting_date__lt = ctime)
+            meeting_before = me.values('meeting_id')
+            ch = CheckIn.objects.filter(member_email=username, meeting_id__in=meeting_before)
+            chMe = ch.values('meeting_id')
+            meObjBF = Meeting.objects.filter(meeting_id__in=chMe)
+
             name = member.member_name
             email = member.member_email
             department = member.member_department
@@ -510,4 +537,22 @@ def personalpage(request):
     return render_to_response('project/personalpage.html', locals())		
 	
 def admin_page(request):
+    if request.user.is_authenticated() and request.user.is_staff:
+        username = request.user.username
+        orger = Organizer.objects.filter(organizer_email=username)
+        org = Organizer.objects.get(organizer_email=username)
+
+        if orger:
+            curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
+            meAf = Meeting.objects.filter(meeting_date__gt = curtime, administrator=username)
+
+            ctime = datetime.datetime.strptime(datetime.datetime.now().isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
+            meBf = Meeting.objects.filter(meeting_date__lt = ctime, administrator=username)
+
+            name = org.organizer_department
+            email = org.organizer_email
+            phone = org.organizer_phone
+            return render_to_response('project/admin_homepage.html', locals())
+        else:
+            name = email = phone = "資料錯誤！"
     return render_to_response('project/admin_homepage.html', locals())	
