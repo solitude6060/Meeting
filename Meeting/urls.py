@@ -54,7 +54,7 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 	url(r'^admin_homepage', views.admin_page),
 	url(r'^personalpage', views.personalpage),
-	url(r'^client', views.client),
+	url(r'^choose', views.choose),
 	
     #   restful-api     #
     url(r'^memberApi', views.MemberList),
