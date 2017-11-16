@@ -173,4 +173,7 @@ def choose(request):
     return render_to_response('project/choose.html', locals())	
 	
 def meeting_room(request):
-    return render_to_response('project/meeting_room.html', locals())	
+    return render_to_response('project/meeting_room.html', locals())
+
+def meeting_manage(request):
+    return render_to_response('project/meeting_manage.html', locals())	

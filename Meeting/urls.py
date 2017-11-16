@@ -56,6 +56,7 @@ urlpatterns = [
 	url(r'^personalpage', views.personalpage),
 	url(r'^choose', views.choose),
 	url(r'^meeting_room', views.meeting_room),
+	url(r'^meeting_manage', views.meeting_manage),
 	
     #   restful-api     #
     url(r'^memberApi', views.MemberList),
