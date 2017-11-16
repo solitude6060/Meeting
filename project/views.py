@@ -398,8 +398,7 @@ def information(request):
 
 def upload(request):
     if request.method == "GET":
-        return render_to_response('project/upload.html', locals())
-        #return render(request, 'project/upload.html', {})
+        return render(request, 'project/upload.html', {})
     if request.method == "POST":
         mform = MeetingForm(request.POST)
         
@@ -431,38 +430,22 @@ def upload(request):
             meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
             meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
             me = meeting[0:4]
-            # if not request.user.is_staff:
-            #     username = request.user.username
-            #     member = Member.objects.get(member_email=username)
-            #     name = member.member_name
-            # else:
-            #     username = request.user.username
-            #     oger = Organizer.objects.get(organizer_email=username)
-            #     name = oger.organizer_department
-            return render(request, 'project/index.html')
-            #return render_to_response('project/index.html', locals())
+            #return render(request, 'project/index.html', locals())
+            return render_to_response('project/index.html', locals())
         else:
             meCreate = Meeting.objects.create(meeting_name=meeting_name, meetingroom_id=meetingroom_id, administrator=administrator
                 , meeting_date=meeting_Date, address=address, meeting_starttime=meeting_Stime, meeting_endtime=meeting_Etime
                 , fare=fare, content=content, participants=participants, attendance=attendance
                 , meeting_id=meeting_id, speaker=speaker, organizer=organizer, pictures="", savefilm=0)
             meCreate.save()
-            meeting = Meeting.objects.all()
-            meeting = sorted(meeting ,key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
+            curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
+            meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
+            meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
             me = meeting[0:4]
-            # if not request.user.is_staff:
-            #     username = request.user.username
-            #     member = Member.objects.get(member_email=username)
-            #     name = member.member_name
-            # else:
-            #     username = request.user.username
-            #     oger = Organizer.objects.get(organizer_email=username)
-            #     name = oger.organizer_department
-            return render(request, 'project/index.html')
-            #return render_to_response('project/index.html', locals())
+            #return render(request, 'project/index.html', {})
+            return render_to_response('project/index.html', locals())
 
-    return render(request, 'project/index.html')
-    #return render_to_response('project/index.html', locals())
+    return render(request, 'project/index.html', {})
 
 def logout(request):
     auth.logout(request)
