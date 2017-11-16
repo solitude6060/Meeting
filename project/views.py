@@ -171,3 +171,6 @@ def admin_page(request):
 	
 def choose(request):
     return render_to_response('project/choose.html', locals())	
+	
+def meeting_room(request):
+    return render_to_response('project/choose.html', locals())	
