@@ -60,6 +60,8 @@ urlpatterns = [
 	url(r'^create_meeting', views.create_meeting),
 	url(r'^start_meeting', views.start_meeting),
 	url(r'^member_login_time', views.member_login_time),
+	url(r'^member_survey', views.member_survey),
+	url(r'^seat.html', views.seat),
 	
 	
     #   restful-api     #

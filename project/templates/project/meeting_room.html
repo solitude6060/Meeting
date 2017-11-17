@@ -1,88 +1,47 @@
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>SB Admin - Start Bootstrap Template</title>
-
-	
-<link rel="stylesheet" type="text/css" href="{% static 'css/manage.css' %}">
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
-    <link href="{% static 'css/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
-
-    <!-- Plugin CSS -->
-    <link href="{% static 'css/vendor/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
-
-  </head>
-
-  <body class="fixed-nav" id="page-top">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav navbar-sidenav">
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link" href="#">
-              <i class="fa fa-cog fa-spin" style="color:lightyellow"></i>
-              <span class="nav-link-text" style="color:	lightyellow">
-                會議室管理</span>
-            </a>
-          </li>
-         
-            </ul>
-          
-     
-
-       
+<html>
+<head>
 
 
-        </ul>
-		        <ul class="navbar-nav ml-auto">
+<link href="{% static 'css/index.css' %}" rel="stylesheet">
 
-			                    <li class="dropdown">
-                        <a href="login.html" class="dropdown-toggle" data-toggle="dropdown">會員名字<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-							<ul align="left">
-                            <li>
-                                <a href="full-width.html">修改資料</a>
-                            </li>
-							                            <li>
-                                <a href="upload.html">上傳會議或講座</a>
-                            </li>
-							<li>
-                                <a href="">登出</a>
-                            </li>
-							</ul>
-                        </ul>
-                    </li>
-
-
-        </ul>
-      </div>
-    </nav>
+<link href="{% static 'css/manage.css' %}" rel="stylesheet">
+</head>
+<body>
+<header role="banner">
+  <h1>會議資訊小管家</h1>
+  <ul class="utilities">
+    	  <div class="dropdown">
+    <button class="dropbtn">會員名字
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+  </div> 
 
 
+  </ul>
+</header>
 
-<div id="workarea">
+<nav role="navigation">
+  <ul class="main">
+    <li class="dashboard"><a href="#">會議內容</a></li>
+    <li class="write"><a href="#">座位圖</a></li>
+    <li class="edit"><a href="#">簽到單</a></li>
+    <li class="comments"><a href="#">回饋單</a></li>
+
+  </ul>
+</nav>
+
+<main role="main">
+<br>
+
   <div class="position">
 <h1>請選擇您的會議</h1>
+<br>
     <!--start button, nothing above this is necessary -->
     <div class="svg-wrapper">
       <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
@@ -140,55 +99,42 @@
       </svg>
     </div>
     <!--End button -->
-
+	<br>
+	<br>
+	<br>
+		    <div class="svg-wrapper">
+      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+          <a href=""><span class="spot"></span>G509</a>
+        </div>
+      </svg>
+    </div>
+    <!--Next button -->
+    <div class="svg-wrapper">
+      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+          <a href=""><span class="spot"></span>313</a>
+        </div>
+      </svg>
+    </div>
+    <!--Next button -->
+    <div class="svg-wrapper">
+      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+          <a href=""><span class="spot"></span>G605</a>
+        </div>
+      </svg>
+    </div>
   </div>
   
-</div>
-      <!-- /.container-fluid -->
-
-
-    <!-- /.content-wrapper -->
-
-    <!-- Scroll to Top Button -->
-
-
-    <!-- Logout Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Select "Logout" below if you are ready to end your current session.
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
 
 
 
+</main>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="{% static 'js/vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'js/vendor/popper/popper.min.js' %}"></script>
-    <script src="{% static 'js/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="{% static 'js/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
-    <script src="{% static 'js/vendor/chart.js/Chart.min.js' %}"></script>
-    <script src="{% static 'js/vendor/datatables/jquery.dataTables.js' %}"></script>
-    <script src="{% static 'js/vendor/datatables/dataTables.bootstrap4.js' %}"></script>
-
-
-
-  </body>
+</body>
 
 </html>
