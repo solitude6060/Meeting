@@ -557,3 +557,12 @@ def admin_page(request):
         else:
             name = email = phone = "資料錯誤！"
     return render_to_response('project/admin_homepage.html', locals())	
+	
+def choose(request):
+    return render_to_response('project/choose.html', locals())	
+	
+def meeting_room(request):
+    return render_to_response('project/meeting_room.html', locals())
+
+def meeting_manage(request):
+    return render_to_response('project/meeting_manage.html', locals())	

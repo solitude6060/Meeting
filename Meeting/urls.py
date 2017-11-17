@@ -47,6 +47,9 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 	url(r'^admin_homepage', views.admin_page),
 	url(r'^personalpage', views.personalpage),
+	url(r'^choose', views.choose),
+	url(r'^meeting_room', views.meeting_room),
+	url(r'^meeting_manage', views.meeting_manage),
 	
     #   restful-api     #
     url(r'^memberUpdate/(?P<pk>.+)$', views.MemberDetail),
