@@ -1,204 +1,92 @@
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
+<html>
+<head>
 
-  <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>SB Admin - Start Bootstrap Template</title>
-	<link href="{% static 'css/meeting manage.css' %}" rel="stylesheet">
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
-    <link href="{% static 'css/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
-
-    <!-- Plugin CSS -->
-    <link href="{% static 'css/vendor/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
+<link href="{% static 'css/form1.css' %}" rel="stylesheet">
+<link href="{% static 'css/index.css' %}" rel="stylesheet">
 
 
-  </head>
-
-  <body class="fixed-nav" id="page-top">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav navbar-sidenav">
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link" href="#">
-              <i class="fa fa-cog fa-spin" style="color:lightyellow"></i>
-              <span class="nav-link-text" style="color:	lightyellow">
-                會議管理</span>
-            </a>
-          </li>
-          
- 
-        </ul>
-        <ul class="navbar-nav sidenav-toggler">
-          <li class="nav-item">
-            <a class="nav-link text-center" id="sidenavToggler">
-              <i class="fa fa-fw fa-angle-left"></i>
-            </a>
-          </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle mr-lg-2" href="#" id="messagesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-fw fa-envelope"></i>
-              <span class="d-lg-none">Messages
-                <span class="badge badge-pill badge-primary">12 New</span>
-              </span>
-              <span class="new-indicator text-primary d-none d-lg-block">
-                <i class="fa fa-fw fa-circle"></i>
-                <span class="number">12</span>
-              </span>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="messagesDropdown">
-              <h6 class="dropdown-header">New Messages:</h6>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">
-                <strong>David Miller</strong>
-                <span class="small float-right text-muted">11:21 AM</span>
-                <div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome! These messages clip off when they reach the end of the box so they don't overflow over to the sides!</div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">
-                <strong>Jane Smith</strong>
-                <span class="small float-right text-muted">11:21 AM</span>
-                <div class="dropdown-message small">I was wondering if you could meet for an appointment at 3:00 instead of 4:00. Thanks!</div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">
-                <strong>John Doe</strong>
-                <span class="small float-right text-muted">11:21 AM</span>
-                <div class="dropdown-message small">I've sent the final files over to you for review. When you're able to sign off of them let me know and we can discuss distribution.</div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item small" href="#">
-                View all messages
-              </a>
-            </div>
-          </li>
-
-          <li class="nav-item">
-            <form class="form-inline my-2 my-lg-0 mr-lg-2">
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for...">
-                <span class="input-group-btn">
-                  <button class="btn btn-primary" type="button">
-                    <i class="fa fa-search"></i>
-                  </button>
-                </span>
-              </div>
-            </form>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-              <i class="fa fa-fw fa-sign-out"></i>
-              Logout</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-		<div class="container">
-
-		<form class="form-signin">
-			<h1 class="form-signin-heading">會議管理</h1>
-			<hr>
-			<div class="table-responsive">
-				<a<tr>
-							</a<tr><table class="table">
-					<tbody>
-						<tr>
-							<th>序號</th>
-							<th>會議主題</th>
-							<th>日期</th>
-							<th>時間</th>
-							<th>編輯</a></th>
-						</tr>
-						<tr>
-							
-							<td>1</td>
-							<td>第5次主管會報</td>
-							<td>2017/6/15</td>
-							<td>10:30</td>
-							<td><a href="meeting/create meeting.html">編輯</a></td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>第6次主管會報</td>
-							<td>2017/6/30</td>
-							<td>10:00</td>
-							<td><a href="https://s.codepen.io/boomerang/iFrameKey-7401dc42-4ff3-726a-580d-16a99a4713ca/index.html?#">編輯</a></td>
-						</tr>
-						<tr><td>3</td>
-							<td>第3次股東大會</td>
-							<td>2017/7/2</td>
-							<td>14:00</td>
-							<td><a href="https://s.codepen.io/boomerang/iFrameKey-7401dc42-4ff3-726a-580d-16a99a4713ca/index.html?#">編輯</a></td>
-							</tr>
-					</tbody>
-				</table>
-			</div>
-			<button class="btn btn-lg btn-primary btn-block form-control" type="submit" onclick="location.href='meeting/create meeting.html'">新增會議</button>
-		</form>
-
-	</div>
-    <!-- /.content-wrapper -->
-
-    <!-- Scroll to Top Button -->
-
-
-    <!-- Logout Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Select "Logout" below if you are ready to end your current session.
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
-        </div>
-      </div>
+</head>
+<body>
+<header role="banner">
+  <h1>會議資訊小管家</h1>
+  <ul class="utilities">
+    	  <div class="dropdown">
+    <button class="dropbtn">會員名字
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
     </div>
+  </div> 
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="{% static 'js/vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'js/vendor/popper/popper.min.js' %}"></script>
-    <script src="{% static 'js/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="{% static 'js/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
-    <script src="{% static 'js/vendor/chart.js/Chart.min.js' %}"></script>
-    <script src="{% static 'js/vendor/datatables/jquery.dataTables.js' %}"></script>
-    <script src="{% static 'js/vendor/datatables/dataTables.bootstrap4.js' %}"></script>
+  </ul>
+</header>
 
-    <!-- Custom scripts for this template -->
+<nav role="navigation">
+  <ul class="main">
+    <li class="dashboard"><a href="#">會議內容</a></li>
+    <li class="write"><a href="#">座位圖</a></li>
+    <li class="edit"><a href="#">簽到單</a></li>
+    <li class="comments"><a href="#">回饋單</a></li>
+
+  </ul>
+</nav>
+
+<main role="main">
+<br>
+<table class="wrapper">
+  <caption>會議管理</caption>
+  <thead>
+    <tr>
+      <th scope="col">序號</th>
+      <th scope="col">會議主題</th>
+      <th scope="col">日期</th>
+      <th scope="col">時間</th>
+	  <th scope="col"><a href="create_meeting.html">編輯</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+	  <td scope="row" data-label="Account">1</td>
+      <td data-label="Due Date">第5次主管會報</td>
+      <td data-label="Amount">2017/7/2</td>
+      <td data-label="Period">14:00</td>
+	  <td data-label="Amount"><a href="create_meeting.html">編輯</a></td>
+    </tr>
+    <tr>
+      <td scope="row" data-label="Account">2</td>
+      <td data-label="Due Date">03/01/2016</td>
+      <td data-label="Amount">2017/7/2</td>
+      <td data-label="Period">14:00</td>
+	  <td data-label="Amount"><a href="create_meeting.html">編輯</a></td>
+    </tr>
+    <tr>
+      <td scope="row" data-label="Account">3</td>
+      <td data-label="Due Date">03/01/2016</td>
+      <td data-label="Amount">2017/7/2</td>
+      <td data-label="Period">14:00</td>
+	  <td data-label="Amount"><a href="create_meeting.html">編輯</a></td>
+    </tr>
+    <tr>
+      <td scope="row" data-label="Acount">4</td>
+      <td data-label="Due Date">02/01/2016</td>
+      <td data-label="Amount">2017/7/2</td>
+      <td data-label="Period">14:00</td>
+	  <td data-label="Amount"><a href="create_meeting.html">編輯</a></td>
+    </tr>
+ </tbody>
   
-	<script src="{% static 'js/./jquery.min.js.下載' %}"></script>
-	<script src="{% static 'js/./bootstrap.min.js.下載' %}"></script>
-  </body>
+</table>
+<br>
+<form>
+<input style="width: 250px; margin: 0 auto; padding: 20px; cursor: pointer; box-shadow: 6px 6px 5px; #999; -webkit-box-shadow: 6px 6px 5px #999; -moz-box-shadow: 6px 6px 5px #999; font-weight: bold; background: #ffff00; color: #000; border-radius: 10px; border: 1px solid #999; font-size: 150%;" type="button" value="新增會議" onclick="window.location.href='create_meeting.html'" />
+</form>
+</main>
+
+</body>
 
 </html>
