@@ -180,3 +180,8 @@ def meeting_manage(request):
 	
 def create_meeting(request):
     return render_to_response('project/create_meeting.html', locals())	
+
+def member_login_time(request):
+    return render_to_response('project/member_login_time.html', locals())		
+
+	
