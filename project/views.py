@@ -61,6 +61,14 @@ class MemberViewSet(viewsets.ModelViewSet):
     serializer_class = MemberSerializer
     pagination_class = None
 
+class OrganizerViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Organizer.objects.all()
+    serializer_class = OrganizerSerializer
+    pagination_class = None
+
 class MeetingRoomViewSet(viewsets.ModelViewSet):
 
     queryset = Meetingroom.objects.all()
@@ -258,6 +266,47 @@ def FeedbackDetail(request,member,meeting):
             return JsonResponse(serializer.data, status=201)
 
         return JsonResponse(serializer.errors, status=400)
+
+@api_view(['GET', 'POST'])
+def SeatingList(request):
+    #List all code snippets, or create a new snippet.
+    if request.method == 'GET':
+        queryset = Seating.objects.all()
+        serializer = SeatingSerializer()
+        return JsonResponse(serializer.data, safe=False)
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = SeatingSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+
+@api_view(['GET', 'PUT'])
+def SeatingDetail(request,id,mac):
+    #List all code snippets, or create a new snippet.
+    try:
+        seating = Seating.objects.filter(room_id=id,mac_address=mac)
+        seat = Seating.objects.filter(room_id=id,mac_address=mac)
+    except:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+        #m = Member.objects.filter(member_email=pk)
+
+    if request.method == 'GET':
+        #queryset = Member.objects.all()
+        serializer = SeatingSerializer(seating, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = SeatingSerializer(data=data)
+        if serializer.is_valid():
+            seat.delete()
+            serializer.save()
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors, status=400)
+            #return JsonResponse(serializer.data, status=201)
+        #return JsonResponse(serializer.errors, status=400)
 
 
 #################################################################

@@ -28,7 +28,7 @@ router.register(r'meeting', views.MeetingViewSet, 'meeting-view')
 router.register(r'member', views.MemberViewSet, 'member-view')
 router.register(r'meetingroom', views.MeetingRoomViewSet, 'meetingroom-view')
 router.register(r'user', views.UserViewSet, 'user-view')
-
+router.register(r'organizer', views.OrganizerViewSet, 'organizer-view')
 #apps
 urlpatterns = [
     url(r'^$', views.index),
@@ -62,6 +62,8 @@ urlpatterns = [
     url(r'^checkinUpdate/(?P<member>.+)/(?P<meeting>.+)$', views.CheckinDetail),
     url(r'^feedbackApi', views.FeedbackList),
     url(r'^feedbackUpdate/(?P<member>.+)/(?P<meeting>.+)$', views.FeedbackDetail),
+    url(r'^seatingApi', views.SeatingList),
+    url(r'^seatingUpdate/(?P<id>.+)/(?P<mac>.+)$', views.SeatingDetail),
     #url(r'^member_api/(?P<member_name>[0-9]+)$', views.MemberDetail.as_view()),
 
     #   OAuth-login     #
