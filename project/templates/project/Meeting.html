@@ -1,0 +1,103 @@
+{% load staticfiles %}
+<html>
+<head>
+
+
+<link href="{% static 'css/meeting.css' %}" rel="stylesheet">
+<link href="{% static 'css/bar.css' %}" rel="stylesheet">
+
+</head>
+<body>
+<header role="banner">
+  <h1>會議資訊小管家</h1>
+  <ul class="utilities">
+  	{% if request.user.is_authenticated %}
+    	  <div class="dropdown">
+    <button class="dropbtn">{{ request.user }}
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+    {% if request.user.is_staff %}
+      	<a href="upload">上傳會議或講座</a>
+      	<a href="admin_homepage">我的會議</a>
+    {% else %}
+    	<a href="personalpage">我的會議</a>
+      {% endif %}
+      <a href="logout">登出</a>
+    </div>
+  </div> 
+  {% endif %}
+
+
+  </ul>
+</header>
+
+<nav role="navigation">
+  <ul class="main">
+    <li class="dashboard"><a href="#">會議內容</a></li>
+    <li class="write"><a href="#">座位圖</a></li>
+    <li class="edit"><a href="#">簽到單</a></li>
+    <li class="comments"><a href="#">回饋單</a></li>
+
+  </ul>
+</nav>
+
+<main role="main">
+<br>
+		<h2>XXX會議 2017年11月17號 1030a.m.</h2>
+		<div id='editing' style="margin-top: 40px" >
+        	<table width="100px" border="1" align="center">
+
+        			{% for x in Matrix %}
+					<tr>
+						{% for y in x %}
+						<td height="100px">
+							{{y}}<br>
+						</td>
+						{% endfor %}
+					<!-- <td height="100px">
+						1-2<br>
+					</td> -->
+					</tr>
+					{% endfor %}
+					<!-- <tr>
+					<td height="100px">
+						2-1<br>
+					</td>
+					<td height="100px">
+						2-2<br>
+					</td>
+					</tr>
+					<tr>
+					<td height="100px">
+						3-1<br>
+					</td>
+					<td height="100px">
+						3-2<br>
+					</td>
+					</tr>
+					<tr>
+					<td height="100px">
+						4-1<br>
+					</td>
+					<td height="100px">
+						4-2<br>
+					</td>
+					</tr>
+					<tr>
+					<td height="100px">
+						5-1<br>
+					</td>
+					<td height="100px">
+						5-2<br>
+					</td>
+					</tr> -->
+
+			</table>
+		</div>
+
+</main>
+
+</body>
+
+</html>

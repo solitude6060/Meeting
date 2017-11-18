@@ -50,6 +50,7 @@ urlpatterns = [
 	url(r'^choose', views.choose),
 	url(r'^meeting_room', views.meeting_room),
 	url(r'^meeting_manage', views.meeting_manage),
+    url(r'^meetingstart', views.meeting),
 	
     #   restful-api     #
     url(r'^memberUpdate/(?P<pk>.+)$', views.MemberDetail),

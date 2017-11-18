@@ -559,7 +559,18 @@ def admin_page(request):
     return render_to_response('project/admin_homepage.html', locals())	
 	
 def choose(request):
-    return render_to_response('project/choose.html', locals())	
+    return render_to_response('project/choose.html', locals())
+
+def meeting(request):
+    if request.user.is_authenticated():
+        x_r = range(2)
+        y_r = range(5)
+        Matrix = [[0 for y in range(5)] for x in range(2)]
+        for xx in x_r:
+            for yy in y_r:
+                Matrix[xx][yy] = CheckIn.objects.filter(meeting_id=11, seat_xid=xx+1, seat_yid=yy+1)
+        return render_to_response('project/meeting.html', locals())
+    return render_to_response('project/meeting.html', locals())	
 	
 def meeting_room(request):
     return render_to_response('project/meeting_room.html', locals())

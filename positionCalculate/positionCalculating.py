@@ -33,14 +33,20 @@ for meeting in meeting_all_today:
     sql_seating_x = "SELECT * from Seating where room_id = '" + str(meeting[3]) + "' ORDER BY Seat_xid DESC LIMIT 1"
     cursor.execute(sql_seating_x)
     db.commit()
-    x_x = cursor.fetchone()
-    max_x = x_x[2]
+    max_x = 0
+    max_y = 0
+    x_x = cursor.fetchall()
+    for xx in x_x:
+        if xx is not None:
+            max_x = xx[2]
 
     sql_seating_y = "SELECT * from Seating where room_id = '" + str(meeting[3]) + "' ORDER BY Seat_yid DESC LIMIT 1"
     cursor.execute(sql_seating_y)
     db.commit()
-    y_y = cursor.fetchone()
-    max_y = y_y[3]
+    y_y = cursor.fetchall()
+    for yy in y_y:
+        if yy is not None:
+            max_y = xx[3]
 
     sql_checkin = "SELECT * from Check_in where Meeting_id = " + str(meeting[1])
     cursor.execute(sql_checkin)
