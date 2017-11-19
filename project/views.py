@@ -283,11 +283,11 @@ def SeatingList(request):
         return JsonResponse(serializer.errors, status=400)
 
 @api_view(['GET', 'PUT'])
-def SeatingDetail(request,id,mac):
+def SeatingDetail(request,id,mac,x,y):
     #List all code snippets, or create a new snippet.
     try:
-        seating = Seating.objects.filter(room_id=id,mac_address=mac)
-        seat = Seating.objects.filter(room_id=id,mac_address=mac)
+        seating = Seating.objects.filter(room_id=id, mac_address=mac, seat_xid=x, seat_yid=y)
+        seat = Seating.objects.filter(room_id=id, mac_address=mac, seat_xid=x, seat_yid=y)
     except:
         return Response(status=status.HTTP_404_NOT_FOUND)
         #m = Member.objects.filter(member_email=pk)

@@ -63,7 +63,7 @@ urlpatterns = [
     url(r'^feedbackApi', views.FeedbackList),
     url(r'^feedbackUpdate/(?P<member>.+)/(?P<meeting>.+)$', views.FeedbackDetail),
     url(r'^seatingApi', views.SeatingList),
-    url(r'^seatingUpdate/(?P<id>.+)/(?P<mac>.+)$', views.SeatingDetail),
+    url(r'^seatingUpdate/(?P<id>.+)/(?P<mac>.+)/(?P<x>[0-9]+)/(?P<y>[0-9]+)$', views.SeatingDetail),
     #url(r'^member_api/(?P<member_name>[0-9]+)$', views.MemberDetail.as_view()),
 
     #   OAuth-login     #
