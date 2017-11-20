@@ -165,15 +165,14 @@
         <form class='sign-up-form' method="POST">
           {% csrf_token %}
           {{ form }}
-          <button class='facebook-btn facebook-login'>
+          <!-- <button class='facebook-btn facebook-login'>
             <i aria-hidden='true' class='fa fa-facebook'></i>
             <span>sign up with facebook</span>
-          </button>
-          <div class='social-btn-divider'>
+          </button> -->
+          <!-- <div class='social-btn-divider'>
             <span>or</span>
           </div>
-          
-          <div class='user-name input-box'>
+ -->          <div class='user-name input-box'>
             <input class='input' name="signUp-userName" id='signUp-userName' type='text'>
             <label class='placeholder' for='signUp-userName'>
               <span>會</span>
@@ -197,6 +196,31 @@
             <input class='input' name="signUp-password" id='signUp-password' type='password'>
             <label class='placeholder' for='signUp-password'>
               <span>密</span>
+              <span>碼</span>
+            </label>
+          </div>
+          <div class='user-name input-box'>
+            <input class='input' name="realName" id='signUp-userName' type='text'>
+            <label class='placeholder' for='signUp-userName'>
+              <span>姓</span>
+              <span>名</span>
+            </label>
+          </div>
+          <!-- <div class='user-name input-box'>
+            <input class='input' name="realName" id='signUp-userName' type='text'>
+            <label class='placeholder' for='signUp-userName'>
+              <span>服</span>
+              <span>務</span>
+              <span>單</span>
+              <span>位</span>
+            </label>
+          </div> -->
+          <div class='user-name input-box'>
+            <input class='input' name="phone" id='signUp-userName' type='text'>
+            <label class='placeholder' for='signUp-userName'>
+              <span>電</span>
+              <span>話</span>
+              <span>號</span>
               <span>碼</span>
             </label>
           </div>

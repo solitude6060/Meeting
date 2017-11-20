@@ -398,7 +398,8 @@ def login(request):
         
         username = request.POST.get('signUp-userName')
         password = request.POST.get('signUp-password')
-
+        phone = request.POST.get('phone')
+        realName = request.POST.get('realName')
         #already have account
         error1 = False
         #none username or password
@@ -416,6 +417,8 @@ def login(request):
             u = User(username=username,password=password)
             u.set_password(password)
             u.save()
+            member = Member.objects.create(member_email=username, member_password=password, member_phone=phone, member_name=realName, member_department="尚未設定")
+            member.save()
             user = authenticate(username=username, password=password)
 
             if user is not None:
