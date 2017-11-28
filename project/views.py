@@ -525,18 +525,13 @@ def join(request,meetingId):
             checkObj = CheckIn.objects.create(meeting_id=meetingId, member_email_id=username, login_time=None, logout_time=None, meetingroom_id=roomId, seat_xid=0, seat_yid=0)
             checkObj.save()
     
+    username = request.user.username
+    member = Member.objects.get(member_email=username)
+    
     curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
     meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
     meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
     me = meeting[0:4]
-    # if not request.user.is_staff:
-    #     username = request.user.username
-    #     member = Member.objects.get(member_email=username)
-    #     name = member.member_name
-    # else:
-    #     username = request.user.username
-    #     oger = Organizer.objects.get(organizer_email=username)
-    #     name = oger.organizer_department
     curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
     meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
     meeting_after = meetingObj.values('meeting_id')
@@ -555,7 +550,7 @@ def join(request,meetingId):
     email = member.member_email
     department = member.member_department
     phone = member.member_phone
-    return render_to_response('project/personalpage.html',locals())
+    return render_to_response('project/personalpage.html', locals())
 
 
 def personalpage(request):
