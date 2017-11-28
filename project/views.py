@@ -643,6 +643,10 @@ def meeting_room(request):
     return render_to_response('project/meeting_room.html', locals())
 
 def meeting_manage(request):
+    username = request.user.username
+    meetingByUser = Meeting.objects.filter(administrator=username)
+    meeting = sorted(meetingByUser, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
+    
     return render_to_response('project/meeting_manage.html', locals())	
 	
 def create_meeting(request):
@@ -708,7 +712,12 @@ def create_meeting(request):
 def member_login_time(request):
     return render_to_response('project/member_login_time.html', locals())	
 
-def start_meeting(request):
+def start_meeting(request,meetingId):
+    meetingById = Meeting.objects.get(meeting_id=meetingId)
+    mTime = datetime.datetime.strptime(str(meetingById.meeting_starttime), "%H:%M:%S")
+    clock = mTime.strftime("%p")
+    check = CheckIn.objects.filter(meeting_id=meetingId)
+    attendance = len(check)
     return render_to_response('project/start_meeting.html', locals())	
 	
 def member_survey(request):

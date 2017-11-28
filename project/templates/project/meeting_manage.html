@@ -4,7 +4,7 @@
 
 <link href="{% static 'css/form1.css' %}" rel="stylesheet">
 <link href="{% static 'css/index.css' %}" rel="stylesheet">
-
+<title>會議資訊小管家</title>
 
 </head>
 <body>
@@ -19,7 +19,7 @@
       <div class="dropdown-content">
       {% if request.user.is_staff %}
           <a href="create_meeting">上傳會議或講座</a>
-          <a href="admin_homepage">我的會議</a>
+          <a href="choose">會議管理</a>
         {% else %}
           <a href="personalpage">我的會議</a>
         {% endif %}
@@ -54,48 +54,29 @@
   <caption>會議管理</caption>
   <thead>
     <tr>
-      <th scope="col">序號</th>
+      <th scope="col">會議代號</th>
       <th scope="col">會議主題</th>
       <th scope="col">日期</th>
-      <th scope="col">時間</th>
-	  <th scope="col"><a href="create_meeting.html">編輯</a></th>
+      <th scope="col">開始時間</th>
+	  <th scope="col"><a href="create_meeting.html">開始鍵</a></th>
     </tr>
   </thead>
   <tbody>
+    {% for m in meeting %}
     <tr>
-	  <td scope="row" data-label="Account">1</td>
-      <td data-label="Due Date">第5次主管會報</td>
-      <td data-label="Amount">2017/7/2</td>
-      <td data-label="Period">14:00</td>
-	  <td data-label="Amount"><a href="create_meeting.html">編輯</a></td>
+	  <td scope="row" data-label="Account">{{m.meeting_id}}</td>
+      <td data-label="Due Date">{{m.meeting_name}}</td>
+      <td data-label="Amount">{{m.meeting_date}}</td>
+      <td data-label="Period">{{m.meeting_starttime}}</td>
+	  <td data-label="Amount"><a href="start_meeting&{{m.meeting_id}}">開始</a></td>
     </tr>
-    <tr>
-      <td scope="row" data-label="Account">2</td>
-      <td data-label="Due Date">03/01/2016</td>
-      <td data-label="Amount">2017/7/2</td>
-      <td data-label="Period">14:00</td>
-	  <td data-label="Amount"><a href="create_meeting.html">編輯</a></td>
-    </tr>
-    <tr>
-      <td scope="row" data-label="Account">3</td>
-      <td data-label="Due Date">03/01/2016</td>
-      <td data-label="Amount">2017/7/2</td>
-      <td data-label="Period">14:00</td>
-	  <td data-label="Amount"><a href="create_meeting.html">編輯</a></td>
-    </tr>
-    <tr>
-      <td scope="row" data-label="Acount">4</td>
-      <td data-label="Due Date">02/01/2016</td>
-      <td data-label="Amount">2017/7/2</td>
-      <td data-label="Period">14:00</td>
-	  <td data-label="Amount"><a href="create_meeting.html">編輯</a></td>
-    </tr>
+    {% endfor %}
  </tbody>
   
 </table>
 <br>
 <form>
-<input style="width: 250px; margin: 0 auto; padding: 20px; cursor: pointer; box-shadow: 6px 6px 5px; #999; -webkit-box-shadow: 6px 6px 5px #999; -moz-box-shadow: 6px 6px 5px #999; font-weight: bold; background: #ffff00; color: #000; border-radius: 10px; border: 1px solid #999; font-size: 150%;" type="button" value="新增會議" onclick="window.location.href='create_meeting.html'" />
+<input style="width: 250px; margin: 0 auto; padding: 20px; cursor: pointer; box-shadow: 6px 6px 5px; #999; -webkit-box-shadow: 6px 6px 5px #999; -moz-box-shadow: 6px 6px 5px #999; font-weight: bold; background: #ffff00; color: #000; border-radius: 10px; border: 1px solid #999; font-size: 150%;" type="button" value="新增會議" onclick="window.location.href='create_meeting'" />
 </form>
 </main>
 

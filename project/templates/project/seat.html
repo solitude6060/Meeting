@@ -2,7 +2,7 @@
 <html>
 <head>
 
-
+<title>會議資訊小管家</title>
 <link href="{% static 'css/index.css' %}" rel="stylesheet">
 <link href="{% static 'css/bar.css' %}" rel="stylesheet">
 
@@ -19,7 +19,7 @@
     	<div class="dropdown-content">
     	{% if request.user.is_staff %}
       		<a href="create_meeting">上傳會議或講座</a>
-      		<a href="admin_homepage">我的會議</a>
+      		<a href="choose">會議管理</a>
       	{% else %}
       		<a href="personalpage">我的會議</a>
       	{% endif %}

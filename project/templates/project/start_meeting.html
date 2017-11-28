@@ -1,7 +1,7 @@
 {% load staticfiles %}
 <html>
 <head>
-
+<title>會議資訊小管家</title>
 
 <link href="{% static 'css/index.css' %}" rel="stylesheet">
 
@@ -19,7 +19,7 @@
       <div class="dropdown-content">
       {% if request.user.is_staff %}
           <a href="create_meeting">上傳會議或講座</a>
-          <a href="admin_homepage">我的會議</a>
+          <a href="choose">會議管理</a>
         {% else %}
           <a href="personalpage">我的會議</a>
         {% endif %}
@@ -40,7 +40,7 @@
 
 <nav role="navigation">
   <ul class="main">
-    <li class="dashboard"><a href="start_meeting">會議內容</a></li>
+    <li class="dashboard"><a href="">會議內容</a></li>
     <li class="write"><a href="seat">座位圖</a></li>
     <li class="edit"><a href="member_login_time">簽到單</a></li>
     <li class="comments"><a href="member_survey">回饋單</a></li>
@@ -50,7 +50,7 @@
 
 <main role="main">
 <br>
-		<h2>XXX會議 2017年11月17號 1030a.m.</h2>
+		<h2>{{ meetingById.meeting_name }} {{meetingById.meeting_date}} {{meetingById.meeting_starttime}} {{clock}}</h2>
 		<div class="container">
 		<div class="sixteen columns">
 			<h1 class="remove-bottom" style="margin-top: 40px" align="center">探討專題</h1>
@@ -60,11 +60,11 @@
 	
 		<div class="one-third column">
 			<font size="8px">會議內容：</font>
-			<p>Skeleton is built on three core principles:</p>
+			<p>{{meetingById.content}}</p>
 			<ul class="square">
-				<li><strong>886</strong>: Elegant scaling from a browser to tablets to mobile.</li>
-				<li><strong>881</strong>: It's a tool for rapid development with best practices</li>
-				<li><strong>888</strong>: It provides the most basic, beautiful styles, but is meant to be overwritten.</li>
+				<li><strong>主辦單位</strong> : {{meetingById.organizer}}</li>
+				<li><strong>主講者</strong> : {{meetingById.speaker}}</li>
+				<li><strong>現在人數</strong> : {{attendance}}</li>
 			</ul>
 		</div>
 
