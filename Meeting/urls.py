@@ -35,13 +35,13 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^index', views.index),
     url(r'^admin_backend/', admin.site.urls),
-    url(r'^information', views.information),
+    url(r'^information', views.information),#not use anymore
     url(r'^admin_logging', views.admin_loging),
     url(r'^login', views.login),
     url(r'^login/', TemplateView.as_view(template_name="login.html"),
                    name='login'),
-    url(r'^upload', views.upload),
-    url(r'^about', views.about),
+    url(r'^upload', views.upload),#not use anymore
+    url(r'^about', views.about),#not use anymore
     url(r'^logout', views.logout),
     url(r'^join&(?P<meetingId>[0-9]+)$', views.join),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
@@ -50,8 +50,7 @@ urlpatterns = [
 	url(r'^choose', views.choose),
 	url(r'^meeting_room', views.meeting_room),
 	url(r'^meeting_manage', views.meeting_manage),
-    #
-    url(r'^meetingstart', views.meeting),
+    url(r'^meetingstart', views.meeting),#not use anymore
 	url(r'^create_meeting', views.create_meeting),
 	url(r'^start_meeting', views.start_meeting),
 	url(r'^member_login_time', views.member_login_time),

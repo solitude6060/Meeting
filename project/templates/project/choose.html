@@ -10,16 +10,21 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin</title>
+    <title>會議資訊小管家</title>
+
 	<link href="{% static 'css/choose.css' %}" rel="stylesheet" type="text/css">
-    <!-- Bootstrap Core CSS -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
+    <link href="{% static 'css/admin_css/sb-admin.css' %}" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="{% static 'css/plugins/morris.css' %}" rel="stylesheet">
+    <link href="{% static 'css/admin_css/plugins/morris.css' %}" rel="stylesheet">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/admin_css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/modern-business.css' %}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="{% static 'css/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
@@ -47,29 +52,46 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">會議資訊小管家</a>
+                <a class="navbar-brand" href="index">會議資訊小管家</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-
-
+                {% if request.user.is_authenticated %}
                     <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">會員名字<b class="caret"></b></a>
+                        <a href="login" class="dropdown-toggle" data-toggle="dropdown">
+                            {{ request.user }}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-							<ul align="left">
+                            <ul align="left">
+                            <!-- <li>
+                                <a href="full_width">修改資料</a>
+                            </li> -->
+                            {% if request.user.is_staff %}
                             <li>
-                                <a href="full-width.html">修改資料</a>
+                                <a href="create_meeting">上傳會議或講座</a>
                             </li>
-							                            <li>
-                                <a href="upload.html">上傳會議或講座</a>
+                            <li>
+                                <a href="admin_homepage">我的會議</a>
                             </li>
-							<li>
-                                <a href="">登出</a>
+                            {% else %}
+                            <li>
+                                <a href="personalpage">我的會議</a>
                             </li>
-							</ul>
+                            {% endif %}
+                            <li>
+                                <a href="logout">登出</a>
+                            </li>
+                            </ul>
                         </ul>
                     </li>
+                {% else %}
+                    <li>
+                        <a href="admin_logging">管理專區</a>
+                    </li>
+                    <li>
+                        <a href="login">會員登入</a>
+                    </li>
+                {% endif %}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -104,15 +126,15 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="{% static 'js/jquery.js"></script>
+    <script src="{% static 'js/js/jquery.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/admin_js/bootstrap.min.js' %}"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="{% static 'js/plugins/morris/raphael.min.js' %}"></script>
-    <script src="{% static 'js/plugins/morris/morris.min.js' %}"></script>
-    <script src="{% static 'js/plugins/morris/morris-data.js' %}"></script>
+    <script src="{% static 'js/admin_js/plugins/morris/raphael.min.js' %}"></script>
+    <script src="{% static 'js/admin_js/plugins/morris/morris.min.js' %}"></script>
+    <script src="{% static 'js/admin_js/plugins/morris/morris-data.js' %}"></script>
 
 </body>
 
