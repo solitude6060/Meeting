@@ -624,3 +624,20 @@ def meeting_room(request):
 
 def meeting_manage(request):
     return render_to_response('project/meeting_manage.html', locals())	
+	
+def create_meeting(request):
+    return render_to_response('project/create_meeting.html', locals())	
+
+def member_login_time(request):
+    return render_to_response('project/member_login_time.html', locals())	
+
+def start_meeting(request):
+    return render_to_response('project/start_meeting.html', locals())	
+	
+def member_survey(request):
+    return render_to_response('project/member_survey.html', locals())		
+
+def seat(request):
+    return render_to_response('project/seat.html', locals())			
+
+	

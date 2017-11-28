@@ -1,0 +1,121 @@
+{% load staticfiles %}
+<html>
+<head>
+
+
+<link href="{% static 'css/index.css' %}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'css/survey.css' %}">
+</head>
+<body>
+<header role="banner">
+  <h1>會議資訊小管家</h1>
+  <ul class="utilities">
+    	  <div class="dropdown">
+    <button class="dropbtn">會員名字
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+  </div> 
+
+
+  </ul>
+</header>
+
+<nav role="navigation">
+  <ul class="main">
+    <li class="dashboard"><a href="start_meeting">會議內容</a></li>
+    <li class="write"><a href="seat">座位圖</a></li>
+    <li class="edit"><a href="member_login_time">簽到單</a></li>
+    <li class="comments"><a href="member_survey">回饋單</a></li>
+
+  </ul>
+</nav>
+
+<main role="main">
+<br>
+<h2 align="center">會議總調查表</h2>
+		<div class='add_meeting'>
+			
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="table-responsive">
+        <table summary="This table shows how to create responsive tables using Bootstrap&#39;s default functionality" class="table table-bordered table-hover">
+         
+          <thead>
+            <tr>
+              <th>會員ID</th>
+              <th>留言</th>
+              <th>時間</th>
+              <th>地點</th>
+              <th>流程</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Argentina</td>
+              <td>這次會議很很棒</td>
+              <td>滿意</td>
+              <td>尚可</td>
+              <td>非常滿意</td>
+            </tr>
+            <tr>
+              <td>Australia</td>
+              <td>這次會議很很棒</td>
+              <td>滿意</td>
+              <td>尚可</td>
+              <td>非常滿意</td
+            </tr>
+            <tr>
+              <td>Greece</td>
+              <td>這次會議很很棒</td>
+              <td>滿意</td>
+              <td>尚可</td>
+              <td>非常滿意</td
+            </tr>
+            <tr>
+              <td>Luxembourg</td>
+              <td>這次會議很很棒這次會議很很棒</td>
+              <td>滿意</td>
+              <td>尚可</td>
+              <td>非常滿意</td
+            </tr>
+            <tr>
+              <td>Russia</td>
+              <td>這次會議很很棒這次會議很很棒這次會議很很棒這次會議很很棒</td>
+              <td>滿意</td>
+              <td>尚可</td>
+              <td>非常滿意</td
+            </tr>
+            <tr>
+              <td>Sweden</td>
+              <td>這次會議很很棒這次會議很很棒這次會議很很棒這次會議很很棒這次會議很很棒這次會議很很棒</td>
+              <td>滿意</td>
+              <td>尚可</td>
+              <td>非常滿意</td
+            </tr>
+          </tbody>
+          <tfoot>
+
+          </tfoot>
+        </table>
+      </div><!--end of .table-responsive-->
+    </div>
+  </div>
+</div>
+
+			
+				
+					
+			</div>
+
+</main>
+
+</body>
+
+</html>
