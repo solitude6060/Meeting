@@ -373,7 +373,7 @@ def login(request):
             meetingObj = Meeting.objects.all()
         meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
         me = meeting[0:4]
-        return render_to_response('project/index.html', locals())
+        return render(request, 'project/index.html', locals())
 
     if 'login' in request.POST :
         uname = request.POST.get('username')
@@ -395,7 +395,7 @@ def login(request):
                 meetingObj = Meeting.objects.all()
             meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
             me = meeting[0:4]
-            return render_to_response('project/index.html', locals())
+            return render(request,'project/index.html', locals())
             #return render(request, 'project/index.html', locals())
         else:
             error = "user None"
@@ -403,7 +403,7 @@ def login(request):
             if user.is_staff:
                 error3 = True
             #return render(request, 'project/login.html', locals())
-            return render_to_response('project/login.html', locals())
+            return render(request, 'project/login.html', locals())
     if 'register' in request.POST:
         
         username = request.POST.get('signUp-userName')
@@ -447,14 +447,14 @@ def login(request):
                     meetingObj = Meeting.objects.all()
                 meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
                 me = meeting[0:4]
-                return render_to_response('project/index.html', locals())
+                return render(request, 'project/index.html', locals())
 
         else:
             register_checked = "checked='false'"
-            return render_to_response('project/login.html', locals())
+            return render(request, 'project/login.html', locals())
 
     register_checked = ""
-    return render(request, 'project/login.html', {})
+    return render(request, 'project/login.html', locals())
 
 
 def information(request):
@@ -524,7 +524,7 @@ def logout(request):
     meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
     me = meeting[0:4]
     #return render(request, 'project/index.html', locals())
-    return render_to_response('project/login.html', locals())
+    return render(request, 'project/login.html', locals())
 
 def join(request,meetingId):
     if request.user.is_authenticated() and not request.user.is_staff:
@@ -709,18 +709,23 @@ def create_meeting(request):
 
     return render(request, 'project/index.html', {})	
 
-def member_login_time(request):
+def member_login_time(request, meetingId):
+    check = CheckIn.objects.filter(meeting_id=meetingId)
+    mid = meetingId
     return render_to_response('project/member_login_time.html', locals())	
 
-def start_meeting(request,meetingId):
+def start_meeting(request, meetingId):
     meetingById = Meeting.objects.get(meeting_id=meetingId)
     mTime = datetime.datetime.strptime(str(meetingById.meeting_starttime), "%H:%M:%S")
     clock = mTime.strftime("%p")
     check = CheckIn.objects.filter(meeting_id=meetingId)
     attendance = len(check)
+    mid = meetingId
     return render_to_response('project/start_meeting.html', locals())	
 	
-def member_survey(request):
+def member_survey(request, meetingId):
+    feedback = FeedbackSheet.objects.filter(meeting_id=meetingId)
+    mid = meetingId
     return render_to_response('project/member_survey.html', locals())		
 
 def seat(request):

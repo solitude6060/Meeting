@@ -39,10 +39,10 @@
 
 <nav role="navigation">
   <ul class="main">
-    <li class="dashboard"><a href="start_meeting">會議內容</a></li>
+    <li class="dashboard"><a href="start_meeting&{{mid}}">會議內容</a></li>
     <li class="write"><a href="seat">座位圖</a></li>
-    <li class="edit"><a href="member_login_time">簽到單</a></li>
-    <li class="comments"><a href="member_survey">回饋單</a></li>
+    <li class="edit"><a href="member_login_time&{{mid}}">簽到單</a></li>
+    <li class="comments"><a href="member_survey&{{mid}}">回饋單</a></li>
 
   </ul>
 </nav>
@@ -62,21 +62,45 @@
           <thead>
             <tr>
               <th>會員ID</th>
-              <th>留言</th>
               <th>時間</th>
               <th>地點</th>
               <th>流程</th>
+              <th>留言</th>
             </tr>
           </thead>
           <tbody>
+            {% for f in feedback %}
             <tr>
-              <td>Argentina</td>
-              <td>這次會議很很棒</td>
-              <td>滿意</td>
-              <td>尚可</td>
+              <td>{{f.member_name}}</td>
+              
+              {% if f.time_feeback == 3 %}
               <td>非常滿意</td>
+              {% elif f.time_feeback == 2 %}
+              <td>滿意</td>
+              {% else %}
+              <td>尚可</td>
+              {% endif %}
+
+              {% if f.location_feeback == 3 %}
+              <td>非常滿意</td>
+              {% elif f.location_feeback == 2 %}
+              <td>滿意</td>
+              {% else %}
+              <td>尚可</td>
+              {% endif %}
+
+              {% if f.itinerary_feedback == 3 %}
+              <td>非常滿意</td>
+              {% elif f.itinerary_feeback == 2 %}
+              <td>滿意</td>
+              {% else %}
+              <td>尚可</td>
+              {% endif %}
+
+              <td>{{f.suggestions}}</td>
             </tr>
-            <tr>
+            {% endfor %}
+            <!-- <tr>
               <td>Australia</td>
               <td>這次會議很很棒</td>
               <td>滿意</td>
@@ -110,7 +134,7 @@
               <td>滿意</td>
               <td>尚可</td>
               <td>非常滿意</td
-            </tr>
+            </tr> -->
           </tbody>
           <tfoot>
 

@@ -39,10 +39,10 @@
 
 <nav role="navigation">
   <ul class="main">
-    <li class="dashboard"><a href="start_meeting">會議內容</a></li>
+    <li class="dashboard"><a href="start_meeting&{{mid}}">會議內容</a></li>
     <li class="write"><a href="seat">座位圖</a></li>
-    <li class="edit"><a href="member_login_time">簽到單</a></li>
-    <li class="comments"><a href="member_survey">回饋單</a></li>
+    <li class="edit"><a href="member_login_time&{{mid}}">簽到單</a></li>
+    <li class="comments"><a href="member_survey&{{mid}}">回饋單</a></li>
 
   </ul>
 </nav>
@@ -70,43 +70,15 @@
             </tr>
           </thead>
           <tbody>
+            {% for c in checkin %}
             <tr>
-              <td>Argentina</td>
+              <td>{{ c.member_email }}</td>
 
-              <td>1.30p.m</td>
-              <td>3.00p.m</td>
+              <td>{{c.login_time}}</td>
+              <td>{{c.logout_time}}</td>
 
             </tr>
-            <tr>
-              <td>Australia</td>
-
-          <td>1.30p.m</td>
-              <td>3.00p.m</td>
-            </tr>
-            <tr>
-              <td>Greece</td>
-
-          <td>1.30p.m</td>
-              <td>3.00p.m</td>
-            </tr>
-            <tr>
-              <td>Luxembourg</td>
-
-          <td>1.30p.m</td>
-              <td>3.00p.m</td>
-            </tr>
-            <tr>
-              <td>Russia</td>
-
-          <td>1.30p.m</td>
-              <td>3.00p.m</td>
-            </tr>
-            <tr>
-              <td>Sweden</td>
-
-          <td>1.30p.m</td>
-              <td>3.00p.m</td>
-            </tr>
+            {% endfor %}
           </tbody>
           <tfoot>
 

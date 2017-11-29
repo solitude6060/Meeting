@@ -53,8 +53,8 @@ urlpatterns = [
     url(r'^meetingstart', views.meeting),#not use anymore
 	url(r'^create_meeting', views.create_meeting),
 	url(r'^start_meeting&(?P<meetingId>[0-9]+)$', views.start_meeting),
-	url(r'^member_login_time', views.member_login_time),
-	url(r'^member_survey', views.member_survey),
+	url(r'^member_login_time&(?P<meetingId>[0-9]+)$', views.member_login_time),
+	url(r'^member_survey&(?P<meetingId>[0-9]+)$', views.member_survey),
 	url(r'^seat', views.seat),
 	
 	
