@@ -1,0 +1,51 @@
+{% load staticfiles %}
+<html>
+<head>
+
+
+<link href="{% static 'css/index.css' %}" rel="stylesheet">
+<link href="{% static 'css/manage.css' %}" rel="stylesheet">
+</head>
+<body>
+<header role="banner">
+  <h1>會議資訊小管家</h1>
+  <ul class="utilities">
+    	  <div class="dropdown">
+    <button class="dropbtn">會員名字
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+  </div> 
+
+
+  </ul>
+</header>
+
+<nav role="navigation">
+  <ul class="main">
+    <li class="dashboard"><a href="#">會議內容</a></li>
+    <li class="write"><a href="#">座位圖</a></li>
+    <li class="edit"><a href="#">簽到單</a></li>
+    <li class="comments"><a href="#">回饋單</a></li>
+
+  </ul>
+</nav>
+
+<main role="main">
+<br>
+
+  <div class="position">
+<h1>請選擇您的會議</h1>
+<br>
+  
+
+
+</main>
+
+</body>
+<script src="{% static 'js/input.js' %}"></script>
+</html>
