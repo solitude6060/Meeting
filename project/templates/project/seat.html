@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load list_filter %}
 <html>
 <head>
 
@@ -60,53 +61,12 @@
 						{% for x in x_r %}
 						<td height="100px">
 							{{x}} - {{y}}<br>
-							{{ Name }}<br>
+							{% get_at_index Name forloop.counter forloop.parentloop.counter x_r|length forloop.parentloop|length %}
+							<br>
 						</td>
 						{% endfor %}
 					</tr>
 					{% endfor %}
-        			<!-- {% for y in y_r %}
-					<tr>
-						{% for x in x_r %}
-						<td height="100px">
-							{{x}} - {{y}}<br>
-							{{ Name.x.y }}
-						</td>
-						{% endfor %}
-					</tr>
-					{% endfor %} -->
-					<!-- <tr>
-					<td height="100px">
-						2-1<br>
-					</td>
-					<td height="100px">
-						2-2<br>
-					</td>
-					</tr>
-					<tr>
-					<td height="100px">
-						3-1<br>
-					</td>
-					<td height="100px">
-						3-2<br>
-					</td>
-					</tr>
-					<tr>
-					<td height="100px">
-						4-1<br>
-					</td>
-					<td height="100px">
-						4-2<br>
-					</td>
-					</tr>
-					<tr>
-					<td height="100px">
-						5-1<br>
-					</td>
-					<td height="100px">
-						5-2<br>
-					</td>
-					</tr> -->
 
 			</table>
 		</div>

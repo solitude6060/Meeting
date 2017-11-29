@@ -763,9 +763,8 @@ def seat(request, meetingId):
                 Name[xx][yy] = check.member_email
             except:
                 Name[xx][yy] = "Nobody"
-    n = CheckIn.objects.get(meeting_id=meetingId, seat_xid=4, seat_yid=3).member_email
-    x_r = range(1,2+1)
-    y_r = reversed(range(1,5+1))
+    x_r = range(1,3)
+    y_r = reversed(range(1,6))
     mid = meetingId
     return render(request, 'project/seat.html', locals())			
 
