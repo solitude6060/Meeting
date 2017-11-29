@@ -630,8 +630,8 @@ def choose(request):
 
 def meeting(request):
     if request.user.is_authenticated():
-        x_r = range(2)
-        y_r = range(5)
+        x_r = list(range(2))
+        y_r = list(range(5))
         Matrix = [[0 for y in range(5)] for x in range(2)]
         for xx in x_r:
             for yy in y_r:
@@ -640,6 +640,8 @@ def meeting(request):
     return render_to_response('project/meeting.html', locals())	
 	
 def meeting_room(request):
+    username = request.user.username
+    meeting = Meeting.objects.filter(administrator=username)
     return render_to_response('project/meeting_room.html', locals())
 
 def meeting_manage(request):
@@ -728,7 +730,25 @@ def member_survey(request, meetingId):
     mid = meetingId
     return render_to_response('project/member_survey.html', locals())		
 
-def seat(request):
-    return render_to_response('project/seat.html', locals())			
+def seat(request, meetingId):
+    meetingById = Meeting.objects.get(meeting_id=meetingId)
+    mTime = datetime.datetime.strptime(str(meetingById.meeting_starttime), "%H:%M:%S")
+    clock = mTime.strftime("%p")
+
+    x_r = range(1,2+1)
+    y_r = reversed(range(1,5+1))
+    Name = [[0 for y in range(1,5+1)] for x in range(1,2+1)]
+    for xx in [0,1]:
+        for yy in [0,1,2,3,4]:
+            try:    
+                check = CheckIn.objects.get(meeting_id=meetingId, seat_xid=xx+1, seat_yid=yy+1)
+                Name[xx][yy] = check.member_email
+            except:
+                Name[xx][yy] = "Nobody"
+    n = Name
+    x_r = range(1,2+1)
+    y_r = reversed(range(1,5+1))
+    mid = meetingId
+    return render(request, 'project/seat.html', locals())			
 
 	

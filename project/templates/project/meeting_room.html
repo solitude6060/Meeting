@@ -54,95 +54,22 @@
   <div class="position">
 <h1>請選擇您的會議</h1>
 <br>
+    {% for me in meeting %}
     <!--start button, nothing above this is necessary -->
     <div class="svg-wrapper">
       <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
         <rect id="shape" height="40" width="150" />
         <div id="text">
-          <a href=""><span class="spot"></span>G509</a>
+          <a href="start_meeting&{{me.meeting_id}}"><span class="spot"></span>{{me.meeting_name}}</a>
         </div>
       </svg>
     </div>
-    <!--Next button -->
-    <div class="svg-wrapper">
-      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
-        <rect id="shape" height="40" width="150" />
-        <div id="text">
-          <a href=""><span class="spot"></span>313</a>
-        </div>
-      </svg>
-    </div>
-    <!--Next button -->
-    <div class="svg-wrapper">
-      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
-        <rect id="shape" height="40" width="150" />
-        <div id="text">
-          <a href=""><span class="spot"></span>G605</a>
-        </div>
-      </svg>
-    </div>
-	<br>
-	<br>
-	<br>
-	    <div class="svg-wrapper">
-      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
-        <rect id="shape" height="40" width="150" />
-        <div id="text">
-          <a href=""><span class="spot"></span>G509</a>
-        </div>
-      </svg>
-    </div>
-    <!--Next button -->
-    <div class="svg-wrapper">
-      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
-        <rect id="shape" height="40" width="150" />
-        <div id="text">
-          <a href=""><span class="spot"></span>313</a>
-        </div>
-      </svg>
-    </div>
-    <!--Next button -->
-    <div class="svg-wrapper">
-      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
-        <rect id="shape" height="40" width="150" />
-        <div id="text">
-          <a href=""><span class="spot"></span>G605</a>
-        </div>
-      </svg>
-    </div>
-    <!--End button -->
-	<br>
-	<br>
-	<br>
-		    <div class="svg-wrapper">
-      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
-        <rect id="shape" height="40" width="150" />
-        <div id="text">
-          <a href=""><span class="spot"></span>G509</a>
-        </div>
-      </svg>
-    </div>
-    <!--Next button -->
-    <div class="svg-wrapper">
-      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
-        <rect id="shape" height="40" width="150" />
-        <div id="text">
-          <a href=""><span class="spot"></span>313</a>
-        </div>
-      </svg>
-    </div>
-    <!--Next button -->
-    <div class="svg-wrapper">
-      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
-        <rect id="shape" height="40" width="150" />
-        <div id="text">
-          <a href=""><span class="spot"></span>G605</a>
-        </div>
-      </svg>
-    </div>
-  </div>
-  
-
+    {% if forloop.counter|divisibleby:3 %}
+      <br>
+      <br>
+      <br>
+    {% endif %}
+    {% endfor %}
 
 
 </main>

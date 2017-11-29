@@ -50,19 +50,32 @@
 
 <main role="main">
 <br>
-		<h2>XXX會議 2017年11月17號 1030a.m.</h2>
+		<h2>{{ meetingById.meeting_name }} {{meetingById.meeting_date}} {{meetingById.meeting_starttime}} {{clock}}</h2>
 		<div id='editing' style="margin-top: 40px" >
         	<table width="100px" border="1" align="center">
 
+        			
+        			{% for y in y_r %}
 					<tr>
-					<td height="100px">
-						1-1<br>
-					</td>
-					<td height="100px">
-						1-2<br>
-					</td>
+						{% for x in x_r %}
+						<td height="100px">
+							{{x}} - {{y}}<br>
+							{{ n }}<br>
+						</td>
+						{% endfor %}
 					</tr>
+					{% endfor %}
+        			<!-- {% for y in y_r %}
 					<tr>
+						{% for x in x_r %}
+						<td height="100px">
+							{{x}} - {{y}}<br>
+							{{ Name.x.y }}
+						</td>
+						{% endfor %}
+					</tr>
+					{% endfor %} -->
+					<!-- <tr>
 					<td height="100px">
 						2-1<br>
 					</td>
@@ -93,13 +106,13 @@
 					<td height="100px">
 						5-2<br>
 					</td>
-					</tr>
+					</tr> -->
 
 			</table>
 		</div>
 	<form>
 	<br>
-<input style="width: 140px; margin: 0 auto; padding: 20px; cursor: pointer; box-shadow: 6px 6px 5px; #999; -webkit-box-shadow: 6px 6px 5px #999; -moz-box-shadow: 6px 6px 5px #999; font-weight: bold; background: #ffff00; color: #000; border-radius: 10px; border: 1px solid #999; font-size: 110%;" type="button" value="开始" onclick="window.location.href='start_meeting'" />
+	<input style="width: 140px; margin: 0 auto; padding: 20px; cursor: pointer; box-shadow: 6px 6px 5px; #999; -webkit-box-shadow: 6px 6px 5px #999; -moz-box-shadow: 6px 6px 5px #999; font-weight: bold; background: #ffff00; color: #000; border-radius: 10px; border: 1px solid #999; font-size: 110%;" type="button" value="开始" onclick="window.location.href='start_meeting&{{mid}}'" />
 </form>
 </main>
 

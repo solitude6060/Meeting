@@ -55,7 +55,7 @@ urlpatterns = [
 	url(r'^start_meeting&(?P<meetingId>[0-9]+)$', views.start_meeting),
 	url(r'^member_login_time&(?P<meetingId>[0-9]+)$', views.member_login_time),
 	url(r'^member_survey&(?P<meetingId>[0-9]+)$', views.member_survey),
-	url(r'^seat', views.seat),
+	url(r'^seat&(?P<meetingId>[0-9]+)$', views.seat),
 	
 	
     #   restful-api     #
