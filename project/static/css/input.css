@@ -105,3 +105,66 @@
   transform: scale(1.05) translateX(-50%);
   transition: all .1s ease-in-out;
 }
+
+.input-container {
+  padding: 20px 0 0px;
+  text-align: center;
+}
+.input-container label {
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+.input-container label .label-text {
+  color: #9B9B9B;
+  cursor: text;
+  font-size: 20px;
+  line-height: 20px;
+  transform: translateY(-34px);
+  transition: all 0.3s;
+}
+.input-container input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid #4A4A4A;
+  color:black;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  outline: 0;
+  padding: 5px 20px;
+  text-align: center;
+  transition: all 0.3s;
+  width: 200px;
+}
+.input-container input:focus {
+  width: 400px;
+}
+.input-container input:focus + .label-text {
+  color: #F0F0F0;
+  font-size: 13px;
+  transform: translateY(-74px);
+}
+.input-container input.value-exists + .label-text {
+  font-size: 13px;
+  transform: translateY(-74px);
+}
+
+.send {
+  background-color: #333333;
+  border: 2px solid white;
+  border-radius: 27px;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-left: 534px;
+  padding: 15px 30px;
+  text-transform: uppercase;
+  transition: all 200ms;
+}
+.send:hover, .send:focus {
+  background-color: white;
+  color: #333333;
+  outline: 0;
+}

@@ -751,4 +751,6 @@ def seat(request, meetingId):
     mid = meetingId
     return render(request, 'project/seat.html', locals())			
 
+def ssid_mac(request):
+    return render_to_response('project/ssid_mac.html', locals())
 	
