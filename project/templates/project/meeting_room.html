@@ -4,7 +4,7 @@
 
 
 <link href="{% static 'css/index.css' %}" rel="stylesheet">
-
+<link href="{% static 'css/input.css' %}" rel="stylesheet">
 <link href="{% static 'css/manage.css' %}" rel="stylesheet">
 </head>
 <body>
@@ -129,12 +129,30 @@
       </svg>
     </div>
   </div>
-  
+  <br>
+  <br>
+<div class="input-container">
+<h1 align="center" style="color:red;">新增會議室</h1>
+  <label>
+    <input type="text" />
+    <div class="label-text">名称</div>
+  </label>
+
+  <label>
+    <input type="text" />
+    <div class="label-text">ssid</div>
+  </label>
+    <label>
+    <input type="text" />
+    <div class="label-text">mac</div>
+  </label>
+</div>
+<button class="send" >送出</button>
 
 
 
 </main>
 
 </body>
-
+<script src="{% static 'js/input.js' %}"></script>
 </html>
