@@ -1,40 +1,28 @@
 {% load staticfiles %}
 <html>
 <head>
-<title>會議資訊小管家</title>
+
 
 <link href="{% static 'css/index.css' %}" rel="stylesheet">
-
+<link href="{% static 'css/input.css' %}" rel="stylesheet">
 <link href="{% static 'css/manage.css' %}" rel="stylesheet">
 </head>
 <body>
 <header role="banner">
-  <h1><a href="index">會議資訊小管家</a></h1>
+  <h1>會議資訊小管家</h1>
   <ul class="utilities">
-    {% if request.user.is_authenticated %}
-    <div class="dropdown">
-      <button class="dropbtn">{{ request.user }}
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-      {% if request.user.is_staff %}
-          <a href="create_meeting">上傳會議或講座</a>
-          <a href="choose">會議管理</a>
-        {% else %}
-          <a href="personalpage">我的會議</a>
-        {% endif %}
-          <a href="logout">登出</a>
-      </div>
+    	  <div class="dropdown">
+    <button class="dropbtn">會員名字
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
     </div>
-    {% else %}
-    <div class="dropdown">
-      <a href="login">
-      <button class="dropbtn">會員登入
-        <i class="fa fa-caret-down"></i>
-      </button>
-      </a>
-    </div>
-    {% endif %} 
+  </div> 
+
+
   </ul>
 </header>
 
@@ -54,26 +42,118 @@
   <div class="position">
 <h1>請選擇您的會議</h1>
 <br>
-    {% for me in meeting %}
     <!--start button, nothing above this is necessary -->
     <div class="svg-wrapper">
       <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
         <rect id="shape" height="40" width="150" />
         <div id="text">
-          <a href="start_meeting&{{me.meeting_id}}"><span class="spot"></span>{{me.meeting_name}}</a>
+          <a href=""><span class="spot"></span>G509</a>
         </div>
       </svg>
     </div>
-    {% if forloop.counter|divisibleby:3 %}
-      <br>
-      <br>
-      <br>
-    {% endif %}
-    {% endfor %}
+    <!--Next button -->
+    <div class="svg-wrapper">
+      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+          <a href=""><span class="spot"></span>313</a>
+        </div>
+      </svg>
+    </div>
+    <!--Next button -->
+    <div class="svg-wrapper">
+      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+          <a href=""><span class="spot"></span>G605</a>
+        </div>
+      </svg>
+    </div>
+	<br>
+	<br>
+	<br>
+	    <div class="svg-wrapper">
+      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+          <a href=""><span class="spot"></span>G509</a>
+        </div>
+      </svg>
+    </div>
+    <!--Next button -->
+    <div class="svg-wrapper">
+      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+          <a href=""><span class="spot"></span>313</a>
+        </div>
+      </svg>
+    </div>
+    <!--Next button -->
+    <div class="svg-wrapper">
+      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+          <a href=""><span class="spot"></span>G605</a>
+        </div>
+      </svg>
+    </div>
+    <!--End button -->
+	<br>
+	<br>
+	<br>
+		    <div class="svg-wrapper">
+      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+          <a href=""><span class="spot"></span>G509</a>
+        </div>
+      </svg>
+    </div>
+    <!--Next button -->
+    <div class="svg-wrapper">
+      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+          <a href=""><span class="spot"></span>313</a>
+        </div>
+      </svg>
+    </div>
+    <!--Next button -->
+    <div class="svg-wrapper">
+      <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
+        <rect id="shape" height="40" width="150" />
+        <div id="text">
+          <a href=""><span class="spot"></span>G605</a>
+        </div>
+      </svg>
+    </div>
+  </div>
+  <div class="contact-form">
+  <h1>Contact Me!</h1>
+  <form>
+          <div class="field name-box">
+              <input class="text-area" type="text" id="name" placeholder="Who Are You?"/>
+              <label for="name">Name</label>
+          </div>
+        <div class="field email-box">
+              <input class="text-area" type="text" id="email" placeholder="Example@Email.com"/>
+              <label for="email">Email</label>
+          </div>
+        <div class="field message-box">
+          <textarea class="text-area" placeholder="Your message goes here..." id="message"></textarea>
+
+              <label for="message">Message</label>
+          </div>
+
+        <button class="contact-submit">Send</button>
+  </form>
+</div>
+
 
 
 </main>
 
 </body>
-
+<script src="{% static 'js/inputs.js' %}"></script>
 </html>
