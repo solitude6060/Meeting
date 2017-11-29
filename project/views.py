@@ -640,9 +640,27 @@ def meeting(request):
     return render_to_response('project/meeting.html', locals())	
 	
 def meeting_room(request):
-    username = request.user.username
-    meeting = Meeting.objects.filter(administrator=username)
-    return render_to_response('project/meeting_room.html', locals())
+    room = Meetingroom.objects.all()
+    if request.method == "GET":
+        username = request.user.username
+        meeting = Meeting.objects.filter(administrator=username)
+        room = Meetingroom.objects.all()
+        return render(request, 'project/meeting_room.html', locals())
+    if request.method == 'POST':
+        room = Meetingroom.objects.all()
+        room_name = request.POST.get('room_name')
+        room_ssid = request.POST.get('ssid')
+        room_mac = request.POST.get('mac')
+
+        roomfilter = Meetingroom.objects.filter(room_id=room_name, meetingroom_ssid=room_ssid, mac_address=room_mac)
+        if roomfilter:
+            return render(request, 'project/meeting_room.html', locals())
+        else:
+            ro = Meetingroom.objects.create(room_id=room_name, meetingroom_ssid=room_ssid, mac_address=room_mac)
+            ro.save()
+            return render(request, 'project/meeting_room.html', locals())
+
+    return render(request, 'project/meeting_room.html', locals())
 
 def meeting_manage(request):
     username = request.user.username
@@ -751,6 +769,16 @@ def seat(request, meetingId):
     mid = meetingId
     return render(request, 'project/seat.html', locals())			
 
-def ssid_mac(request):
-    return render_to_response('project/ssid_mac.html', locals())
+def ssid_mac(request, roomId):
+    username = request.user.username
+    room = Meetingroom.objects.get(room_id=roomId)
+    rName = room.room_id
+    isBuild = 0
+    seat = Seating.objects.filter(room_id=rName)
+    if seat:
+        isBuild = 1
+    ssid = room.meetingroom_ssid
+    mac = room.mac_address
+    meeting = Meeting.objects.filter(administrator=username, meetingroom_id=rName)
+    return render(request, 'project/ssid_mac.html', locals())
 	
