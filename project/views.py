@@ -738,14 +738,14 @@ def seat(request, meetingId):
     x_r = range(1,2+1)
     y_r = reversed(range(1,5+1))
     Name = [[0 for y in range(1,5+1)] for x in range(1,2+1)]
-    for xx in [0,1]:
-        for yy in [0,1,2,3,4]:
+    for xx in range(2):
+        for yy in range(5):
             try:    
                 check = CheckIn.objects.get(meeting_id=meetingId, seat_xid=xx+1, seat_yid=yy+1)
                 Name[xx][yy] = check.member_email
             except:
                 Name[xx][yy] = "Nobody"
-    n = Name
+    n = CheckIn.objects.get(meeting_id=meetingId, seat_xid=4, seat_yid=3).member_email
     x_r = range(1,2+1)
     y_r = reversed(range(1,5+1))
     mid = meetingId
