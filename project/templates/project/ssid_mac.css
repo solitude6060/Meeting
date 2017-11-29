@@ -1,0 +1,109 @@
+
+header {
+  font-family: Raleway;
+  font-size: 60px;
+  text-align: center;
+  font-weight: 400;
+  -webkit-animation: head 2.0s;
+  -webkit-animation-iteration-count: 1;
+  animation: head 2.0s;
+  animation-iteration-count: 1;
+}
+.input {
+  background-color: Gainsboro;
+  width: 50%;
+  margin: auto;
+  border-radius: 25px;
+  height:250px;
+  margin-top: -25px;
+  border-bottom: 5px solid darkgrey;
+  -webkit-animation: input 1.5s;
+  -webkit-animation-iteration-count: 1;
+  animation: input 1.5s;
+  animation-iteration-count: 1;
+}
+input.username#lol {
+  margin-top: 50px;
+  height: 50px;
+  width: 200px;
+}
+input.br {
+  margin-top: 50px;
+  height: 50px;
+  width: 200px;
+}
+.button#lel{
+  font-size: 20px;
+  font-family: Raleway;
+  text-align: center;
+  color: white;
+  position: absolute;
+  margin-top: 15px;
+  -webkit-animation: button 1.6s;
+  -webkit-animation-iteration-count: 1;
+  animation: button 1.6s;
+  animation-iteration-count: 1;
+   background-color: #90C53F;
+  border-radius: 15px;
+  padding: 10px;
+  border-bottom: 5px solid green;
+  left: 50%;
+  margin-left: -50px;
+  cursor:pointer;
+  
+}
+.button#lel:active {
+  border-bottom: 0px solid #D2691E;
+  margin-top: 30px;
+}
+.button#lel a{
+  text-decoration: none;
+  color: white;
+}
+form {
+  font-family: Raleway;
+  text-align: center;
+  font-size: 25px;
+  margin-top: 55px;
+  line-height: 50px;
+}
+rem {
+  font-size: 15px;
+}
+@-webkit-keyframes head {
+  from{margin-top: -200px;}
+  to{margin-top: 0px;}
+}
+
+@-webkit-keyframes input {
+  from{margin-left:-5000px;}
+  to{margin-left: 25%;}
+}
+@-webkit-keyframes button {
+  from{margin-top: 1000px;}
+  to{margin-top:25px;}
+}
+@keyframes input {
+  from{margin-left:-5000px;}
+  to{margin-left: 25%;}
+}
+@keyframes head {
+  from{margin-top: -200px;}
+  to{margin-top: 0px;}
+}
+@keyframes button {
+  from{margin-top: 1000px;}
+  to{margin-top:25px;}
+}
+@-moz-keyframes input {
+  from{margin-left:-5000px;}
+  to{margin-left: 25%;}
+}
+@-moz-keyframes head {
+  from{margin-top: -200px;}
+  to{margin-top: 0px;}
+}
+@-moz-keyframes button {
+  from{margin-top: 1000px;}
+  to{margin-top:25px;}
+}
