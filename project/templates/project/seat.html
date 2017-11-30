@@ -61,8 +61,7 @@
 						{% for x in x_r %}
 						<td height="100px">
 							{{x}} - {{y}}<br>
-							{% get_at_index Name forloop.counter forloop.parentloop.counter x_r|length forloop.parentloop|length %}
-							<br>
+							{% get_at_index Name forloop.counter forloop.parentloop.counter x_r|length forloop.parentloop|length %}<br>
 						</td>
 						{% endfor %}
 					</tr>
@@ -72,7 +71,7 @@
 		</div>
 	<form>
 	<br>
-	<input style="width: 140px; margin: 0 auto; padding: 20px; cursor: pointer; box-shadow: 6px 6px 5px; #999; -webkit-box-shadow: 6px 6px 5px #999; -moz-box-shadow: 6px 6px 5px #999; font-weight: bold; background: #ffff00; color: #000; border-radius: 10px; border: 1px solid #999; font-size: 110%;" type="button" value="开始" onclick="window.location.href='start_meeting&{{mid}}'" />
+	<input style="width: 140px; margin: 0 auto; padding: 20px; cursor: pointer; box-shadow: 6px 6px 5px; #999; -webkit-box-shadow: 6px 6px 5px #999; -moz-box-shadow: 6px 6px 5px #999; font-weight: bold; background: #ffff00; color: #000; border-radius: 10px; border: 1px solid #999; font-size: 110%;" type="button" value="開始" onclick="window.location.href='start_meeting&{{mid}}'" />
 </form>
 </main>
 
