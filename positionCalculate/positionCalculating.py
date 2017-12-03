@@ -84,7 +84,7 @@ for meeting in meeting_all_today:
                     if seat_wifi is not None:
                         for i in seat_wifi:
                             s_wifi = i[5]
-                            weight = s_wifi*-1
+                            weight = s_wifi*-1*0.1
                             dis = weight*((s_wifi - wifi)**2)
                             Matrix[x][y] = dis
 
