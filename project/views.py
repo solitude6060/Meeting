@@ -329,7 +329,7 @@ def admin_loging(request):
         meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
         if not meetingObj:
             meetingObj = Meeting.objects.all()
-        meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
+        meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
         me = meeting[0:4]
         return render(request, 'project/index.html', locals())
         #return render_to_response('project/index.html', locals())
@@ -346,7 +346,7 @@ def admin_loging(request):
         meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
         if not meetingObj:
             meetingObj = Meeting.objects.all()
-        meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
+        meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
         me = meeting[0:4]
         # username = request.user.username
         # oger = Organizer.objects.get(organizer_email=username)
@@ -371,7 +371,7 @@ def login(request):
         meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
         if not meetingObj:
             meetingObj = Meeting.objects.all()
-        meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
+        meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
         me = meeting[0:4]
         return render(request, 'project/index.html', locals())
 
@@ -393,7 +393,7 @@ def login(request):
             meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
             if not meetingObj:
                 meetingObj = Meeting.objects.all()
-            meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
+            meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
             me = meeting[0:4]
             return render(request,'project/index.html', locals())
             #return render(request, 'project/index.html', locals())
@@ -445,7 +445,7 @@ def login(request):
                 meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
                 if not meetingObj:
                     meetingObj = Meeting.objects.all()
-                meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
+                meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
                 me = meeting[0:4]
                 return render(request, 'project/index.html', locals())
 
@@ -457,8 +457,11 @@ def login(request):
     return render(request, 'project/login.html', locals())
 
 
-def information(request):
-    return render_to_response('project/information.html', locals())
+def information(request, meetingId):
+    meeting = Meeting.objects.get(meeting_id=meetingId)
+    m = meeting
+    phone = Organizer.objects.get(organizer_email=m.administrator).organizer_phone
+    return render(request, 'project/information.html', locals())
 
 def upload(request):
     if request.method == "GET":
@@ -494,7 +497,7 @@ def upload(request):
             meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
             if not meetingObj:
                 meetingObj = Meeting.objects.all()
-            meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
+            meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
             me = meeting[0:4]
             #return render(request, 'project/index.html', locals())
             return render_to_response('project/index.html', locals())
@@ -508,12 +511,12 @@ def upload(request):
             meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
             if not meetingObj:
                 meetingObj = Meeting.objects.all()
-            meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
+            meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
             me = meeting[0:4]
             #return render(request, 'project/index.html', {})
             return render_to_response('project/index.html', locals())
 
-    return render(request, 'project/index.html', {})
+    return render(request, 'project/index.html', locals())
 
 def logout(request):
     auth.logout(request)
@@ -521,7 +524,7 @@ def logout(request):
     meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
     if not meetingObj:
         meetingObj = Meeting.objects.all()
-    meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
+    meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
     me = meeting[0:4]
     #return render(request, 'project/index.html', locals())
     return render(request, 'project/login.html', locals())
@@ -538,9 +541,9 @@ def join(request,meetingId):
             meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
             if not meetingObj:
                 meetingObj = Meeting.objects.all()
-            meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
+            meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
             me = meeting[0:4]
-            return render_to_response('project/personalpage.html',locals())
+            return render(request, 'project/personalpage.html',locals())
         else:
             checkObj = CheckIn.objects.create(meeting_id=meetingId, member_email_id=username, login_time=None, logout_time=None, meetingroom_id=roomId, seat_xid=0, seat_yid=0)
             checkObj.save()
@@ -550,7 +553,7 @@ def join(request,meetingId):
     
     curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
     meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
-    meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
+    meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
     me = meeting[0:4]
     curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
     meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
@@ -708,7 +711,7 @@ def create_meeting(request):
             meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
             if not meetingObj:
                 meetingObj = Meeting.objects.all()
-            meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
+            meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
             me = meeting[0:4]
             #return render(request, 'project/index.html', locals())
             return render_to_response('project/index.html', locals())
@@ -722,12 +725,12 @@ def create_meeting(request):
             meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
             if not meetingObj:
                 meetingObj = Meeting.objects.all()
-            meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'))
+            meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
             me = meeting[0:4]
             #return render(request, 'project/index.html', {})
             return render_to_response('project/index.html', locals())
 
-    return render(request, 'project/index.html', {})	
+    return render(request, 'project/index.html', locals())	
 
 def member_login_time(request, meetingId):
     checkin = CheckIn.objects.filter(meeting_id=meetingId)

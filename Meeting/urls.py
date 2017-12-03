@@ -35,7 +35,7 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^index', views.index),
     url(r'^admin_backend/', admin.site.urls),
-    url(r'^information', views.information),#not use anymore
+    url(r'^information&(?P<meetingId>[0-9]+)$', views.information),#not use anymore
     url(r'^admin_logging', views.admin_loging),
     url(r'^login', views.login),
     url(r'^login/', TemplateView.as_view(template_name="login.html"),

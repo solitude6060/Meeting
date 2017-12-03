@@ -159,9 +159,9 @@
           
                         <p>
                             {% if request.user.is_authenticated %}
-                            <a href="join&{{m.meeting_id}}" class="btn btn-primary">我要報名</a> <a href="information" class="btn btn-default">閱讀更多</a>
+                            <a href="join&{{m.meeting_id}}" class="btn btn-primary">我要報名</a> <a href="information&{{m.meeting_id}}" class="btn btn-default">閱讀更多</a>
                             {% else %}
-                            <a href="login" class="btn btn-primary">我要報名</a> <a href="information" class="btn btn-default">閱讀更多</a>
+                            <a href="login" class="btn btn-primary">我要報名</a> <a href="information&{{m.meeting_id}}" class="btn btn-default">閱讀更多</a>
                             {% endif %}
 
                         </p>
@@ -177,7 +177,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; UTCS 2017</p>
+                    <p>Copyright &copy; UTCS Lab504 2017</p>
                 </div>
             </div>
         </footer>

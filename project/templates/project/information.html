@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Modern Business - Start Bootstrap Template</title>
+    <title>會議資訊小管家</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -47,60 +47,56 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-				
+                {% if request.user.is_authenticated %}
+                    <li class="dropdown">
+                        <a href="login" class="dropdown-toggle" data-toggle="dropdown">
+                            {{ request.user }}<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <ul align="left">
+                            <!-- <li>
+                                <a href="full_width">修改資料</a>
+                            </li> -->
+                            {% if request.user.is_staff %}
+                            <li>
+                                <a href="create_meeting">上傳會議或講座</a>
+                            </li>
+                            <li>
+                                <a href="choose">會議管理</a>
+                            </li>
+                            {% else %}
+                            <li>
+                                <a href="personalpage">我的會議</a>
+                            </li>
+                            {% endif %}
+                            <li>
+                                <a href="logout">登出</a>
+                            </li>
+                            </ul>
+                        </ul>
+                    </li>
+                {% else %}
                     <li>
-                        <a href="contact.html">聯絡我們</a>
+                        <a href="admin_logging">管理專區</a>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多資訊<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-						<ul align="left">
-                            <li>
-                                <a href="portfolio_1_col">會議</a>
-                            </li>
-                            <li>
-                                <a href="portfolio_2_col">講座</a>
-                            </li>
-                            <li>
-                                <a href="portfolio_3_col">演講</a>
-                            </li>
-						</ul>	
-                        </ul>
+                    <li>
+                        <a href="login">會員登入</a>
                     </li>
-					<li>
-                        <a href="admin_loging">管理專區</a>
-                    </li>
-					<li>
-                        <a href="login">登入</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="login" class="dropdown-toggle" data-toggle="dropdown">會員名字<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-							<ul align="left">
-                            <li>
-                                <a href="full-width.html">修改資料</a>
-                            </li>
-							<li>
-                                <a href="">登出</a>
-                            </li>
-							</ul>
-                        </ul>
-                    </li>
+                {% endif %}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
-
     <!-- Page Content -->
     <div class="container">
 
         <!-- Page Heading/Breadcrumbs -->
+
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Portfolio Item
-                    <small>Subheading</small>
+                <h1 class="page-header">特別邀請
+                    <small>{{m.speaker}}</small>
                 </h1>
                 
             </div>
@@ -112,18 +108,22 @@
 
             <div class="col-md-5">
                 <a href="blog_post">
-                    <img class="img-responsive img-hover" src="1.gif" alt="">
+                    <img class="img-responsive img-hover" src="{% static 'images/1.gif' %}" alt="">
                 </a>
             </div>
             <div class="col-md-6">
                 <h2>
-                    <a href="blog_post">如何讓你成為一個好的幹部</a>
+                    <a href="">{{m.meeting_name}}</a>
                 </h2>
 				<br>
-				<p><i class="fa fa-home" aria-hidden="true"></i>主辦單位 ： 羅達企業學會</p>
-                <p><i class="fa fa-dollar" aria-hidden="true"></i>報名費用   ：無</p>
-				<p><i class="fa fa-users" aria-hidden="true"></i>人數限制 ：50</p><br>
-                <a class="btn btn-primary" href="login">馬上報名<i class="fa fa-angle-right"></i></a>
+				<p><i class="fa fa-home" aria-hidden="true"></i>主辦單位 ： {{m.organizer}}</p>
+                <p><i class="fa fa-dollar" aria-hidden="true"></i>報名費用   ： {{m.fare}}元</p>
+				<p><i class="fa fa-users" aria-hidden="true"></i>人數限制 ： {{m.attendance}}人</p><br>
+                {% if request.user.is_authenticated %}
+                <a href="join&{{m.meeting_id}}" class="btn btn-primary">馬上報名<i class="fa fa-angle-right"></i></a> 
+                {% else %}
+                <a href="login" class="btn btn-primary">馬上報名<i class="fa fa-angle-right"></i></a>
+                {% endif %}
             </div>
 			<br>
 			<br>
@@ -142,19 +142,19 @@
 			<br>
 			
 			
-                <p><i class="fa fa-home" aria-hidden="true"></i>主辦單位 ： 羅達企業學會</p>
-				<p><i class="fa fa-calendar" aria-hidden="true"></i>日期 ： 2017/8/31</p>
-				<p><i class="material-icons">&#xe0b0;</i>聯絡人 ：張小姐 0903256165</p>
-				<p><i class="fa fa-clock-o" aria-hidden="true"></i>1:00p.m - 3:30p.m</p>
+                <p><i class="fa fa-home" aria-hidden="true"></i>主辦單位 ： {{m.organizer}}</p>
+				<p><i class="fa fa-calendar" aria-hidden="true"></i>日期 ： {{m.meeting_date}}</p>
+				<p><i class="material-icons">&#xe0b0;</i>聯絡人 ：{{m.organizer}} {{phone}}</p>
+				<p><i class="fa fa-clock-o" aria-hidden="true"></i> {{m.meeting_starttime}} - {{m.meeting_endtime}}</p>
 
         </div>
         <!-- /.row -->
 		<div class="col-lg-12 text-center">
-            <h1><b>如何讓你成為一個好的幹部</b></h1>
-            <p class="lead" align="left">一、定名：本比賽擬定名為『2017~18羅東獅子會盃全國圍棋公開賽』</p>
-            <p class="lead" align="left">二、主辦單位：羅達企業學會</p>
-            <p class="lead" align="left">三、活動對象：公開給全部大學生參加</p>
-			<p class="lead" align="left">四、講座內容：讓你如何帶領整個團體</p>
+            <h1><b>{{m.meeting_name}}</b></h1>
+            <p class="lead" align="left">一、定名：本會議定名為『{{m.meeting_name}}』</p>
+            <p class="lead" align="left">二、主辦單位：{{m.organizer}}</p>
+            <p class="lead" align="left">三、活動對象：{{m.participants}}</p>
+			<p class="lead" align="left">四、講座內容：{{m.content}}</p>
             </div>
         <!-- Related Projects Row -->
         <div class="row">
@@ -196,7 +196,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; UTCS Lab504 2017</p>
                 </div>
             </div>
         </footer>
