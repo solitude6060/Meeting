@@ -730,7 +730,7 @@ def create_meeting(request):
     return render(request, 'project/index.html', {})	
 
 def member_login_time(request, meetingId):
-    check = CheckIn.objects.filter(meeting_id=meetingId)
+    checkin = CheckIn.objects.filter(meeting_id=meetingId)
     mid = meetingId
     return render_to_response('project/member_login_time.html', locals())	
 
