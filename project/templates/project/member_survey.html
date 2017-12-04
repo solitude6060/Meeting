@@ -71,19 +71,19 @@
           <tbody>
             {% for f in feedback %}
             <tr>
-              <td>{{f.member_name}}</td>
+              <td>{{f.member_email}}</td>
               
-              {% if f.time_feeback == 3 %}
+              {% if f.time_feedback == 3 %}
               <td>非常滿意</td>
-              {% elif f.time_feeback == 2 %}
+              {% elif f.time_feedback == 2 %}
               <td>滿意</td>
               {% else %}
               <td>尚可</td>
               {% endif %}
 
-              {% if f.location_feeback == 3 %}
+              {% if f.location_feedback == 3 %}
               <td>非常滿意</td>
-              {% elif f.location_feeback == 2 %}
+              {% elif f.location_feedback == 2 %}
               <td>滿意</td>
               {% else %}
               <td>尚可</td>
@@ -91,7 +91,7 @@
 
               {% if f.itinerary_feedback == 3 %}
               <td>非常滿意</td>
-              {% elif f.itinerary_feeback == 2 %}
+              {% elif f.itinerary_feedback == 2 %}
               <td>滿意</td>
               {% else %}
               <td>尚可</td>
