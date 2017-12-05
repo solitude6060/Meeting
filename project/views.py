@@ -324,14 +324,14 @@ def index(request):
 
 def admin_loging(request):
     #error = False
-    if request.user.is_authenticated(): 
+    if request.user.is_authenticated() and request.user.is_staff: 
         curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
         meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
         if not meetingObj:
             meetingObj = Meeting.objects.all()
         meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
         me = meeting[0:4]
-        return render(request, 'project/index.html', locals())
+        return render(request, 'project/choose.html', locals())
         #return render_to_response('project/index.html', locals())
 
     #error = False
@@ -340,7 +340,7 @@ def admin_loging(request):
 
     user = authenticate(username=uname, password=pword)
     
-    if user is not None:
+    if not request.user.is_authenticated() and user is not None :
         auth.login(request, user)
         curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
         meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
@@ -352,7 +352,7 @@ def admin_loging(request):
         # oger = Organizer.objects.get(organizer_email=username)
         # name = oger.organizer_department
         #return render_to_response('project/index.html', locals())
-        return render(request, 'project/index.html', locals())
+        return render(request, 'project/choose.html', locals())
     else:
         #error = True
         return render(request, 'project/admin_loging.html', locals())
@@ -646,10 +646,13 @@ def admin_page(request):
             name = org.organizer_department
             email = org.organizer_email
             phone = org.organizer_phone
-            return render_to_response('project/admin_homepage.html', locals())
+            return render(request,'project/admin_homepage.html', locals())
         else:
             name = email = phone = "資料錯誤！"
-    return render_to_response('project/admin_homepage.html', locals())	
+            return render(request,'project/admin_loging.html', locals())
+    else:
+        return render(request,'project/admin_homepage.html', locals())
+
 	
 def choose(request):
     return render_to_response('project/choose.html', locals())
