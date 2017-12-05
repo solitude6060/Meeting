@@ -770,6 +770,8 @@ def start_meeting(request, meetingId):
     check = CheckIn.objects.filter(meeting_id=meetingId)
     attendance = len(check)
     mid = meetingId
+    room_id = meetingById.meetingroom_id
+    ad = meetingById.address
     return render_to_response('project/start_meeting.html', locals())	
 	
 def member_survey(request, meetingId):

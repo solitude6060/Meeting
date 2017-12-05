@@ -152,7 +152,7 @@
                         <h4><strong>{{ m.meeting_name }}</strong></h4>
 						<ul align="left">
                     <li>日期: {{ m.meeting_date }}</li>
-                    <li>舉辦地點: {{ m.address }} </li>
+                    <li>舉辦地點: {{ m.address|truncatechars_html:10 }} </li>
                     <li>主辦單位(人): {{ m.organizer }} </li>
 
                 </ul>
