@@ -74,27 +74,27 @@
               <td>{{f.member_email}}</td>
               
               {% if f.time_feedback == 3 %}
-              <td>非常滿意</td>
-              {% elif f.time_feedback == 2 %}
               <td>滿意</td>
-              {% else %}
+              {% elif f.time_feedback == 2 %}
               <td>尚可</td>
+              {% else %}
+              <td>不滿意</td>
               {% endif %}
 
               {% if f.location_feedback == 3 %}
-              <td>非常滿意</td>
-              {% elif f.location_feedback == 2 %}
               <td>滿意</td>
-              {% else %}
+              {% elif f.location_feedback == 2 %}
               <td>尚可</td>
+              {% else %}
+              <td>不滿意</td>
               {% endif %}
 
               {% if f.itinerary_feedback == 3 %}
-              <td>非常滿意</td>
-              {% elif f.itinerary_feedback == 2 %}
               <td>滿意</td>
-              {% else %}
+              {% elif f.itinerary_feedback == 2 %}
               <td>尚可</td>
+              {% else %}
+              <td>不滿意</td>
               {% endif %}
 
               <td>{{f.suggestions}}</td>
