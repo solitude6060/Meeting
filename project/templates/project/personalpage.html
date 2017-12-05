@@ -170,6 +170,9 @@
                                 <li>舉辦地點: {{ c.address }} </li>
                                 <li>主辦單位(人): {{ c.organizer }} </li>
                             </ul>
+                            <p>
+                             <a href="information&{{c.meeting_id}}" class="btn btn-primary">閱讀更多</a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -191,10 +194,13 @@
                         <h4><strong>{{b.meeting_name}}</strong></h4>
                         <ul align="left">
                     <li>日期: {{b.meeting_date}}</li>
-                    <li>舉辦地點: {{ b.address }} </li>
+                    <li>舉辦地點: {{ b.address|truncatechars_html:10 }} </li>
                     <li>主辦單位(人): {{ b.organizer }} </li>
 
                         </ul>
+                        <p>
+                             <a href="information&{{b.meeting_id}}" class="btn btn-primary">閱讀更多</a>
+                            </p>
                     </div>
                 </div>
             </div>
