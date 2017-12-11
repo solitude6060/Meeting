@@ -96,12 +96,7 @@ header[role=banner] h1 {
   padding: 1rem;
   color:#BBFFEE;
 }
-header[role=banner] h1:before {
-  content: "\f248";
-  font-family: FontAwesome;
-  padding-right: .6em;
-  color: turquoise;
-}
+
 header[role=banner] .utilities {
   width: 100%;
   background: slategray;

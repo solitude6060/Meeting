@@ -9,7 +9,7 @@
 </head>
 <body>
 <header role="banner">
-  <h1><a href="index">會議資訊小管家</a></h1>
+    <img src="{% static 'images/iCON.png' %}" style = "width:52px; margin-top:13px; margin-left:23px">
   <ul class="utilities">
     {% if request.user.is_authenticated %}
     <div class="dropdown">
@@ -44,6 +44,7 @@
     <li class="write"><a href="seat&{{mid}}">座位圖</a></li>
     <li class="edit"><a href="member_login_time&{{mid}}">簽到單</a></li>
     <li class="comments"><a href="member_survey&{{mid}}">回饋單</a></li>
+	<li class="edit"><a href="http://163.21.245.183:8080">WebRTC</a></li>
 
   </ul>
 </nav>
@@ -65,8 +66,6 @@
 				<li><strong>主辦單位</strong> : {{meetingById.organizer}}</li>
 				<li><strong>主講者</strong> : {{meetingById.speaker}}</li>
 				<li><strong>現在人數</strong> : {{attendance}}</li>
-        <li><strong>會議室</strong> : {{room_id}}</li>
-        <li><strong>地址</strong> : {{ad}}</li>
 			</ul>
 		</div>
 
