@@ -9,7 +9,7 @@
 </head>
 <body>
 <header role="banner">
-  <h1><a href="index">會議資訊小管家</a></h1>
+  <a href="index"><img src="{% static 'images/iCON.png' %}" style = "width:82px; margin-top:13px; margin-left:29px">
   <ul class="utilities">
     {% if request.user.is_authenticated %}
     <div class="dropdown">
@@ -40,10 +40,8 @@
 
 <nav role="navigation">
   <ul class="main">
-    <li class="dashboard"><a href="#">會議內容</a></li>
-    <li class="write"><a href="#">座位圖</a></li>
-    <li class="edit"><a href="#">簽到單</a></li>
-    <li class="comments"><a href="#">回饋單</a></li>
+    <li class="dashboard"><a href="meeting_room">會議室管理</a></li>
+
 
   </ul>
 </nav>
