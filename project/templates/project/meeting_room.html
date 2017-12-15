@@ -9,7 +9,7 @@
 </head>
 <body>
 <header role="banner">
-  <img src="{% static 'images/iCON.png' %}" style = "width:82px; margin-top:13px; margin-left:29px">
+  <a href="index"><img src="{% static 'images/iCON.png' %}" style = "width:82px; margin-top:13px; margin-left:29px"></a>
   <ul class="utilities">
     {% if request.user.is_authenticated %}
     <div class="dropdown">
@@ -40,7 +40,7 @@
 
 <nav role="navigation">
   <ul class="main">
-    <li class="dashboard"><a href="meeting_room">會議室管理</a></li>
+    <li class="dashboard"><a href="choose">會議室管理</a></li>
 
 
   </ul>
@@ -66,28 +66,28 @@
       <br>
       <br>
       <br>
+	  
     {% endif %}
     {% endfor %}
-
+<br>
 <div class="input-container">
-<h1 align="center" style="color:red;">新增會議室</h1>
-  <form accept="" method="POST">
+<h1 align="center" style="color:red;">新增會議室</h1><br>
+  <form accept="" method="POST" style="margin:0px auto;">
   {% csrf_token %}
   {{ form }}
-  <label>
-    <input type="text" name="room_name" />
+  <label style="margin:0px auto;">
+    <input type="text" name="room_name" style="margin:0px auto;"/>
     <div  class="label-text">會議室名稱</div>
   </label>
-
-  <label>
-    <input type="text" name="ssid" />
+  <label style="margin:0px auto;">
+    <input type="text" name="ssid" style="margin:0px auto;"/>
     <div class="label-text">Wifi SSID</div>
   </label>
-    <label>
-    <input type="text" name="mac" />
+  <label style="margin:0px auto;">
+	<input type="text" name="mac" style="margin:0px auto;"/>
     <div class="label-text">Wifi Mac address</div>
   </label>
-  <button class="send" type="submit" >送出</button>
+  <button class="send" type="submit" style="margin:0px auto;" >送出</button>
   </form>
 </div>
 
