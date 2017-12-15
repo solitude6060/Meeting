@@ -150,8 +150,12 @@ class Seating(models.Model):
     mac_address = models.CharField(db_column='Mac_address', max_length=50, blank=True, null=True)
 
     def __unicode__(self):
-       return 'Room : ' + str(self.room_id.room_id) + " : X : " + str(self.seat_xid) + ", Y : " + str(self.seat_yid) + ", mac_address : " + str(self.mac_address)
-    
+        if type(self.room_id.room_id) == str:
+            return 'Room : ' + str(self.room_id.room_id) + " : X : " + str(self.seat_xid) + ", Y : " + str(self.seat_yid) + ", mac_address : " + str(self.mac_address)
+        elif type(self.room_id.room_id) == unicode:
+            uni = u'{}'.format(self.room_id.room_id)
+            return 'Room : ' + uni + " : X : " + str(self.seat_xid) + ", Y : " + str(self.seat_yid) + ", mac_address : " + str(self.mac_address)
+
     class Meta:
         managed = False
         db_table = 'Seating'
