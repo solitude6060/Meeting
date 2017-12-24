@@ -57,7 +57,7 @@
             {% for y in y_r %}
               <tr>
               {% for x in x_r %} 
-                <td height="100px" ALIGN=CENTER width={% widthratio 100 x_r|length 1 %} NOWRAP>
+                <td height="100px" ALIGN=CENTER width={% widthratio 100 x_r|length 1 %}% NOWRAP>
 							   {{x}} - {{y}}<br>
 							   {% get_at_index Name forloop.counter forloop.parentloop.counter x_r|length y_r|length as name %}
                   {% if name == "nobody" %}
