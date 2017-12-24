@@ -800,7 +800,8 @@ def seat(request, meetingId):
         for yy in range(ymax):
             try:    
                 check = CheckIn.objects.get(meeting_id=meetingId, seat_xid=xx+1, seat_yid=yy+1)
-                Name[xx][yy] = check.member_email
+                line = str(check.member_email)
+                Name[xx][yy] = line
             except:
                 Name[xx][yy] = "nobody"
     x_r = range(1,xmax+1)

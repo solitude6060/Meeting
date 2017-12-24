@@ -53,11 +53,11 @@
 <br>
 		<h2>{{ meetingById.meeting_name }} {{meetingById.meeting_date}} {{meetingById.meeting_starttime}} {{clock}}</h2>
 		<div id='editing' style="margin-top: 40px" >
-        	<table width="100px" border="1" align="center">
+        	<table width=200px border="1" align="center" style="table-layout:fixed">
             {% for y in y_r %}
               <tr>
               {% for x in x_r %} 
-                <td height="100px" ALIGN=CENTER width={% widthratio 100 x_r|length 1 %}% NOWRAP>
+                <td height="100px" ALIGN=CENTER width={% widthratio 100 x_r|length 1 %}%>
 							   {{x}} - {{y}}<br>
 							   {% get_at_index Name forloop.counter forloop.parentloop.counter x_r|length y_r|length as name %}
                   {% if name == "nobody" %}
