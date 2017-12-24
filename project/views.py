@@ -784,18 +784,25 @@ def seat(request, meetingId):
     mTime = datetime.datetime.strptime(str(meetingById.meeting_starttime), "%H:%M:%S")
     clock = mTime.strftime("%p")
 
-    x_r = range(1,2+1)
-    y_r = reversed(range(1,5+1))
-    Name = [[0 for y in range(1,5+1)] for x in range(1,2+1)]
-    for xx in range(2):
-        for yy in range(5):
+    room = meetingById.meetingroom_id
+    seating = Seating.objects.filter(room_id=room)
+    seat_order_x = sorted(seating, key=lambda x: x.seat_xid, reverse=True)
+    seat_order_y = sorted(seating, key=lambda x: x.seat_yid, reverse=True)
+    xmax = seat_order_x[0].seat_xid
+    ymax = seat_order_y[0].seat_yid
+
+    x_r = range(1,xmax+1)
+    y_r = reversed(range(1,ymax+1))
+    Name = [[0 for y in range(1,ymax+1)] for x in range(1,xmax+1)]
+    for xx in range(xmax):
+        for yy in range(ymax):
             try:    
                 check = CheckIn.objects.get(meeting_id=meetingId, seat_xid=xx+1, seat_yid=yy+1)
                 Name[xx][yy] = check.member_email
             except:
                 Name[xx][yy] = "Nobody"
-    x_r = range(1,3)
-    y_r = reversed(range(1,6))
+    x_r = range(1,xmax+1)
+    y_r = reversed(range(1,ymax+1))
     mid = meetingId
     return render(request, 'project/seat.html', locals())			
 
