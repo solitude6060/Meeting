@@ -5,10 +5,9 @@ register = template.Library()
 #@register.filter()
 @register.simple_tag
 def get_at_index(list, x, y, n, m):
-    # if args is None:
-    #     return False
-    # arg_list = [arg.strip() for arg in args.split(',')]
-    
+    #list=> Name = [[0 for y in range(1,ymax+1)] for x in range(1,xmax+1)]
+    #x = 1.....xmax+1, y = ymax+1......1
+    #n = length(x), m = length(y)
     m = m - n
     y = abs(m-y)
     x = x - 1

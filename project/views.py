@@ -788,8 +788,10 @@ def seat(request, meetingId):
     seating = Seating.objects.filter(room_id=room)
     seat_order_x = sorted(seating, key=lambda x: x.seat_xid, reverse=True)
     seat_order_y = sorted(seating, key=lambda x: x.seat_yid, reverse=True)
-    xmax = seat_order_x[0].seat_xid
-    ymax = seat_order_y[0].seat_yid
+    #xmax = seat_order_x[0].seat_xid
+    #ymax = seat_order_y[0].seat_yid
+    xmax=7
+    ymax=8
 
     x_r = range(1,xmax+1)
     y_r = reversed(range(1,ymax+1))
@@ -800,9 +802,9 @@ def seat(request, meetingId):
                 check = CheckIn.objects.get(meeting_id=meetingId, seat_xid=xx+1, seat_yid=yy+1)
                 Name[xx][yy] = check.member_email
             except:
-                Name[xx][yy] = "Nobody"
+                Name[xx][yy] = "nobody"
     x_r = range(1,xmax+1)
-    y_r = reversed(range(1,ymax+1))
+    y_r = list(reversed(range(1,ymax+1)))
     mid = meetingId
     return render(request, 'project/seat.html', locals())			
 
