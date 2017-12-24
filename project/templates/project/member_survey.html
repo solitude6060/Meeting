@@ -8,7 +8,7 @@
 </head>
 <body>
 <header role="banner">
-    <img src="{% static 'images/iCON.png' %}" style = "width:84px; margin-top:13px; margin-left:29px">
+    <a class="navbar-brand" href="index"><img src="{% static 'images/iCON.png' %}" style = "width:82px; margin-top:-8px"></a>
   <ul class="utilities">
     {% if request.user.is_authenticated %}
     <div class="dropdown">
