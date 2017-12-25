@@ -39,14 +39,17 @@ for meeting in meeting_all_today:
     for xx in x_x:
         if xx is not None:
             max_x = xx[2]
+            #print(max_x)
 
     sql_seating_y = "SELECT * from Seating where room_id = '" + str(meeting[3]) + "' ORDER BY Seat_yid DESC LIMIT 1"
     cursor.execute(sql_seating_y)
     db.commit()
     y_y = cursor.fetchall()
+    #print(y_y)
     for yy in y_y:
         if yy is not None:
-            max_y = xx[3]
+            max_y = yy[3]
+            #print(max_y)
 
     sql_checkin = "SELECT * from Check_in where Meeting_id = " + str(meeting[1])
     cursor.execute(sql_checkin)
@@ -84,7 +87,7 @@ for meeting in meeting_all_today:
                     if seat_wifi is not None:
                         for i in seat_wifi:
                             s_wifi = i[5]
-                            weight = s_wifi*-1*0.01
+                            weight = s_wifi*-1*0.0001
                             dis = ((s_wifi - wifi)**2)*weight
                             Matrix[x][y] = dis
 
