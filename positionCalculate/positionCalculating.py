@@ -39,12 +39,12 @@ for meeting in meeting_all_today:
     for xx in x_x:
         if xx is not None:
             max_x = xx[2]
-            #print(max_x)
+            print(max_x)
 
     sql_seating_y = "SELECT * from Seating where room_id = '" + str(meeting[3]) + "' ORDER BY Seat_yid DESC LIMIT 1"
     cursor.execute(sql_seating_y)
     db.commit()
-    y_y = cursor.fetchall()
+    #y_y = cursor.fetchall()
     #print(y_y)
     for yy in y_y:
         if yy is not None:

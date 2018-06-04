@@ -91,9 +91,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'project',#os.path.join(BASE_DIR, 'db.sqlite3'),
-        'USER': 'solitude6060',
-        'PASSWORD': '1234567890',
-        'HOST': '163.21.245.147',
+        'USER': 'root',
+        'PASSWORD': 'jackjou0920',
+        'HOST': '163.21.245.146',
         'PORT': '3306',
     }
 }
