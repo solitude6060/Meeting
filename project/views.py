@@ -381,13 +381,9 @@ def login(request):
 
         user = authenticate(username=uname, password=pword) 
 
-        if user is not None and not user.is_staff:
-            # if not request.user.is_staff:
-            #     member = Member.objects.get(member_email=uname)
-            #     name = member.member_name
-            # else:
-            #     oger = Organizer.objects.get(organizer_email=uname)
-            #     name = oger.organizer_department
+        if user is not None and not user.is_staff :
+            error3 = False
+            error4 = False
             auth.login(request, user)
             curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
             meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)
@@ -396,13 +392,14 @@ def login(request):
             meeting = sorted(meetingObj, key=lambda x: datetime.datetime.strptime(str(x.meeting_date), '%Y-%m-%d'), reverse=True)
             me = meeting[0:4]
             return render(request,'project/index.html', locals())
-            #return render(request, 'project/index.html', locals())
         else:
             error = "user None"
             register_checked = ""
-            if user.is_staff:
-                error3 = True
-            #return render(request, 'project/login.html', locals())
+            if user is not None : 
+                if user.is_staff :
+                    error3 = True
+            else : 
+                error4 = True
             return render(request, 'project/login.html', locals())
     if 'register' in request.POST:
         
@@ -432,14 +429,6 @@ def login(request):
             user = authenticate(username=username, password=password)
 
             if user is not None:
-                # if not request.user.is_staff:
-                #     username = request.user.username
-                #     member = Member.objects.get(member_email=username)
-                #     name = member.member_name
-                # else:
-                #     username = request.user.username
-                #     oger = Organizer.objects.get(organizer_email=username)
-                #     name = oger.organizer_department
                 auth.login(request, user)
                 curtime = datetime.datetime.strptime((datetime.datetime.now()-datetime.timedelta(days=1)).isoformat(), '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')
                 meetingObj = Meeting.objects.filter(meeting_date__gt = curtime)

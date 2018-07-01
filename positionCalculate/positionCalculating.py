@@ -4,7 +4,7 @@ import MySQLdb
 import datetime
 import time
 
-k = 5
+k = 0.05
 total = 0
 ksum = 0 
 match =0
@@ -39,7 +39,7 @@ for meeting in meeting_all_today:
     for xx in x_x:
         if xx is not None:
             max_x = xx[2]
-            print(max_x)
+            print(max_x) ### find max x cord
 
     sql_seating_y = "SELECT * from Seating where room_id = '" + str(meeting[3]) + "' ORDER BY Seat_yid DESC LIMIT 1"
     cursor.execute(sql_seating_y)
@@ -48,13 +48,13 @@ for meeting in meeting_all_today:
     #print(y_y)
     for yy in y_y:
         if yy is not None:
-            max_y = yy[3]
+            max_y = yy[3] ### find max y cord
             #print(max_y)
 
     sql_checkin = "SELECT * from Check_in where Meeting_id = " + str(meeting[1])
     cursor.execute(sql_checkin)
     db.commit()
-    checkMem_for_meeting = cursor.fetchall()
+    checkMem_for_meeting = cursor.fetchall() ### calculate meeting by meeting
 
     #for seat in seat_for_meeting:
 
@@ -66,17 +66,16 @@ for meeting in meeting_all_today:
         mem_pos = cursor.fetchall()
         LastTime = datetime.datetime(2017, 11, 14, 9, 50, 54)
         for m in mem_pos:
-            LastTime = m[6]
+            LastTime = m[6] ### find the latest time 
         
 
         sql_position= "SELECT * from Positioning where Member_email = '" + str(mem[2]) + "' AND MeetingRoom_id = '" + str(meeting[3])+ "' AND wifi_time = '"+str(LastTime)+"'"
         cursor.execute(sql_position)
         db.commit()
-        mem_position = cursor.fetchall()
+        mem_position = cursor.fetchall() ### find special member, special meetingRoom and the latest time
 
 
-        Matrix = [[0 for y in range(int(max_y)+1)] for x in range(int(max_x)+1)] 
-
+        Matrix = [[0 for y in range(int(max_y)+1)] for x in range(int(max_x)+1)] ### 2-d matrix from (0, 0) to (max_x, max_y), but we using it begin with (1, 1) 
         for x in range(1, max_x+1):
             for y in range(1, max_y+1):
                 for pos in mem_position:
@@ -89,7 +88,8 @@ for meeting in meeting_all_today:
                             s_wifi = i[5]
                             weight = s_wifi*-1*0.0001
                             dis = ((s_wifi - wifi)**2)*weight
-                            Matrix[x][y] = dis
+                            if dis <= k :
+                                Matrix[x][y] += dis
 
         small = 1000000000
         smallX = 0

@@ -149,8 +149,11 @@
             </p>
           </div>
           {% if error3 %}
-              <p style="color:white;">*主辦單位請用管理專區*</p>
-            {% endif %}
+            <p style="color:white;">*主辦單位請用管理專區*</p>
+          {% endif %}
+          {% if error4 %}
+            <p style="color:white;">*密碼錯誤*</p>
+          {% endif %}
           <button class='login-submit' type="submit" name="login">
             <span>
               登入
