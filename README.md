@@ -1,4 +1,7 @@
 # iCON - An Intelligent Conference Management Framework
+```
+ Please change to the develop branch first, in order to get the newest code
+```
 ## Graduate project of UTaipei CS
 ### iCON is a framework for conference managing with realtime video streaming and attendees positioning
 #### Here is the backend part and the positioning algorithm part of the framework
